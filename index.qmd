@@ -1,11 +1,15 @@
 ---
 title: "thesctrading"
+jupyter: python3
 ---
 
-This is a Quarto website.
+## My Python Code
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>. HELLO WORLD
-
+```{python}
+x = 10
+y = 20
+x + y
+```
 ![Caption](elephant.png)
 
 ```{.python}
@@ -20,4 +24,3 @@ Markdown(tabulate(
   headers=["Astronomical object","R (km)", "mass (kg)"]
 ))
 ```
-
