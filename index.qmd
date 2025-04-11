@@ -12,15 +12,14 @@ jupyter: python3
 
 Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum, holding positions for 10 trading days or less. We use the 10 day window to account for the fact that some of our data sources are weekly and may provide more signal over a longer trade horizon. Of course, if the system hits its limit point during the window, the position will close similar to our HW1 model.
 
+*note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. **We also wish to include valuation metrics using the yfinance package.***
+
 #### Example Trade Walkthrough
 
 Pre-Trade Filter:
 1. Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance)
 2. Check if implied volatility (IV) percentile > 50% and < 90%
 3. If both are true → proceed to trade evaluation
-
-
-*note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. **We also wish to include valuation metrics using the yfinance package.***
 
 Buy Conditions:
 1. Price is above the 50-day SMA (or EMA) *note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy*
