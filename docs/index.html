@@ -151,26 +151,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#my-python-code" id="toc-my-python-code" class="nav-link active" data-scroll-target="#my-python-code">My Python Code</a></li>
-  <li><a href="#trading-strategy-plan" id="toc-trading-strategy-plan" class="nav-link" data-scroll-target="#trading-strategy-plan">1. Trading Strategy &amp; Plan</a>
+  <li><a href="#sc-trading-strategy-overview" id="toc-sc-trading-strategy-overview" class="nav-link active" data-scroll-target="#sc-trading-strategy-overview">S&amp;C Trading Strategy Overview</a>
   <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">🔍 Overview</a></li>
-  <li><a href="#trade-walkthrough" id="toc-trade-walkthrough" class="nav-link" data-scroll-target="#trade-walkthrough">🎯 Trade Walkthrough</a>
-  <ul class="collapse">
-  <li><a href="#entry-signal" id="toc-entry-signal" class="nav-link" data-scroll-target="#entry-signal">📈 Entry Signal</a></li>
-  <li><a href="#exit-signal" id="toc-exit-signal" class="nav-link" data-scroll-target="#exit-signal">📉 Exit Signal</a></li>
+  <li><a href="#strategy-outline" id="toc-strategy-outline" class="nav-link" data-scroll-target="#strategy-outline">1. Strategy Outline</a></li>
+  <li><a href="#exit-strategy" id="toc-exit-strategy" class="nav-link" data-scroll-target="#exit-strategy">2. Exit Strategy</a></li>
+  <li><a href="#position-sizing-framework" id="toc-position-sizing-framework" class="nav-link" data-scroll-target="#position-sizing-framework">3. Position Sizing Framework</a></li>
+  <li><a href="#data-requirements" id="toc-data-requirements" class="nav-link" data-scroll-target="#data-requirements">4. Data Requirements</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   </ul></li>
-  <li><a href="#risk-management" id="toc-risk-management" class="nav-link" data-scroll-target="#risk-management">🛡️ Risk Management</a></li>
-  <li><a href="#instructor-feedback" id="toc-instructor-feedback" class="nav-link" data-scroll-target="#instructor-feedback">💬 Instructor Feedback</a></li>
-  </ul></li>
-  <li><a href="#data-plan" id="toc-data-plan" class="nav-link" data-scroll-target="#data-plan">2. Data Plan</a>
-  <ul class="collapse">
-  <li><a href="#data-requirements" id="toc-data-requirements" class="nav-link" data-scroll-target="#data-requirements">📊 Data Requirements</a></li>
-  <li><a href="#notes-or-open-questions" id="toc-notes-or-open-questions" class="nav-link" data-scroll-target="#notes-or-open-questions">💡 Notes or Open Questions</a></li>
-  <li><a href="#data-table" id="toc-data-table" class="nav-link" data-scroll-target="#data-table">Data Table</a></li>
-  <li><a href="#image" id="toc-image" class="nav-link" data-scroll-target="#image">Image</a></li>
-  <li><a href="#fred-data-software-developer-job-postings" id="toc-fred-data-software-developer-job-postings" class="nav-link" data-scroll-target="#fred-data-software-developer-job-postings">📈 FRED Data: Software Developer Job Postings</a></li>
-  </ul></li>
+  <li><a href="#practice-data-table" id="toc-practice-data-table" class="nav-link" data-scroll-target="#practice-data-table">Practice Data Table</a></li>
+  <li><a href="#practice-image" id="toc-practice-image" class="nav-link" data-scroll-target="#practice-image">Practice Image</a></li>
+  <li><a href="#fred-data-software-developer-job-postings" id="toc-fred-data-software-developer-job-postings" class="nav-link" data-scroll-target="#fred-data-software-developer-job-postings">FRED Data: Software Developer Job Postings</a></li>
   </ul>
 </nav>
     </div>
@@ -196,71 +187,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="my-python-code" class="level2">
-<h2 class="anchored" data-anchor-id="my-python-code">My Python Code</h2>
-</section>
-<section id="trading-strategy-plan" class="level1">
-<h1>1. Trading Strategy &amp; Plan</h1>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">🔍 Overview</h2>
-<blockquote class="blockquote">
-<p><em>Brief summary of your strategy in 1–2 lines.</em></p>
-</blockquote>
-<hr>
-</section>
-<section id="trade-walkthrough" class="level2">
-<h2 class="anchored" data-anchor-id="trade-walkthrough">🎯 Trade Walkthrough</h2>
-<section id="entry-signal" class="level3">
-<h3 class="anchored" data-anchor-id="entry-signal">📈 Entry Signal</h3>
-<ul>
-<li>Conditions / indicators used</li>
-<li>Timeframe</li>
-<li>Asset(s) traded</li>
-</ul>
-</section>
-<section id="exit-signal" class="level3">
-<h3 class="anchored" data-anchor-id="exit-signal">📉 Exit Signal</h3>
-<ul>
-<li>Profit target</li>
-<li>Stop loss logic</li>
-<li>Exit timing or trailing rules</li>
-</ul>
+<section id="sc-trading-strategy-overview" class="level2">
+<h2 class="anchored" data-anchor-id="sc-trading-strategy-overview">S&amp;C Trading Strategy Overview</h2>
+<section id="strategy-outline" class="level3">
+<h3 class="anchored" data-anchor-id="strategy-outline">1. Strategy Outline</h3>
+<p>Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum, holding positions for 10 trading days or less. We use the 10 day window to account for the fact that some of our data sources are weekly and may provide more signal over a longer trade horizon. Of course, if the system hits its limit point during the window, the position will close similar to our HW1 model.</p>
+<section id="example-trade-walkthrough" class="level4">
+<h4 class="anchored" data-anchor-id="example-trade-walkthrough">Example Trade Walkthrough</h4>
+<p>Pre-Trade Filter: - Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance) - Check if implied volatility (IV) percentile &gt; 50% and &lt; 90% - If both are true → proceed to trade evaluation <em>note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. <strong>We also wish to include valuation metrics using the yfinance package.</strong></em></p>
+<p>Buy Conditions: 1. Price is above the 50-day SMA (or EMA) <em>note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy</em> 2. Gamma exposure is positive (or some other greek we can calculate)</p>
 <hr>
 </section>
 </section>
-<section id="risk-management" class="level2">
-<h2 class="anchored" data-anchor-id="risk-management">🛡️ Risk Management</h2>
-<ul>
-<li>Position sizing</li>
-<li>Stop loss logic</li>
-<li>Daily/weekly risk limits</li>
-</ul>
+<section id="exit-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="exit-strategy">2. Exit Strategy</h3>
+<p>We use four exit triggers to manage risk and lock in profits:</p>
+<ol type="1">
+<li>If position is open for more than 10 trading days, exit regardless of performance</li>
+<li>If IV percentile drops below 30%, exit</li>
+<li>Exit if price reaches a profit target of 2x last week’s average true range (ATR)</li>
+<li>Use a trailing stop loss of 1.5x ATR below the highest price reached since entry</li>
+</ol>
 <hr>
 </section>
-<section id="instructor-feedback" class="level2">
-<h2 class="anchored" data-anchor-id="instructor-feedback">💬 Instructor Feedback</h2>
-<blockquote class="blockquote">
-<p><em>Add notes or summaries from any instructor or TA discussions here.</em></p>
-</blockquote>
+<section id="position-sizing-framework" class="level3">
+<h3 class="anchored" data-anchor-id="position-sizing-framework">3. Position Sizing Framework</h3>
+<p>Position size will adapt based on strength of indicators and perhaps on a regression of additional features not used to determine the weekly position strategy similar to the logistic regression model used in HW1. We envision a less binary model where sizing is continuous determined on a variety of features (allows us to take risk off but also keep risk on more granularly than the original model).</p>
+<p>Conditions for each tier will be finalized after further backtesting.</p>
 <hr>
 </section>
-</section>
-<section id="data-plan" class="level1">
-<h1>2. Data Plan</h1>
-<section id="data-requirements" class="level2">
-<h2 class="anchored" data-anchor-id="data-requirements">📊 Data Requirements</h2>
+<section id="data-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="data-requirements">4. Data Requirements</h3>
+<p>We plan to collect and process:</p>
 <ul>
-<li><p><strong>Features Needed</strong>: (e.g., price, volume, indicators, fundamentals…)</p></li>
-<li><p><strong>Frequency &amp; Time Range</strong>: (e.g., 1-minute, daily, past 1 year…)</p></li>
-<li><p><strong>Source(s)</strong>: (e.g., Yahoo Finance, Alpaca API, CSV upload…)</p></li>
+<li>Price data and technical indicators (SMA, ATR, IV, Options contracts)</li>
+<li>Job posting data &amp; other relevant metrics from FRED</li>
+<li>Automotive industry data from FRED</li>
+<li>Implied volatility percentile data (via IBKR)</li>
+</ul>
+<p>We may use the FRED API, yFinance, or custom scrapers to automate data gathering.</p>
+<hr>
+</section>
+<section id="next-steps" class="level3">
+<h3 class="anchored" data-anchor-id="next-steps">Next Steps</h3>
+<ul>
+<li>Gather full feature list and find good alt data and implement backward elimination model to decide useful features</li>
+<li>Build &amp; backtest position sizing model</li>
+<li>Backtest the strategy on historical TSLA data</li>
+<li>Deploy the final version to https://thesctrading.com</li>
 </ul>
 </section>
-<section id="notes-or-open-questions" class="level2">
-<h2 class="anchored" data-anchor-id="notes-or-open-questions">💡 Notes or Open Questions</h2>
 </section>
-<section id="data-table" class="level2">
-<h2 class="anchored" data-anchor-id="data-table">Data Table</h2>
-<div id="20baf732" class="cell" data-execution_count="1">
+<section id="practice-data-table" class="level2">
+<h2 class="anchored" data-anchor-id="practice-data-table">Practice Data Table</h2>
+<div id="880535ea" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
@@ -274,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span>[<span class="st">"Astronomical object"</span>,<span class="st">"R (km)"</span>, <span class="st">"mass (kg)"</span>]</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="46">
 <table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -309,19 +289,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="image" class="level2">
-<h2 class="anchored" data-anchor-id="image">Image</h2>
-<p>Test</p>
+<section id="practice-image" class="level2">
+<h2 class="anchored" data-anchor-id="practice-image">Practice Image</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="elephant.png" class="img-fluid figure-img"></p>
-<figcaption>Caption</figcaption>
+<figcaption>Practice Elephant from Quarto Guide</figcaption>
 </figure>
 </div>
 </section>
 <section id="fred-data-software-developer-job-postings" class="level2">
-<h2 class="anchored" data-anchor-id="fred-data-software-developer-job-postings">📈 FRED Data: Software Developer Job Postings</h2>
-<div id="b329b7b9" class="cell" data-execution_count="2">
+<h2 class="anchored" data-anchor-id="fred-data-software-developer-job-postings">FRED Data: Software Developer Job Postings</h2>
+<p>The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely <strong>backward selection</strong> where the model evaluates all the features and removes the least powerful/most noisy one by one.</p>
+<div id="82bc07b1" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -343,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Display last 5 rows as table</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="47">
 <div>
 
 
@@ -387,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="5983238b" class="cell" data-execution_count="3">
+<div id="5b451bcd" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the time series</span></span>
@@ -410,7 +390,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
