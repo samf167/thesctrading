@@ -12,7 +12,7 @@ x + y
 ```
 ![Caption](elephant.png)
 
-```{.python}
+```{python}
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [["Sun","696,000",1.989e30],

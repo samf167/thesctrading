@@ -11,6 +11,13 @@
     "href": "index.html",
     "title": "thesctrading",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites. HELLO WORLD\n\n\n\nCaption\n\n\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"Sun\",\"696,000\",1.989e30],\n         [\"Earth\",\"6,371\",5.972e24],\n         [\"Moon\",\"1,737\",7.34e22],\n         [\"Mars\",\"3,390\",6.39e23]]\nMarkdown(tabulate(\n  table,\n  headers=[\"Astronomical object\",\"R (km)\", \"mass (kg)\"]\n))"
+    "text": "x = 10\ny = 20\nx + y\n\n30\n\n\n\n\n\nCaption\n\n\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"Sun\",\"696,000\",1.989e30],\n         [\"Earth\",\"6,371\",5.972e24],\n         [\"Moon\",\"1,737\",7.34e22],\n         [\"Mars\",\"3,390\",6.39e23]]\nMarkdown(tabulate(\n  table,\n  headers=[\"Astronomical object\",\"R (km)\", \"mass (kg)\"]\n))"
+  },
+  {
+    "objectID": "index.html#my-python-code",
+    "href": "index.html#my-python-code",
+    "title": "thesctrading",
+    "section": "",
+    "text": "x = 10\ny = 20\nx + y\n\n30\n\n\n\n\n\nCaption\n\n\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"Sun\",\"696,000\",1.989e30],\n         [\"Earth\",\"6,371\",5.972e24],\n         [\"Moon\",\"1,737\",7.34e22],\n         [\"Mars\",\"3,390\",6.39e23]]\nMarkdown(tabulate(\n  table,\n  headers=[\"Astronomical object\",\"R (km)\", \"mass (kg)\"]\n))"
   }
 ]
