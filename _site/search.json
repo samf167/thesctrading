@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "thesctrading",
+    "section": "",
+    "text": "x = 10\ny = 20\nx + y\nimport sys\nprint(sys.executable)\n\n/Users/samfuller/opt/anaconda3/bin/python\n\n\n\n\n\nCaption\n\n\n\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"Sun\",\"696,000\",1.989e30],\n         [\"Earth\",\"6,371\",5.972e24],\n         [\"Moon\",\"1,737\",7.34e22],\n         [\"Mars\",\"3,390\",6.39e23]]\nMarkdown(tabulate(\n  table,\n  headers=[\"Astronomical object\",\"R (km)\", \"mass (kg)\"]\n))\n\n\n\n\nAstronomical object\nR (km)\nmass (kg)\n\n\n\n\nSun\n696,000\n1.989e+30\n\n\nEarth\n6,371\n5.972e+24\n\n\nMoon\n1,737\n7.34e+22\n\n\nMars\n3,390\n6.39e+23"
+  },
+  {
+    "objectID": "index.html#my-python-code",
+    "href": "index.html#my-python-code",
+    "title": "thesctrading",
+    "section": "",
+    "text": "x = 10\ny = 20\nx + y\nimport sys\nprint(sys.executable)\n\n/Users/samfuller/opt/anaconda3/bin/python\n\n\n\n\n\nCaption\n\n\n\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"Sun\",\"696,000\",1.989e30],\n         [\"Earth\",\"6,371\",5.972e24],\n         [\"Moon\",\"1,737\",7.34e22],\n         [\"Mars\",\"3,390\",6.39e23]]\nMarkdown(tabulate(\n  table,\n  headers=[\"Astronomical object\",\"R (km)\", \"mass (kg)\"]\n))\n\n\n\n\nAstronomical object\nR (km)\nmass (kg)\n\n\n\n\nSun\n696,000\n1.989e+30\n\n\nEarth\n6,371\n5.972e+24\n\n\nMoon\n1,737\n7.34e+22\n\n\nMars\n3,390\n6.39e+23"
+  }
+]

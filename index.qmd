@@ -9,12 +9,14 @@ jupyter: python3
 x = 10
 y = 20
 x + y
+import sys
+print(sys.executable)
 ```
 ![Caption](elephant.png)
 
 ```{python}
 from IPython.display import Markdown
-import tabulate
+from tabulate import tabulate
 table = [["Sun","696,000",1.989e30],
          ["Earth","6,371",5.972e24],
          ["Moon","1,737",7.34e22],
