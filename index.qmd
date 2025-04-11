@@ -76,3 +76,38 @@ Markdown(tabulate(
 Test
 
 ![Caption](elephant.png)
+
+## 📈 FRED Data: Software Developer Job Postings
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+from fredapi import Fred
+
+# Connect to FRED
+fred = Fred(api_key="1c00931ee7dc4304c6bb68b72fb2d68f")
+
+# Fetch data
+series_id = "IHLIDXUSTPSOFTDEVE"
+data = fred.get_series(series_id)
+
+# Convert to DataFrame
+df = pd.DataFrame(data, columns=["Job Postings"])
+df.index.name = "Date"
+df = df.reset_index()
+
+# Display last 5 rows as table
+df.tail()
+```
+
+```{python}
+# Plot the time series
+plt.figure(figsize=(10, 4))
+plt.plot(df["Date"], df["Job Postings"], linewidth=2)
+plt.title("US Software Developer Job Postings Index")
+plt.xlabel("Date")
+plt.ylabel("Index Value")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```

@@ -61,5 +61,12 @@
     "title": "thesctrading",
     "section": "Image",
     "text": "Image\nTest\n\n\n\nCaption"
+  },
+  {
+    "objectID": "index.html#fred-data-software-developer-job-postings",
+    "href": "index.html#fred-data-software-developer-job-postings",
+    "title": "thesctrading",
+    "section": "📈 FRED Data: Software Developer Job Postings",
+    "text": "📈 FRED Data: Software Developer Job Postings\n\n\nCode\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom fredapi import Fred\n\n# Connect to FRED\nfred = Fred(api_key=\"1c00931ee7dc4304c6bb68b72fb2d68f\")\n\n# Fetch data\nseries_id = \"IHLIDXUSTPSOFTDEVE\"\ndata = fred.get_series(series_id)\n\n# Convert to DataFrame\ndf = pd.DataFrame(data, columns=[\"Job Postings\"])\ndf.index.name = \"Date\"\ndf = df.reset_index()\n\n# Display last 5 rows as table\ndf.tail()\n\n\n\n\n\n\n\n\n\nDate\nJob Postings\n\n\n\n\n1885\n2025-03-31\n63.13\n\n\n1886\n2025-04-01\n63.18\n\n\n1887\n2025-04-02\n63.28\n\n\n1888\n2025-04-03\n63.43\n\n\n1889\n2025-04-04\n63.69\n\n\n\n\n\n\n\n\n\nCode\n# Plot the time series\nplt.figure(figsize=(10, 4))\nplt.plot(df[\"Date\"], df[\"Job Postings\"], linewidth=2)\nplt.title(\"US Software Developer Job Postings Index\")\nplt.xlabel(\"Date\")\nplt.ylabel(\"Index Value\")\nplt.grid(True)\nplt.tight_layout()\nplt.show()"
   }
 ]
