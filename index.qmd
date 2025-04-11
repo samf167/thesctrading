@@ -16,14 +16,22 @@ Our team is implementing a buy low / sell high strategy focused on short-term mo
 
 #### Example Trade Walkthrough
 
-Pre-Trade Filter:
-1. Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance)
+Pre-Trade Filter
+
+1. Check if job postings for software roles increased week-over-week
+   (as well as other FRED/alternative data including pairs performance)
 2. Check if implied volatility (IV) percentile > 50% and < 90%
 3. If both are true → proceed to trade evaluation
 
-Buy Conditions:
-1. Price is above the 50-day SMA (or EMA) *note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy*
-2. Gamma exposure is positive (or some other greek we can calculate)
+---
+
+Buy Conditions
+
+1. Price is above the 50-day SMA (or EMA)
+   *note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy*
+2. Gamma exposure is positive
+   (or some other Greek we can calculate)
+
 
 ---
 
