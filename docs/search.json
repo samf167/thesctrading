@@ -7,81 +7,25 @@
     "text": "About this site"
   },
   {
-    "objectID": "index.html#overview",
-    "href": "index.html#overview",
-    "title": "thesctrading",
-    "section": "🔍 Overview",
-    "text": "🔍 Overview\n\nBrief summary of your strategy in 1–2 lines."
-  },
-  {
-    "objectID": "index.html#trade-walkthrough",
-    "href": "index.html#trade-walkthrough",
-    "title": "thesctrading",
-    "section": "🎯 Trade Walkthrough",
-    "text": "🎯 Trade Walkthrough\n\n📈 Entry Signal\n\nConditions / indicators used\nTimeframe\nAsset(s) traded\n\n\n\n📉 Exit Signal\n\nProfit target\nStop loss logic\nExit timing or trailing rules"
-  },
-  {
-    "objectID": "index.html#risk-management",
-    "href": "index.html#risk-management",
-    "title": "thesctrading",
-    "section": "🛡️ Risk Management",
-    "text": "🛡️ Risk Management\n\nPosition sizing\nStop loss logic\nDaily/weekly risk limits"
-  },
-  {
-    "objectID": "index.html#instructor-feedback",
-    "href": "index.html#instructor-feedback",
-    "title": "thesctrading",
-    "section": "💬 Instructor Feedback",
-    "text": "💬 Instructor Feedback\n\nAdd notes or summaries from any instructor or TA discussions here."
-  },
-  {
-    "objectID": "index.html#data-requirements",
-    "href": "index.html#data-requirements",
-    "title": "thesctrading",
-    "section": "📊 Data Requirements",
-    "text": "📊 Data Requirements\n\nFeatures Needed: (e.g., price, volume, indicators, fundamentals…)\nFrequency & Time Range: (e.g., 1-minute, daily, past 1 year…)\nSource(s): (e.g., Yahoo Finance, Alpaca API, CSV upload…)"
-  },
-  {
-    "objectID": "index.html#notes-or-open-questions",
-    "href": "index.html#notes-or-open-questions",
-    "title": "thesctrading",
-    "section": "💡 Notes or Open Questions",
-    "text": "💡 Notes or Open Questions"
-  },
-  {
-    "objectID": "index.html#data-table",
-    "href": "index.html#data-table",
-    "title": "thesctrading",
-    "section": "Data Table",
-    "text": "Data Table\n\n\nCode\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"Sun\",\"696,000\",1.989e30],\n         [\"Earth\",\"6,371\",5.972e24],\n         [\"Moon\",\"1,737\",7.34e22],\n         [\"Mars\",\"3,390\",6.39e23]]\nMarkdown(tabulate(\n  table,\n  headers=[\"Astronomical object\",\"R (km)\", \"mass (kg)\"]\n))\n\n\n\n\n\nAstronomical object\nR (km)\nmass (kg)\n\n\n\n\nSun\n696,000\n1.989e+30\n\n\nEarth\n6,371\n5.972e+24\n\n\nMoon\n1,737\n7.34e+22\n\n\nMars\n3,390\n6.39e+23"
-  },
-  {
-    "objectID": "index.html#image",
-    "href": "index.html#image",
-    "title": "thesctrading",
-    "section": "Image",
-    "text": "Image\nTest\n\n\n\nCaption"
-  },
-  {
-    "objectID": "index.html#fred-data-software-developer-job-postings",
-    "href": "index.html#fred-data-software-developer-job-postings",
-    "title": "thesctrading",
-    "section": "FRED Data: Software Developer Job Postings",
-    "text": "FRED Data: Software Developer Job Postings\nThe below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely backward selection where the model evaluates all the features and removes the least powerful/most noisy one by one.\n\n\nCode\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom fredapi import Fred\n\n# Connect to FRED\nfred = Fred(api_key=\"1c00931ee7dc4304c6bb68b72fb2d68f\")\n\n# Fetch data\nseries_id = \"IHLIDXUSTPSOFTDEVE\"\ndata = fred.get_series(series_id)\n\n# Convert to DataFrame\ndf = pd.DataFrame(data, columns=[\"Job Postings\"])\ndf.index.name = \"Date\"\ndf = df.reset_index()\n\n# Display last 5 rows as table\ndf.tail()\n\n\n\n\n\n\n\n\n\nDate\nJob Postings\n\n\n\n\n1885\n2025-03-31\n63.13\n\n\n1886\n2025-04-01\n63.18\n\n\n1887\n2025-04-02\n63.28\n\n\n1888\n2025-04-03\n63.43\n\n\n1889\n2025-04-04\n63.69\n\n\n\n\n\n\n\n\n\nCode\n# Plot the time series\nplt.figure(figsize=(10, 4))\nplt.plot(df[\"Date\"], df[\"Job Postings\"], linewidth=2)\nplt.title(\"US Software Developer Job Postings Index\")\nplt.xlabel(\"Date\")\nplt.ylabel(\"Index Value\")\nplt.grid(True)\nplt.tight_layout()\nplt.show()"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "thesctrading",
     "section": "",
-    "text": "Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum, holding positions for 10 trading days or less. We use the 10 day window to account for the fact that some of our data sources are weekly and may provide more signal over a longer trade horizon. Of course, if the system hits its limit point during the window, the position will close similar to our HW1 model.\n\n\nPre-Trade Filter: - Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance) - Check if implied volatility (IV) percentile &gt; 50% and &lt; 90% - If both are true → proceed to trade evaluation note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. We also wish to include valuation metrics using the yfinance package.\nBuy Conditions: 1. Price is above the 50-day SMA (or EMA) note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy 2. Gamma exposure is positive (or some other greek we can calculate)\n\n\n\n\n\nWe use four exit triggers to manage risk and lock in profits:\n\nIf position is open for more than 10 trading days, exit regardless of performance\nIf IV percentile drops below 30%, exit\nExit if price reaches a profit target of 2x last week’s average true range (ATR)\nUse a trailing stop loss of 1.5x ATR below the highest price reached since entry\n\n\n\n\n\nPosition size will adapt based on strength of indicators and perhaps on a regression of additional features not used to determine the weekly position strategy similar to the logistic regression model used in HW1. We envision a less binary model where sizing is continuous determined on a variety of features (allows us to take risk off but also keep risk on more granularly than the original model).\nConditions for each tier will be finalized after further backtesting.\n\n\n\n\nWe plan to collect and process:\n\nPrice data and technical indicators (SMA, ATR, IV, Options contracts)\nJob posting data & other relevant metrics from FRED\nAutomotive industry data from FRED\nImplied volatility percentile data (via IBKR)\n\nWe may use the FRED API, yFinance, or custom scrapers to automate data gathering.\n\n\n\n\n\nGather full feature list and find good alt data and implement backward elimination model to decide useful features\nBuild & backtest position sizing model\nBacktest the strategy on historical TSLA data\nDeploy the final version to https://thesctrading.com"
+    "text": "Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum, holding positions for 10 trading days or less. We use the 10 day window to account for the fact that some of our data sources are weekly and may provide more signal over a longer trade horizon. Of course, if the system hits its limit point during the window, the position will close similar to our HW1 model.\n\n\nPre-Trade Filter: * unordered list + Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance) + Check if implied volatility (IV) percentile &gt; 50% and &lt; 90% + If both are true → proceed to trade evaluation\nnote that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. We also wish to include valuation metrics using the yfinance package.\nBuy Conditions: 1. Price is above the 50-day SMA (or EMA) note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy 2. Gamma exposure is positive (or some other greek we can calculate)\n\n\n\n\n\nWe use four exit triggers to manage risk and lock in profits:\n\nIf position is open for more than 10 trading days, exit regardless of performance\nIf IV percentile drops below 30%, exit\nExit if price reaches a profit target of 2x last week’s average true range (ATR)\nUse a trailing stop loss of 1.5x ATR below the highest price reached since entry\n\n\n\n\n\nPosition size will adapt based on strength of indicators and perhaps on a regression of additional features not used to determine the weekly position strategy similar to the logistic regression model used in HW1. We envision a less binary model where sizing is continuous determined on a variety of features (allows us to take risk off but also keep risk on more granularly than the original model).\nConditions for each tier will be finalized after further backtesting.\n\n\n\n\nWe plan to collect and process:\n\nPrice data and technical indicators (SMA, ATR, IV, Options contracts)\nJob posting data & other relevant metrics from FRED\nAutomotive industry data from FRED\nImplied volatility percentile data (via IBKR)\n\nWe may use the FRED API, yFinance, or custom scrapers to automate data gathering.\n\n\n\n\n\nGather full feature list and find good alt data and implement backward elimination model to decide useful features\nBuild & backtest position sizing model\nBacktest the strategy on historical TSLA data\nDeploy the final version to https://thesctrading.com"
   },
   {
     "objectID": "index.html#sc-trading-strategy-overview",
     "href": "index.html#sc-trading-strategy-overview",
     "title": "thesctrading",
     "section": "",
-    "text": "Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum, holding positions for 10 trading days or less. We use the 10 day window to account for the fact that some of our data sources are weekly and may provide more signal over a longer trade horizon. Of course, if the system hits its limit point during the window, the position will close similar to our HW1 model.\n\n\nPre-Trade Filter: - Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance) - Check if implied volatility (IV) percentile &gt; 50% and &lt; 90% - If both are true → proceed to trade evaluation note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. We also wish to include valuation metrics using the yfinance package.\nBuy Conditions: 1. Price is above the 50-day SMA (or EMA) note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy 2. Gamma exposure is positive (or some other greek we can calculate)\n\n\n\n\n\nWe use four exit triggers to manage risk and lock in profits:\n\nIf position is open for more than 10 trading days, exit regardless of performance\nIf IV percentile drops below 30%, exit\nExit if price reaches a profit target of 2x last week’s average true range (ATR)\nUse a trailing stop loss of 1.5x ATR below the highest price reached since entry\n\n\n\n\n\nPosition size will adapt based on strength of indicators and perhaps on a regression of additional features not used to determine the weekly position strategy similar to the logistic regression model used in HW1. We envision a less binary model where sizing is continuous determined on a variety of features (allows us to take risk off but also keep risk on more granularly than the original model).\nConditions for each tier will be finalized after further backtesting.\n\n\n\n\nWe plan to collect and process:\n\nPrice data and technical indicators (SMA, ATR, IV, Options contracts)\nJob posting data & other relevant metrics from FRED\nAutomotive industry data from FRED\nImplied volatility percentile data (via IBKR)\n\nWe may use the FRED API, yFinance, or custom scrapers to automate data gathering.\n\n\n\n\n\nGather full feature list and find good alt data and implement backward elimination model to decide useful features\nBuild & backtest position sizing model\nBacktest the strategy on historical TSLA data\nDeploy the final version to https://thesctrading.com"
+    "text": "Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum, holding positions for 10 trading days or less. We use the 10 day window to account for the fact that some of our data sources are weekly and may provide more signal over a longer trade horizon. Of course, if the system hits its limit point during the window, the position will close similar to our HW1 model.\n\n\nPre-Trade Filter: * unordered list + Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance) + Check if implied volatility (IV) percentile &gt; 50% and &lt; 90% + If both are true → proceed to trade evaluation\nnote that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. We also wish to include valuation metrics using the yfinance package.\nBuy Conditions: 1. Price is above the 50-day SMA (or EMA) note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy 2. Gamma exposure is positive (or some other greek we can calculate)\n\n\n\n\n\nWe use four exit triggers to manage risk and lock in profits:\n\nIf position is open for more than 10 trading days, exit regardless of performance\nIf IV percentile drops below 30%, exit\nExit if price reaches a profit target of 2x last week’s average true range (ATR)\nUse a trailing stop loss of 1.5x ATR below the highest price reached since entry\n\n\n\n\n\nPosition size will adapt based on strength of indicators and perhaps on a regression of additional features not used to determine the weekly position strategy similar to the logistic regression model used in HW1. We envision a less binary model where sizing is continuous determined on a variety of features (allows us to take risk off but also keep risk on more granularly than the original model).\nConditions for each tier will be finalized after further backtesting.\n\n\n\n\nWe plan to collect and process:\n\nPrice data and technical indicators (SMA, ATR, IV, Options contracts)\nJob posting data & other relevant metrics from FRED\nAutomotive industry data from FRED\nImplied volatility percentile data (via IBKR)\n\nWe may use the FRED API, yFinance, or custom scrapers to automate data gathering.\n\n\n\n\n\nGather full feature list and find good alt data and implement backward elimination model to decide useful features\nBuild & backtest position sizing model\nBacktest the strategy on historical TSLA data\nDeploy the final version to https://thesctrading.com"
+  },
+  {
+    "objectID": "index.html#practice-data-table",
+    "href": "index.html#practice-data-table",
+    "title": "thesctrading",
+    "section": "Practice Data Table",
+    "text": "Practice Data Table\n\n\nCode\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"Sun\",\"696,000\",1.989e30],\n         [\"Earth\",\"6,371\",5.972e24],\n         [\"Moon\",\"1,737\",7.34e22],\n         [\"Mars\",\"3,390\",6.39e23]]\nMarkdown(tabulate(\n  table,\n  headers=[\"Astronomical object\",\"R (km)\", \"mass (kg)\"]\n))\n\n\n\n\n\nAstronomical object\nR (km)\nmass (kg)\n\n\n\n\nSun\n696,000\n1.989e+30\n\n\nEarth\n6,371\n5.972e+24\n\n\nMoon\n1,737\n7.34e+22\n\n\nMars\n3,390\n6.39e+23"
   },
   {
     "objectID": "index.html#practice-image",
@@ -91,10 +35,10 @@
     "text": "Practice Image\n\n\n\nPractice Elephant from Quarto Guide"
   },
   {
-    "objectID": "index.html#practice-data-table",
-    "href": "index.html#practice-data-table",
+    "objectID": "index.html#fred-data-software-developer-job-postings",
+    "href": "index.html#fred-data-software-developer-job-postings",
     "title": "thesctrading",
-    "section": "Practice Data Table",
-    "text": "Practice Data Table\n\n\nCode\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"Sun\",\"696,000\",1.989e30],\n         [\"Earth\",\"6,371\",5.972e24],\n         [\"Moon\",\"1,737\",7.34e22],\n         [\"Mars\",\"3,390\",6.39e23]]\nMarkdown(tabulate(\n  table,\n  headers=[\"Astronomical object\",\"R (km)\", \"mass (kg)\"]\n))\n\n\n\n\n\nAstronomical object\nR (km)\nmass (kg)\n\n\n\n\nSun\n696,000\n1.989e+30\n\n\nEarth\n6,371\n5.972e+24\n\n\nMoon\n1,737\n7.34e+22\n\n\nMars\n3,390\n6.39e+23"
+    "section": "FRED Data: Software Developer Job Postings",
+    "text": "FRED Data: Software Developer Job Postings\nThe below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely backward selection where the model evaluates all the features and removes the least powerful/most noisy one by one.\n\n\nCode\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom fredapi import Fred\n\n# Connect to FRED\nfred = Fred(api_key=\"1c00931ee7dc4304c6bb68b72fb2d68f\")\n\n# Fetch data\nseries_id = \"IHLIDXUSTPSOFTDEVE\"\ndata = fred.get_series(series_id)\n\n# Convert to DataFrame\ndf = pd.DataFrame(data, columns=[\"Job Postings\"])\ndf.index.name = \"Date\"\ndf = df.reset_index()\n\n# Display last 5 rows as table\ndf.tail()\n\n\n\n\n\n\n\n\n\nDate\nJob Postings\n\n\n\n\n1885\n2025-03-31\n63.13\n\n\n1886\n2025-04-01\n63.18\n\n\n1887\n2025-04-02\n63.28\n\n\n1888\n2025-04-03\n63.43\n\n\n1889\n2025-04-04\n63.69\n\n\n\n\n\n\n\n\n\nCode\n# Plot the time series\nplt.figure(figsize=(10, 4))\nplt.plot(df[\"Date\"], df[\"Job Postings\"], linewidth=2)\nplt.title(\"US Software Developer Job Postings Index\")\nplt.xlabel(\"Date\")\nplt.ylabel(\"Index Value\")\nplt.grid(True)\nplt.tight_layout()\nplt.show()"
   }
 ]

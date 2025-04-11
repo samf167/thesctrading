@@ -15,9 +15,11 @@ Our team is implementing a buy low / sell high strategy focused on short-term mo
 #### Example Trade Walkthrough
 
 Pre-Trade Filter:
-- Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance)
-- Check if implied volatility (IV) percentile > 50% and < 90%
-- If both are true → proceed to trade evaluation
+1. Check if job postings for software roles increased week-over-week (as well as other FRED/alternative data including pairs performance)
+2. Check if implied volatility (IV) percentile > 50% and < 90%
+3. If both are true → proceed to trade evaluation
+
+
 *note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. **We also wish to include valuation metrics using the yfinance package.***
 
 Buy Conditions:
@@ -58,14 +60,14 @@ We may use the FRED API, yFinance, or custom scrapers to automate data gathering
 
 ---
 
-### Next Steps
+### 5. Next Steps
 
 - Gather full feature list and find good alt data and implement backward elimination model to decide useful features
 - Build & backtest position sizing model
 - Backtest the strategy on historical TSLA data
 - Deploy the final version to https://thesctrading.com
 
-## Practice Data Table
+### 6. Practice Data Table
 
 ```{python}
 from IPython.display import Markdown
@@ -80,11 +82,11 @@ Markdown(tabulate(
 ))
 ```
 
-## Practice Image
+### 7. Practice Image
 
 ![Practice Elephant from Quarto Guide](elephant.png)
 
-## FRED Data: Software Developer Job Postings
+### 8. FRED Data: Software Developer Job Postings
 
 The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely **backward selection** where the model evaluates all the features and removes the least powerful/most noisy one by one.
 
