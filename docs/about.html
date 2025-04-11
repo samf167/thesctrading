@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>thesctrading</title>
+<title>About – thesctrading</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,45 +20,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,9 +67,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -128,11 +90,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -146,40 +108,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#my-python-code" id="toc-my-python-code" class="nav-link active" data-scroll-target="#my-python-code">My Python Code</a></li>
-  <li><a href="#trading-strategy-plan" id="toc-trading-strategy-plan" class="nav-link" data-scroll-target="#trading-strategy-plan">1. Trading Strategy &amp; Plan</a>
-  <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">🔍 Overview</a></li>
-  <li><a href="#trade-walkthrough" id="toc-trade-walkthrough" class="nav-link" data-scroll-target="#trade-walkthrough">🎯 Trade Walkthrough</a>
-  <ul class="collapse">
-  <li><a href="#entry-signal" id="toc-entry-signal" class="nav-link" data-scroll-target="#entry-signal">📈 Entry Signal</a></li>
-  <li><a href="#exit-signal" id="toc-exit-signal" class="nav-link" data-scroll-target="#exit-signal">📉 Exit Signal</a></li>
-  </ul></li>
-  <li><a href="#risk-management" id="toc-risk-management" class="nav-link" data-scroll-target="#risk-management">🛡️ Risk Management</a></li>
-  <li><a href="#instructor-feedback" id="toc-instructor-feedback" class="nav-link" data-scroll-target="#instructor-feedback">💬 Instructor Feedback</a></li>
-  </ul></li>
-  <li><a href="#data-plan" id="toc-data-plan" class="nav-link" data-scroll-target="#data-plan">2. Data Plan</a>
-  <ul class="collapse">
-  <li><a href="#data-requirements" id="toc-data-requirements" class="nav-link" data-scroll-target="#data-requirements">📊 Data Requirements</a></li>
-  <li><a href="#notes-or-open-questions" id="toc-notes-or-open-questions" class="nav-link" data-scroll-target="#notes-or-open-questions">💡 Notes or Open Questions</a></li>
-  <li><a href="#data-table" id="toc-data-table" class="nav-link" data-scroll-target="#data-table">Data Table</a></li>
-  <li><a href="#image" id="toc-image" class="nav-link" data-scroll-target="#image">Image</a></li>
-  <li><a href="#fred-data-software-developer-job-postings" id="toc-fred-data-software-developer-job-postings" class="nav-link" data-scroll-target="#fred-data-software-developer-job-postings">📈 FRED Data: Software Developer Job Postings</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">thesctrading</h1>
+<h1 class="title">About</h1>
 </div>
 
 
@@ -196,222 +133,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="my-python-code" class="level2">
-<h2 class="anchored" data-anchor-id="my-python-code">My Python Code</h2>
-</section>
-<section id="trading-strategy-plan" class="level1">
-<h1>1. Trading Strategy &amp; Plan</h1>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">🔍 Overview</h2>
-<blockquote class="blockquote">
-<p><em>Brief summary of your strategy in 1–2 lines.</em></p>
-</blockquote>
-<hr>
-</section>
-<section id="trade-walkthrough" class="level2">
-<h2 class="anchored" data-anchor-id="trade-walkthrough">🎯 Trade Walkthrough</h2>
-<section id="entry-signal" class="level3">
-<h3 class="anchored" data-anchor-id="entry-signal">📈 Entry Signal</h3>
-<ul>
-<li>Conditions / indicators used</li>
-<li>Timeframe</li>
-<li>Asset(s) traded</li>
-</ul>
-</section>
-<section id="exit-signal" class="level3">
-<h3 class="anchored" data-anchor-id="exit-signal">📉 Exit Signal</h3>
-<ul>
-<li>Profit target</li>
-<li>Stop loss logic</li>
-<li>Exit timing or trailing rules</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="risk-management" class="level2">
-<h2 class="anchored" data-anchor-id="risk-management">🛡️ Risk Management</h2>
-<ul>
-<li>Position sizing</li>
-<li>Stop loss logic</li>
-<li>Daily/weekly risk limits</li>
-</ul>
-<hr>
-</section>
-<section id="instructor-feedback" class="level2">
-<h2 class="anchored" data-anchor-id="instructor-feedback">💬 Instructor Feedback</h2>
-<blockquote class="blockquote">
-<p><em>Add notes or summaries from any instructor or TA discussions here.</em></p>
-</blockquote>
-<hr>
-</section>
-</section>
-<section id="data-plan" class="level1">
-<h1>2. Data Plan</h1>
-<section id="data-requirements" class="level2">
-<h2 class="anchored" data-anchor-id="data-requirements">📊 Data Requirements</h2>
-<ul>
-<li><p><strong>Features Needed</strong>: (e.g., price, volume, indicators, fundamentals…)</p></li>
-<li><p><strong>Frequency &amp; Time Range</strong>: (e.g., 1-minute, daily, past 1 year…)</p></li>
-<li><p><strong>Source(s)</strong>: (e.g., Yahoo Finance, Alpaca API, CSV upload…)</p></li>
-</ul>
-</section>
-<section id="notes-or-open-questions" class="level2">
-<h2 class="anchored" data-anchor-id="notes-or-open-questions">💡 Notes or Open Questions</h2>
-</section>
-<section id="data-table" class="level2">
-<h2 class="anchored" data-anchor-id="data-table">Data Table</h2>
-<div id="3cd3b406" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> [[<span class="st">"Sun"</span>,<span class="st">"696,000"</span>,<span class="fl">1.989e30</span>],</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"Earth"</span>,<span class="st">"6,371"</span>,<span class="fl">5.972e24</span>],</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"Moon"</span>,<span class="st">"1,737"</span>,<span class="fl">7.34e22</span>],</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"Mars"</span>,<span class="st">"3,390"</span>,<span class="fl">6.39e23</span>]]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  table,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span>[<span class="st">"Astronomical object"</span>,<span class="st">"R (km)"</span>, <span class="st">"mass (kg)"</span>]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Astronomical object</th>
-<th style="text-align: left;">R (km)</th>
-<th style="text-align: right;">mass (kg)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Sun</td>
-<td style="text-align: left;">696,000</td>
-<td style="text-align: right;">1.989e+30</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Earth</td>
-<td style="text-align: left;">6,371</td>
-<td style="text-align: right;">5.972e+24</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Moon</td>
-<td style="text-align: left;">1,737</td>
-<td style="text-align: right;">7.34e+22</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mars</td>
-<td style="text-align: left;">3,390</td>
-<td style="text-align: right;">6.39e+23</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="image" class="level2">
-<h2 class="anchored" data-anchor-id="image">Image</h2>
-<p>Test</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="elephant.png" class="img-fluid figure-img"></p>
-<figcaption>Caption</figcaption>
-</figure>
-</div>
-</section>
-<section id="fred-data-software-developer-job-postings" class="level2">
-<h2 class="anchored" data-anchor-id="fred-data-software-developer-job-postings">📈 FRED Data: Software Developer Job Postings</h2>
-<div id="4d89e7d8" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fredapi <span class="im">import</span> Fred</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to FRED</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>fred <span class="op">=</span> Fred(api_key<span class="op">=</span><span class="st">"1c00931ee7dc4304c6bb68b72fb2d68f"</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch data</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>series_id <span class="op">=</span> <span class="st">"IHLIDXUSTPSOFTDEVE"</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> fred.get_series(series_id)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">"Job Postings"</span>])</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>df.index.name <span class="op">=</span> <span class="st">"Date"</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index()</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Display last 5 rows as table</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<div>
+<p>About this site</p>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Date</th>
-<th data-quarto-table-cell-role="th">Job Postings</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1885</td>
-<td>2025-03-31</td>
-<td>63.13</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1886</td>
-<td>2025-04-01</td>
-<td>63.18</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1887</td>
-<td>2025-04-02</td>
-<td>63.28</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1888</td>
-<td>2025-04-03</td>
-<td>63.43</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1889</td>
-<td>2025-04-04</td>
-<td>63.69</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="8ad2bf1b" class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the time series</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.plot(df[<span class="st">"Date"</span>], df[<span class="st">"Job Postings"</span>], linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"US Software Developer Job Postings Index"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Date"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Index Value"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-4-output-1.png" width="950" height="374" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-
-
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
