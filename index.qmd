@@ -7,3 +7,17 @@ This is a Quarto website.
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>. HELLO WORLD
 
 ![Caption](elephant.png)
+
+```{.python}
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [["Sun","696,000",1.989e30],
+         ["Earth","6,371",5.972e24],
+         ["Moon","1,737",7.34e22],
+         ["Mars","3,390",6.39e23]]
+Markdown(tabulate(
+  table,
+  headers=["Astronomical object","R (km)", "mass (kg)"]
+))
+```
+
