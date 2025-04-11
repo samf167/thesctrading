@@ -1,18 +1,63 @@
 ---
 title: "thesctrading"
+format:
+  html:
+    code-fold: true
 jupyter: python3
 ---
 
 ## My Python Code
 
-```{python}
-x = 10
-y = 20
-x + y
-import sys
-print(sys.executable)
-```
-![Caption](elephant.png)
+# 1. Trading Strategy & Plan
+
+## 🔍 Overview
+
+> _Brief summary of your strategy in 1–2 lines._
+
+---
+
+## 🎯 Trade Walkthrough
+
+### 📈 Entry Signal
+- Conditions / indicators used
+- Timeframe
+- Asset(s) traded
+
+### 📉 Exit Signal
+- Profit target
+- Stop loss logic
+- Exit timing or trailing rules
+
+---
+
+## 🛡️ Risk Management
+- Position sizing
+- Stop loss logic
+- Daily/weekly risk limits
+
+---
+
+## 💬 Instructor Feedback
+> _Add notes or summaries from any instructor or TA discussions here._
+
+---
+
+# 2. Data Plan
+
+## 📊 Data Requirements
+
+- **Features Needed**:
+  (e.g., price, volume, indicators, fundamentals...)
+
+- **Frequency & Time Range**:
+  (e.g., 1-minute, daily, past 1 year...)
+
+- **Source(s)**:
+  (e.g., Yahoo Finance, Alpaca API, CSV upload...)
+
+## 💡 Notes or Open Questions
+
+## Data Table
 
 ```{python}
 from IPython.display import Markdown
@@ -26,3 +71,7 @@ Markdown(tabulate(
   headers=["Astronomical object","R (km)", "mass (kg)"]
 ))
 ```
+
+## Image
+
+![Caption](elephant.png)
