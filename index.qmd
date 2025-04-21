@@ -3,8 +3,10 @@ title: "thesctrading"
 format:
   html:
     code-fold: true
-jupyter: python3
+jupyter: py312env
 ---
+
+
 
 ## S&C Trading Strategy Overview
 
