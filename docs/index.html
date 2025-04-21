@@ -162,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#practice-image" id="toc-practice-image" class="nav-link" data-scroll-target="#practice-image">7. Practice Image</a></li>
   <li><a href="#fred-data-software-developer-job-postings" id="toc-fred-data-software-developer-job-postings" class="nav-link" data-scroll-target="#fred-data-software-developer-job-postings">8. FRED Data: Software Developer Job Postings</a></li>
   </ul></li>
-  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a>
+  <li><a href="#blotter-ledger-code" id="toc-blotter-ledger-code" class="nav-link" data-scroll-target="#blotter-ledger-code">Blotter &amp; Ledger Code</a>
   <ul class="collapse">
   <li><a href="#fetch-data" id="toc-fetch-data" class="nav-link" data-scroll-target="#fetch-data">Fetch data</a></li>
   <li><a href="#clean-data" id="toc-clean-data" class="nav-link" data-scroll-target="#clean-data">Clean Data</a></li>
@@ -171,9 +171,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#blotter-ledger" id="toc-blotter-ledger" class="nav-link" data-scroll-target="#blotter-ledger">Blotter &amp; Ledger</a></li>
   <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra">Extra</a></li>
   </ul></li>
-  <li><a href="#outputting-interactive-blotter-ledger" id="toc-outputting-interactive-blotter-ledger" class="nav-link" data-scroll-target="#outputting-interactive-blotter-ledger">Outputting Interactive Blotter &amp; Ledger</a>
+  <li><a href="#outputting-interactive-blotter-ledger-final-hw-here" id="toc-outputting-interactive-blotter-ledger-final-hw-here" class="nav-link" data-scroll-target="#outputting-interactive-blotter-ledger-final-hw-here">Outputting Interactive Blotter &amp; Ledger (FINAL HW HERE)</a>
   <ul class="collapse">
-  <li><a href="#navcharts-not-necessary" id="toc-navcharts-not-necessary" class="nav-link" data-scroll-target="#navcharts-not-necessary">NAV/Charts (not necessary)</a></li>
+  <li><a href="#navcharts-extra-not-necessary" id="toc-navcharts-extra-not-necessary" class="nav-link" data-scroll-target="#navcharts-extra-not-necessary">NAV/Charts &amp; Extra (not necessary)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="practice-data-table" class="level3">
 <h3 class="anchored" data-anchor-id="practice-data-table">6. Practice Data Table</h3>
-<div id="db285cda" class="cell" data-execution_count="1">
+<div id="dc298421" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
@@ -277,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span>[<span class="st">"Astronomical object"</span>,<span class="st">"R (km)"</span>, <span class="st">"mass (kg)"</span>]</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="15">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="21">
 <table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -324,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="fred-data-software-developer-job-postings" class="level3">
 <h3 class="anchored" data-anchor-id="fred-data-software-developer-job-postings">8. FRED Data: Software Developer Job Postings</h3>
 <p>The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely <strong>backward selection</strong> where the model evaluates all the features and removes the least powerful/most noisy one by one.</p>
-<div id="2e8aca58" class="cell" data-execution_count="2">
+<div id="f7eabab1" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -346,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Display last 5 rows as table</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -390,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="f9e63941" class="cell" data-execution_count="3">
+<div id="06ea2d13" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the time series</span></span>
@@ -413,9 +413,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="model" class="level1">
-<h1>Model</h1>
-<div id="804a710b" class="cell" data-execution_count="4">
+<section id="blotter-ledger-code" class="level1">
+<h1>Blotter &amp; Ledger Code</h1>
+<div id="2a99b538" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -428,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="fetch-data" class="level3">
 <h3 class="anchored" data-anchor-id="fetch-data">Fetch data</h3>
-<div id="a47c59cc" class="cell" data-execution_count="5">
+<div id="202c356c" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>asset<span class="op">=</span> sb.Contract({</span>
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">#keepUpToDate=False</span></span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>historical_data_daily <span class="op">=</span> historical_data_daily_fetch[<span class="st">'hst_dta'</span>]</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"HDD"</span>, historical_data_daily)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># print("HDD", historical_data_daily)</span></span>
 <span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#### Fetch your liquid trading hours for the asset</span></span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">#### You'll need this later!</span></span>
@@ -484,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    })</span>
 <span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>liquid_hours <span class="op">=</span> ares_deets[<span class="st">'liquidHours'</span>]</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(liquid_hours)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co"># print(liquid_hours)</span></span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co">#liquid_hours = (ares_deets['liquidHours'][0])</span></span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_fetch_iv(contract, durationStr, barSizeSetting, label):</span>
@@ -520,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: preview what was fetched</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(iv_historical_data_daily.head())</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="co"># print(iv_historical_data_daily.head())</span></span>
 <span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>historical_data_daily_fetch_SMA <span class="op">=</span> sb.fetch_historical_data(</span>
@@ -536,36 +536,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA <span class="op">=</span> historical_data_daily_fetch_SMA[<span class="st">'hst_dta'</span>]<span class="co">#%% md</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>HDD       timestamp    open    high     low   close   volume      wap  barCount
-0    2024-04-22  131.09  132.51  129.28  132.01   367947  130.967      2011
-1    2024-04-23  132.80  136.61  132.25  136.50   385456  135.335      1984
-2    2024-04-24  137.75  138.45  134.66  135.95   647594  135.997      3695
-3    2024-04-25  134.93  135.64  132.58  133.73   416087  134.341      2865
-4    2024-04-26  134.23  135.82  133.05  133.62   274832  134.352      1810
-..          ...     ...     ...     ...     ...      ...      ...       ...
-245  2025-04-14  141.04  143.53  136.26  138.38  1431967  138.457      9965
-246  2025-04-15  139.63  142.56  138.42  141.32   937760  141.139      6439
-247  2025-04-16  139.35  141.03  136.64  139.60  1036890  138.861      6975
-248  2025-04-17  139.85  142.82  139.61  141.24   727147  141.168      5139
-249  2025-04-21  138.70  139.74  133.82  137.08   888838  136.172      5739
-
-[250 rows x 8 columns]
-0               start_time  end_time  closed
-2025-0...
-Name: liquidHours, dtype: object
-Daily IV data fetched. Rows: 250
-    timestamp      open      high       low     close  volume    wap  barCount
-0  2024-04-22  0.299473  0.314696  0.287249  0.288868       1  0.315         0
-1  2024-04-23  0.286662  0.328190  0.256230  0.311299       1  0.328         0
-2  2024-04-24  0.296885  0.310585  0.275788  0.294821       1  0.311         0
-3  2024-04-25  0.292361  0.334190  0.292361  0.298409       1  0.334         0
-4  2024-04-26  0.296949  0.317617  0.285741  0.294901       1  0.318         0</code></pre>
+<pre><code>Daily IV data fetched. Rows: 250</code></pre>
 </div>
 </div>
 </section>
 <section id="clean-data" class="level3">
 <h3 class="anchored" data-anchor-id="clean-data">Clean Data</h3>
-<div id="abe202d1" class="cell" data-execution_count="6">
+<div id="76fc1122" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -628,7 +605,7 @@ Name: SMA_20, Length: 500, dtype: float64</code></pre>
 </section>
 <section id="print-dfs" class="level3">
 <h3 class="anchored" data-anchor-id="print-dfs">Print DFs</h3>
-<div id="0feef711" class="cell" data-execution_count="7">
+<div id="5b8cee29" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print dataframes</span></span>
@@ -774,7 +751,7 @@ Name: liquidHours, dtype: object</code></pre>
 </section>
 <section id="vol" class="level3">
 <h3 class="anchored" data-anchor-id="vol">Vol</h3>
-<div id="3684ec0d" class="cell" data-execution_count="8">
+<div id="7614a10a" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc Obs &amp; Exp Vol</span></span>
@@ -796,8 +773,8 @@ Name: liquidHours, dtype: object</code></pre>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>vol_calcs[<span class="st">'exp_vol'</span>] <span class="op">=</span> vol_calcs[<span class="st">'obs_vol'</span>].shift(<span class="dv">1</span>)</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Volatility Calculations:"</span>)</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vol_calcs)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># print("\nVolatility Calculations:")</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># print(vol_calcs)</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc Obs &amp; Exp Vol</span></span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
@@ -829,62 +806,6 @@ Name: liquidHours, dtype: object</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Volatility Calculations:
-          obs_vol   exp_vol
-2024.17  0.037358       NaN
-2024.18  0.058997  0.037358
-2024.19  0.041709  0.058997
-2024.20  0.030747  0.041709
-2024.21  0.055541  0.030747
-2024.22  0.026734  0.055541
-2024.23  0.035181  0.026734
-2024.24  0.049880  0.035181
-2024.25  0.024201  0.049880
-2024.26  0.025558  0.024201
-2024.27  0.025460  0.025558
-2024.28  0.035751  0.025460
-2024.29  0.040661  0.035751
-2024.30  0.038725  0.040661
-2024.31  0.065120  0.038725
-2024.32  0.078962  0.065120
-2024.33  0.028736  0.078962
-2024.34  0.019785  0.028736
-2024.35  0.026346  0.019785
-2024.36  0.031696  0.026346
-2024.37  0.034750  0.031696
-2024.38  0.032657  0.034750
-2024.39  0.019770  0.032657
-2024.40  0.031140  0.019770
-2024.41  0.044910  0.031140
-2024.42  0.030065  0.044910
-2024.43  0.027089  0.030065
-2024.44  0.048315  0.027089
-2024.45  0.064099  0.048315
-2024.46  0.033129  0.064099
-2024.47  0.024092  0.033129
-2024.48  0.028234  0.024092
-2024.49  0.021655  0.028234
-2024.50  0.039611  0.021655
-2024.51  0.052050  0.039611
-2024.52  0.025411  0.052050
-2025.01  0.036901  0.025411
-2025.02  0.035510  0.036901
-2025.03  0.051092  0.035510
-2025.04  0.038692  0.051092
-2025.05  0.020813  0.038692
-2025.06  0.041087  0.020813
-2025.07  0.065741  0.041087
-2025.08  0.033773  0.065741
-2025.09  0.056267  0.033773
-2025.10  0.045554  0.056267
-2025.11  0.079776  0.045554
-2025.12  0.099292  0.079776
-2025.13  0.037189  0.099292
-2025.14  0.054198  0.037189
-2025.15  0.142716  0.054198
-2025.16  0.180665  0.142716
-2025.17  0.049677  0.180665
-
 Volatility Calculations:
           obs_vol   exp_vol
 2024.17  0.037358  0.041529
@@ -945,7 +866,7 @@ Volatility Calculations:
 </section>
 <section id="blotter-ledger" class="level3">
 <h3 class="anchored" data-anchor-id="blotter-ledger">Blotter &amp; Ledger</h3>
-<div id="2859c1c6" class="cell" data-execution_count="9">
+<div id="445a6e97" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
@@ -954,191 +875,77 @@ Volatility Calculations:
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc blotter</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>blotter <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>trade_periods[<span class="dv">1</span>:], columns<span class="op">=</span>[<span class="st">'entry_timestamp'</span>, <span class="st">'qty'</span>, <span class="st">'exit_timestamp'</span>, <span class="st">'entry_price'</span>, <span class="st">'exit_price'</span>, <span class="st">'success'</span>, <span class="st">'iv'</span>, <span class="st">'wap'</span>, <span class="st">'sma'</span>])</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>blotter[:] <span class="op">=</span> <span class="va">None</span>  <span class="co"># Set empty values</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Blotter:"</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(blotter)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Ledger</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>filtered_historical <span class="op">=</span> historical_data_daily[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">!=</span> historical_data_daily[<span class="st">'trd_prd'</span>].iloc[<span class="dv">0</span>]]</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>ledger <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'date'</span>] <span class="op">=</span> filtered_historical[<span class="st">'timestamp'</span>]</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'position'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'cash'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mark'</span>] <span class="op">=</span> historical_data_daily[<span class="st">'close'</span>][<span class="dv">1</span>:]</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mkt_value'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#ledger['cash'] = 50000</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Ledger:"</span>)</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ledger)</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Blotter &amp; Ledger Loop</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># This is where "backtesting" really occurs. We're calculating the blotter &amp;</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># ledger that our trading system WOULD have produced.</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trd_prd <span class="kw">in</span> blotter.index:</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    entry_timestamp <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    entry_price <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'open'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    prev_close <span class="op">=</span> historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">&lt;</span> trd_prd, <span class="st">'close'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    exp_vol <span class="op">=</span> vol_calcs.loc[trd_prd, <span class="st">'exp_vol'</span>]</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    iv <span class="op">=</span> iv_historical_data_daily.loc[iv_historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'wap'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    wap <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'wap'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    sma <span class="op">=</span> historical_data_daily_SMA.loc[historical_data_daily_SMA[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'SMA_20'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> entry_price <span class="op">&gt;</span> prev_close:</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>        exit_price_strategy <span class="op">=</span> entry_price <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> exp_vol)</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>        exit_price_strategy <span class="op">=</span> entry_price <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> exp_vol)</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    period_data <span class="op">=</span> historical_data_hourly[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd]</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    max_high <span class="op">=</span> period_data[<span class="st">'high'</span>].<span class="bu">max</span>()</span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    min_low <span class="op">=</span> period_data[<span class="st">'low'</span>].<span class="bu">min</span>()</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (qty <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> max_high <span class="op">&gt;=</span> exit_price_strategy) <span class="kw">or</span> (qty <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">and</span> min_low <span class="op">&lt;=</span> exit_price_strategy):</span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> exit_price_strategy</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> qty <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>            exit_timestamp <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>            exit_high_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'high'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>            exit_low_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'low'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>            exit_timestamp <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>            exit_high_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'high'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>            exit_low_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'low'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>        <span class="co">#print(exit_low_price, exit_high_price, exit_price_strategy, exit_timestamp, qty)</span></span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'close'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>        <span class="co">#exit_timestamp = historical_data_daily.loc[historical_data_daily['trd_prd'] == trd_prd, 'timestamp'].iloc[-1]</span></span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>        exit_timestamp <span class="op">=</span> pd.to_datetime(</span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>        historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'timestamp'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]).replace(hour<span class="op">=</span><span class="dv">15</span>, minute<span class="op">=</span><span class="dv">0</span>, second<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Ledger</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>filtered_historical <span class="op">=</span> historical_data_daily[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">!=</span> historical_data_daily[<span class="st">'trd_prd'</span>].iloc[<span class="dv">0</span>]]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>ledger <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'date'</span>] <span class="op">=</span> filtered_historical[<span class="st">'timestamp'</span>]</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'position'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'cash'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mark'</span>] <span class="op">=</span> historical_data_daily[<span class="st">'close'</span>][<span class="dv">1</span>:]</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mkt_value'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#ledger['cash'] = 50000</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Ledger:"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ledger)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Blotter &amp; Ledger Loop</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># This is where "backtesting" really occurs. We're calculating the blotter &amp;</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ledger that our trading system WOULD have produced.</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trd_prd <span class="kw">in</span> blotter.index:</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    entry_timestamp <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    entry_price <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'open'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    prev_close <span class="op">=</span> historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">&lt;</span> trd_prd, <span class="st">'close'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    exp_vol <span class="op">=</span> vol_calcs.loc[trd_prd, <span class="st">'exp_vol'</span>]</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    iv <span class="op">=</span> iv_historical_data_daily.loc[iv_historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'wap'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    wap <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'wap'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    sma <span class="op">=</span> historical_data_daily_SMA.loc[historical_data_daily_SMA[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'SMA_20'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> entry_price <span class="op">&gt;</span> prev_close:</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>        exit_price_strategy <span class="op">=</span> entry_price <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> exp_vol)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>        exit_price_strategy <span class="op">=</span> entry_price <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> exp_vol)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    period_data <span class="op">=</span> historical_data_hourly[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd]</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    max_high <span class="op">=</span> period_data[<span class="st">'high'</span>].<span class="bu">max</span>()</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    min_low <span class="op">=</span> period_data[<span class="st">'low'</span>].<span class="bu">min</span>()</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (qty <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> max_high <span class="op">&gt;=</span> exit_price_strategy) <span class="kw">or</span> (qty <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">and</span> min_low <span class="op">&lt;=</span> exit_price_strategy):</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> exit_price_strategy</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> qty <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>            exit_timestamp <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>            exit_high_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'high'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>            exit_low_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'low'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>            exit_timestamp <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>            exit_high_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'high'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>            exit_low_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'low'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>        <span class="co">#print(exit_low_price, exit_high_price, exit_price_strategy, exit_timestamp, qty)</span></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'close'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>        <span class="co">#exit_timestamp = historical_data_daily.loc[historical_data_daily['trd_prd'] == trd_prd, 'timestamp'].iloc[-1]</span></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>        exit_timestamp <span class="op">=</span> pd.to_datetime(</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>        historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'timestamp'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]).replace(hour<span class="op">=</span><span class="dv">15</span>, minute<span class="op">=</span><span class="dv">0</span>, second<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>    blotter.loc[trd_prd] <span class="op">=</span> [entry_timestamp, qty, exit_timestamp, entry_price, exit_price, success, iv, wap, sma]</span>
 <span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>    blotter.loc[trd_prd] <span class="op">=</span> [entry_timestamp, qty, exit_timestamp, entry_price, exit_price, success, iv, wap, sma]</span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> entry_timestamp, <span class="st">'position'</span>] <span class="op">+=</span> qty</span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> exit_timestamp, <span class="st">'position'</span>] <span class="op">-=</span> qty</span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> entry_timestamp, <span class="st">'cash'</span>] <span class="op">-=</span> qty <span class="op">*</span> entry_price</span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> exit_timestamp, <span class="st">'cash'</span>] <span class="op">+=</span> qty <span class="op">*</span> exit_price</span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="co"># finally, calculate your strategy's end-of-day mark-to-market value</span></span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mkt_value'</span>] <span class="op">=</span> ledger[<span class="st">'position'</span>] <span class="op">*</span> ledger[<span class="st">'mark'</span>] <span class="op">+</span> ledger[<span class="st">'cash'</span>]</span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(blotter)</span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ledger)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> entry_timestamp, <span class="st">'position'</span>] <span class="op">+=</span> qty</span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> exit_timestamp, <span class="st">'position'</span>] <span class="op">-=</span> qty</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> entry_timestamp, <span class="st">'cash'</span>] <span class="op">-=</span> qty <span class="op">*</span> entry_price</span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> exit_timestamp, <span class="st">'cash'</span>] <span class="op">+=</span> qty <span class="op">*</span> exit_price</span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="co"># finally, calculate your strategy's end-of-day mark-to-market value</span></span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mkt_value'</span>] <span class="op">=</span> ledger[<span class="st">'position'</span>] <span class="op">*</span> ledger[<span class="st">'mark'</span>] <span class="op">+</span> ledger[<span class="st">'cash'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Blotter:
-        entry_timestamp   qty exit_timestamp entry_price exit_price success  \
-2024.18            None  None           None        None       None    None   
-2024.19            None  None           None        None       None    None   
-2024.20            None  None           None        None       None    None   
-2024.21            None  None           None        None       None    None   
-2024.22            None  None           None        None       None    None   
-2024.23            None  None           None        None       None    None   
-2024.24            None  None           None        None       None    None   
-2024.25            None  None           None        None       None    None   
-2024.26            None  None           None        None       None    None   
-2024.27            None  None           None        None       None    None   
-2024.28            None  None           None        None       None    None   
-2024.29            None  None           None        None       None    None   
-2024.30            None  None           None        None       None    None   
-2024.31            None  None           None        None       None    None   
-2024.32            None  None           None        None       None    None   
-2024.33            None  None           None        None       None    None   
-2024.34            None  None           None        None       None    None   
-2024.35            None  None           None        None       None    None   
-2024.36            None  None           None        None       None    None   
-2024.37            None  None           None        None       None    None   
-2024.38            None  None           None        None       None    None   
-2024.39            None  None           None        None       None    None   
-2024.40            None  None           None        None       None    None   
-2024.41            None  None           None        None       None    None   
-2024.42            None  None           None        None       None    None   
-2024.43            None  None           None        None       None    None   
-2024.44            None  None           None        None       None    None   
-2024.45            None  None           None        None       None    None   
-2024.46            None  None           None        None       None    None   
-2024.47            None  None           None        None       None    None   
-2024.48            None  None           None        None       None    None   
-2024.49            None  None           None        None       None    None   
-2024.50            None  None           None        None       None    None   
-2024.51            None  None           None        None       None    None   
-2024.52            None  None           None        None       None    None   
-2025.01            None  None           None        None       None    None   
-2025.02            None  None           None        None       None    None   
-2025.03            None  None           None        None       None    None   
-2025.04            None  None           None        None       None    None   
-2025.05            None  None           None        None       None    None   
-2025.06            None  None           None        None       None    None   
-2025.07            None  None           None        None       None    None   
-2025.08            None  None           None        None       None    None   
-2025.09            None  None           None        None       None    None   
-2025.10            None  None           None        None       None    None   
-2025.11            None  None           None        None       None    None   
-2025.12            None  None           None        None       None    None   
-2025.13            None  None           None        None       None    None   
-2025.14            None  None           None        None       None    None   
-2025.15            None  None           None        None       None    None   
-2025.16            None  None           None        None       None    None   
-2025.17            None  None           None        None       None    None   
-
-           iv   wap   sma  
-2024.18  None  None  None  
-2024.19  None  None  None  
-2024.20  None  None  None  
-2024.21  None  None  None  
-2024.22  None  None  None  
-2024.23  None  None  None  
-2024.24  None  None  None  
-2024.25  None  None  None  
-2024.26  None  None  None  
-2024.27  None  None  None  
-2024.28  None  None  None  
-2024.29  None  None  None  
-2024.30  None  None  None  
-2024.31  None  None  None  
-2024.32  None  None  None  
-2024.33  None  None  None  
-2024.34  None  None  None  
-2024.35  None  None  None  
-2024.36  None  None  None  
-2024.37  None  None  None  
-2024.38  None  None  None  
-2024.39  None  None  None  
-2024.40  None  None  None  
-2024.41  None  None  None  
-2024.42  None  None  None  
-2024.43  None  None  None  
-2024.44  None  None  None  
-2024.45  None  None  None  
-2024.46  None  None  None  
-2024.47  None  None  None  
-2024.48  None  None  None  
-2024.49  None  None  None  
-2024.50  None  None  None  
-2024.51  None  None  None  
-2024.52  None  None  None  
-2025.01  None  None  None  
-2025.02  None  None  None  
-2025.03  None  None  None  
-2025.04  None  None  None  
-2025.05  None  None  None  
-2025.06  None  None  None  
-2025.07  None  None  None  
-2025.08  None  None  None  
-2025.09  None  None  None  
-2025.10  None  None  None  
-2025.11  None  None  None  
-2025.12  None  None  None  
-2025.13  None  None  None  
-2025.14  None  None  None  
-2025.15  None  None  None  
-2025.16  None  None  None  
-2025.17  None  None  None  
-
 Ledger:
           date  position  cash    mark  mkt_value
 5   2024-04-29       0.0   0.0  134.90        0.0
@@ -1153,134 +960,13 @@ Ledger:
 248 2025-04-17       0.0   0.0  141.24        0.0
 249 2025-04-21       0.0   0.0  137.08        0.0
 
-[245 rows x 5 columns]
-             entry_timestamp   qty       exit_timestamp entry_price  \
-2024.18  2024-04-29 09:30:00  -100  2024-05-02 09:30:00      134.27   
-2024.19  2024-05-06 09:30:00  -100  2024-05-10 15:00:00      132.31   
-2024.20  2024-05-13 09:30:00  -100  2024-05-17 15:00:00      142.86   
-2024.21  2024-05-20 09:30:00   100  2024-05-24 15:00:00      145.14   
-2024.22  2024-05-28 09:30:00  -100  2024-05-31 10:00:00      146.25   
-2024.23  2024-06-03 09:30:00  -100  2024-06-03 13:00:00      141.46   
-2024.24  2024-06-10 09:30:00   100  2024-06-10 10:00:00      132.44   
-2024.25  2024-06-17 09:30:00  -100  2024-06-21 15:00:00      132.92   
-2024.26  2024-06-24 09:30:00  -100  2024-06-28 15:00:00       132.1   
-2024.27  2024-07-01 09:30:00  -100  2024-07-05 15:00:00      134.38   
-2024.28  2024-07-08 09:30:00  -100  2024-07-12 15:00:00      138.44   
-2024.29  2024-07-15 09:30:00  -100  2024-07-19 15:00:00      143.31   
-2024.30  2024-07-22 09:30:00  -100  2024-07-26 15:00:00      148.47   
-2024.31  2024-07-29 09:30:00  -100  2024-08-02 09:30:00      147.83   
-2024.32  2024-08-05 09:30:00   100  2024-08-06 12:00:00       131.0   
-2024.33  2024-08-12 09:30:00   100  2024-08-16 15:00:00      141.54   
-2024.34  2024-08-19 09:30:00  -100  2024-08-23 15:00:00      145.48   
-2024.35  2024-08-26 09:30:00  -100  2024-08-30 15:00:00       147.5   
-2024.36  2024-09-03 09:30:00   100  2024-09-06 15:00:00       145.6   
-2024.37  2024-09-09 09:30:00  -100  2024-09-13 15:00:00      138.93   
-2024.38  2024-09-16 09:30:00   100  2024-09-17 11:00:00      146.66   
-2024.39  2024-09-23 09:30:00  -100  2024-09-27 15:00:00      157.66   
-2024.40  2024-09-30 09:30:00   100  2024-10-04 15:00:00       156.4   
-2024.41  2024-10-07 09:30:00  -100  2024-10-08 13:00:00      160.43   
-2024.42  2024-10-14 09:30:00  -100  2024-10-18 15:00:00       163.0   
-2024.43  2024-10-21 09:30:00   100  2024-10-25 15:00:00      169.71   
-2024.44  2024-10-28 09:30:00  -100  2024-11-01 09:30:00      170.68   
-2024.45  2024-11-04 09:30:00   100  2024-11-06 09:30:00      160.25   
-2024.46  2024-11-11 09:30:00  -100  2024-11-15 15:00:00      172.12   
-2024.47  2024-11-18 09:30:00  -100  2024-11-22 15:00:00       167.5   
-2024.48  2024-11-25 09:30:00  -100  2024-11-29 15:00:00       177.0   
-2024.49  2024-12-02 09:30:00  -100  2024-12-06 15:00:00      177.08   
-2024.50  2024-12-09 09:30:00  -100  2024-12-13 15:00:00       178.5   
-2024.51  2024-12-16 09:30:00   100  2024-12-20 15:00:00      182.28   
-2024.52  2024-12-23 09:30:00   100  2024-12-26 15:00:00       175.4   
-2025.01  2024-12-30 09:30:00   100  2025-01-03 15:00:00      176.92   
-2025.02  2025-01-06 09:30:00  -100  2025-01-07 09:30:00      183.28   
-2025.03  2025-01-13 09:30:00   100  2025-01-14 14:00:00      172.77   
-2025.04  2025-01-21 09:30:00  -100  2025-01-24 15:00:00      192.58   
-2025.05  2025-01-27 09:30:00   100  2025-01-31 09:30:00      191.41   
-2025.06  2025-02-03 09:30:00   100  2025-02-07 15:00:00      192.98   
-2025.07  2025-02-10 09:30:00  -100  2025-02-11 10:00:00      191.37   
-2025.08  2025-02-18 09:30:00  -100  2025-02-20 10:00:00      187.43   
-2025.09  2025-02-24 09:30:00  -100  2025-02-25 09:30:00      174.33   
-2025.10  2025-03-03 09:30:00  -100  2025-03-04 09:30:00      174.63   
-2025.11  2025-03-10 09:30:00   100  2025-03-14 15:00:00      147.46   
-2025.12  2025-03-17 09:30:00   100  2025-03-21 15:00:00       142.9   
-2025.13  2025-03-24 09:30:00  -100  2025-03-28 13:00:00      151.04   
-2025.14  2025-03-31 09:30:00   100  2025-04-01 15:00:00       142.0   
-2025.15  2025-04-07 09:30:00   100  2025-04-07 10:00:00       114.0   
-2025.16  2025-04-14 09:30:00  -100  2025-04-17 15:00:00      141.04   
-2025.17  2025-04-21 09:30:00   100  2025-04-21 15:00:00       138.7   
-
-         exit_price success     iv      wap       sma  
-2024.18  128.747647    True   0.32  134.139  132.8195  
-2024.19      142.27   False  0.292  133.223    132.98  
-2024.20       145.6   False  0.239  142.315   134.893  
-2024.21      146.01   False   0.27  144.054    138.73  
-2024.22  141.813789    True  0.236  146.963  141.1685  
-2024.23  136.499553    True  0.305  140.544  142.7775  
-2024.24  137.312728    True  0.279  133.523  141.8615  
-2024.25      131.79   False  0.273  132.855   139.188  
-2024.26      133.28   False  0.259  132.391  137.0715  
-2024.27      138.26   False  0.269  133.994  135.0995  
-2024.28      142.55   False  0.277  138.061  135.1435  
-2024.29       147.3   False  0.288  143.272   136.461  
-2024.30       147.1   False  0.307  148.779   139.913  
-2024.31  141.626602    True  0.325  146.347  142.8715  
-2024.32   137.10709    True  0.427  130.266  144.9165  
-2024.33       145.0   False  0.302  140.063  144.3525  
-2024.34       147.0   False  0.254  145.221    143.52  
-2024.35       146.4   False  0.245  147.664   143.201  
-2024.36      137.45   False  0.262  144.827  143.1595  
-2024.37       147.4   False  0.288  138.973   143.555  
-2024.38  152.069793    True  0.294  147.768  143.8485  
-2024.39      156.91   False  0.275  157.828  146.3625  
-2024.40      160.39   False  0.313  156.136  149.1195  
-2024.41  153.540354    True  0.327  160.565  153.6645  
-2024.42      169.89   False  0.334  162.486   157.288  
-2024.43      169.47   False  0.316  169.816  160.2305  
-2024.44  163.271264    True  0.322  170.973  163.3435  
-2024.45  166.992571    True  0.314  160.338   165.157  
-2024.46      167.21   False  0.262  172.436   167.773  
-2024.47      175.52   False   0.28  166.622  168.1825  
-2024.48      176.73   False  0.258  176.357  169.3005  
-2024.49      178.07   False  0.274  177.055  171.0675  
-2024.50      182.45   False  0.253   179.03  173.4205  
-2024.51      176.04   False  0.274  182.707   176.515  
-2024.52  182.260673    True  0.311   175.14  177.1885  
-2025.01      181.11   False  0.297  176.707   177.985  
-2025.02  176.090124    True  0.302  183.411  178.7025  
-2025.03  180.026042    True  0.327  173.467  178.6665  
-2025.04      197.32   False  0.303  193.224   180.725  
-2025.05  199.331327    True  0.333  190.914  184.2165  
-2025.06      190.34   False   0.38   193.07  188.3535  
-2025.07  183.915844    True  0.295  189.543  191.3475  
-2025.08  180.677669    True  0.313  188.405  191.7995  
-2025.09  167.082125    True  0.367  173.292  188.1835  
-2025.10  166.168308    True  0.386   173.25   181.726  
-2025.11      144.36   False  0.518  146.115   172.227  
-2025.12      147.71   False  0.437  143.898  161.7705  
-2025.13  143.346966    True  0.367  151.504   153.937  
-2025.14  149.769949    True   0.44  141.317  149.1705  
-2025.15  125.910533    True  0.827  113.106  144.3575  
-2025.16      141.24   False  0.621  138.996   142.201  
-2025.17      137.08   False   0.55  138.734   140.829  
-          date  position          cash    mark    mkt_value
-5   2024-04-29       0.0      0.000000  134.90     0.000000
-6   2024-04-30    -100.0  13427.000000  133.09   118.000000
-7   2024-05-01    -100.0  13427.000000  131.70   257.000000
-8   2024-05-02    -100.0  13427.000000  134.64   -37.000000
-9   2024-05-03       0.0    552.235346  131.91   552.235346
-..         ...       ...           ...     ...          ...
-245 2025-04-14       0.0   9111.046005  138.38  9111.046005
-246 2025-04-15    -100.0  23215.046005  141.32  9083.046005
-247 2025-04-16    -100.0  23215.046005  139.60  9255.046005
-248 2025-04-17    -100.0  23215.046005  141.24  9091.046005
-249 2025-04-21       0.0   9091.046005  137.08  9091.046005
-
 [245 rows x 5 columns]</code></pre>
 </div>
 </div>
 </section>
 <section id="extra" class="level3">
 <h3 class="anchored" data-anchor-id="extra">Extra</h3>
-<div id="1c4ee5de" class="cell" data-execution_count="10">
+<div id="0c552c75" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
@@ -1442,851 +1128,233 @@ Blotter              entry_timestamp   qty       exit_timestamp entry_price  \
 </div>
 </section>
 </section>
-<section id="outputting-interactive-blotter-ledger" class="level1">
-<h1>Outputting Interactive Blotter &amp; Ledger</h1>
-<div id="8d6b78e5" class="cell" data-execution_count="11">
+<section id="outputting-interactive-blotter-ledger-final-hw-here" class="level1">
+<h1>Outputting Interactive Blotter &amp; Ledger (FINAL HW HERE)</h1>
+<div id="291ebc7a" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your final blotter DataFrame already populated at this point</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>blotter <span class="op">=</span> blotter.<span class="bu">round</span>(<span class="dv">3</span>)  <span class="co"># Optional: round for cleaner display</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="5c7a7138" class="cell" data-execution_count="12">
+<div id="c400a26a" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display blotter as interactive table</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>blotter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itables <span class="im">import</span> show</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>show(blotter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="26">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<div class="cell-output cell-output-display">
+<table id="itables_9a4e743b_76bb_4f33_a84f_ef521fb38daa" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">entry_timestamp</th>
-<th data-quarto-table-cell-role="th">qty</th>
-<th data-quarto-table-cell-role="th">exit_timestamp</th>
-<th data-quarto-table-cell-role="th">entry_price</th>
-<th data-quarto-table-cell-role="th">exit_price</th>
-<th data-quarto-table-cell-role="th">success</th>
-<th data-quarto-table-cell-role="th">iv</th>
-<th data-quarto-table-cell-role="th">wap</th>
-<th data-quarto-table-cell-role="th">sma</th>
-<th data-quarto-table-cell-role="th">prediction</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.18</td>
-<td>2024-04-29 09:30:00</td>
-<td>-100</td>
-<td>2024-05-02 09:30:00</td>
-<td>134.27</td>
-<td>128.747647</td>
-<td>True</td>
-<td>0.32</td>
-<td>134.139</td>
-<td>132.8195</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.19</td>
-<td>2024-05-06 09:30:00</td>
-<td>-100</td>
-<td>2024-05-10 15:00:00</td>
-<td>132.31</td>
-<td>142.27</td>
-<td>False</td>
-<td>0.292</td>
-<td>133.223</td>
-<td>132.98</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.20</td>
-<td>2024-05-13 09:30:00</td>
-<td>-100</td>
-<td>2024-05-17 15:00:00</td>
-<td>142.86</td>
-<td>145.6</td>
-<td>False</td>
-<td>0.239</td>
-<td>142.315</td>
-<td>134.893</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.21</td>
-<td>2024-05-20 09:30:00</td>
-<td>100</td>
-<td>2024-05-24 15:00:00</td>
-<td>145.14</td>
-<td>146.01</td>
-<td>False</td>
-<td>0.27</td>
-<td>144.054</td>
-<td>138.73</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.22</td>
-<td>2024-05-28 09:30:00</td>
-<td>-100</td>
-<td>2024-05-31 10:00:00</td>
-<td>146.25</td>
-<td>141.813789</td>
-<td>True</td>
-<td>0.236</td>
-<td>146.963</td>
-<td>141.1685</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.23</td>
-<td>2024-06-03 09:30:00</td>
-<td>-100</td>
-<td>2024-06-03 13:00:00</td>
-<td>141.46</td>
-<td>136.499553</td>
-<td>True</td>
-<td>0.305</td>
-<td>140.544</td>
-<td>142.7775</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.24</td>
-<td>2024-06-10 09:30:00</td>
-<td>100</td>
-<td>2024-06-10 10:00:00</td>
-<td>132.44</td>
-<td>137.312728</td>
-<td>True</td>
-<td>0.279</td>
-<td>133.523</td>
-<td>141.8615</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.25</td>
-<td>2024-06-17 09:30:00</td>
-<td>-100</td>
-<td>2024-06-21 15:00:00</td>
-<td>132.92</td>
-<td>131.79</td>
-<td>False</td>
-<td>0.273</td>
-<td>132.855</td>
-<td>139.188</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.26</td>
-<td>2024-06-24 09:30:00</td>
-<td>-100</td>
-<td>2024-06-28 15:00:00</td>
-<td>132.1</td>
-<td>133.28</td>
-<td>False</td>
-<td>0.259</td>
-<td>132.391</td>
-<td>137.0715</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.27</td>
-<td>2024-07-01 09:30:00</td>
-<td>-100</td>
-<td>2024-07-05 15:00:00</td>
-<td>134.38</td>
-<td>138.26</td>
-<td>False</td>
-<td>0.269</td>
-<td>133.994</td>
-<td>135.0995</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.28</td>
-<td>2024-07-08 09:30:00</td>
-<td>-100</td>
-<td>2024-07-12 15:00:00</td>
-<td>138.44</td>
-<td>142.55</td>
-<td>False</td>
-<td>0.277</td>
-<td>138.061</td>
-<td>135.1435</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.29</td>
-<td>2024-07-15 09:30:00</td>
-<td>-100</td>
-<td>2024-07-19 15:00:00</td>
-<td>143.31</td>
-<td>147.3</td>
-<td>False</td>
-<td>0.288</td>
-<td>143.272</td>
-<td>136.461</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.30</td>
-<td>2024-07-22 09:30:00</td>
-<td>-100</td>
-<td>2024-07-26 15:00:00</td>
-<td>148.47</td>
-<td>147.1</td>
-<td>False</td>
-<td>0.307</td>
-<td>148.779</td>
-<td>139.913</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.31</td>
-<td>2024-07-29 09:30:00</td>
-<td>-100</td>
-<td>2024-08-02 09:30:00</td>
-<td>147.83</td>
-<td>141.626602</td>
-<td>True</td>
-<td>0.325</td>
-<td>146.347</td>
-<td>142.8715</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.32</td>
-<td>2024-08-05 09:30:00</td>
-<td>100</td>
-<td>2024-08-06 12:00:00</td>
-<td>131.0</td>
-<td>137.10709</td>
-<td>True</td>
-<td>0.427</td>
-<td>130.266</td>
-<td>144.9165</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.33</td>
-<td>2024-08-12 09:30:00</td>
-<td>100</td>
-<td>2024-08-16 15:00:00</td>
-<td>141.54</td>
-<td>145.0</td>
-<td>False</td>
-<td>0.302</td>
-<td>140.063</td>
-<td>144.3525</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.34</td>
-<td>2024-08-19 09:30:00</td>
-<td>-100</td>
-<td>2024-08-23 15:00:00</td>
-<td>145.48</td>
-<td>147.0</td>
-<td>False</td>
-<td>0.254</td>
-<td>145.221</td>
-<td>143.52</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.35</td>
-<td>2024-08-26 09:30:00</td>
-<td>-100</td>
-<td>2024-08-30 15:00:00</td>
-<td>147.5</td>
-<td>146.4</td>
-<td>False</td>
-<td>0.245</td>
-<td>147.664</td>
-<td>143.201</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.36</td>
-<td>2024-09-03 09:30:00</td>
-<td>100</td>
-<td>2024-09-06 15:00:00</td>
-<td>145.6</td>
-<td>137.45</td>
-<td>False</td>
-<td>0.262</td>
-<td>144.827</td>
-<td>143.1595</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.37</td>
-<td>2024-09-09 09:30:00</td>
-<td>-100</td>
-<td>2024-09-13 15:00:00</td>
-<td>138.93</td>
-<td>147.4</td>
-<td>False</td>
-<td>0.288</td>
-<td>138.973</td>
-<td>143.555</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.38</td>
-<td>2024-09-16 09:30:00</td>
-<td>100</td>
-<td>2024-09-17 11:00:00</td>
-<td>146.66</td>
-<td>152.069793</td>
-<td>True</td>
-<td>0.294</td>
-<td>147.768</td>
-<td>143.8485</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.39</td>
-<td>2024-09-23 09:30:00</td>
-<td>-100</td>
-<td>2024-09-27 15:00:00</td>
-<td>157.66</td>
-<td>156.91</td>
-<td>False</td>
-<td>0.275</td>
-<td>157.828</td>
-<td>146.3625</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.40</td>
-<td>2024-09-30 09:30:00</td>
-<td>100</td>
-<td>2024-10-04 15:00:00</td>
-<td>156.4</td>
-<td>160.39</td>
-<td>False</td>
-<td>0.313</td>
-<td>156.136</td>
-<td>149.1195</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.41</td>
-<td>2024-10-07 09:30:00</td>
-<td>-100</td>
-<td>2024-10-08 13:00:00</td>
-<td>160.43</td>
-<td>153.540354</td>
-<td>True</td>
-<td>0.327</td>
-<td>160.565</td>
-<td>153.6645</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.42</td>
-<td>2024-10-14 09:30:00</td>
-<td>-100</td>
-<td>2024-10-18 15:00:00</td>
-<td>163.0</td>
-<td>169.89</td>
-<td>False</td>
-<td>0.334</td>
-<td>162.486</td>
-<td>157.288</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.43</td>
-<td>2024-10-21 09:30:00</td>
-<td>100</td>
-<td>2024-10-25 15:00:00</td>
-<td>169.71</td>
-<td>169.47</td>
-<td>False</td>
-<td>0.316</td>
-<td>169.816</td>
-<td>160.2305</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.44</td>
-<td>2024-10-28 09:30:00</td>
-<td>-100</td>
-<td>2024-11-01 09:30:00</td>
-<td>170.68</td>
-<td>163.271264</td>
-<td>True</td>
-<td>0.322</td>
-<td>170.973</td>
-<td>163.3435</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.45</td>
-<td>2024-11-04 09:30:00</td>
-<td>100</td>
-<td>2024-11-06 09:30:00</td>
-<td>160.25</td>
-<td>166.992571</td>
-<td>True</td>
-<td>0.314</td>
-<td>160.338</td>
-<td>165.157</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.46</td>
-<td>2024-11-11 09:30:00</td>
-<td>-100</td>
-<td>2024-11-15 15:00:00</td>
-<td>172.12</td>
-<td>167.21</td>
-<td>False</td>
-<td>0.262</td>
-<td>172.436</td>
-<td>167.773</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.47</td>
-<td>2024-11-18 09:30:00</td>
-<td>-100</td>
-<td>2024-11-22 15:00:00</td>
-<td>167.5</td>
-<td>175.52</td>
-<td>False</td>
-<td>0.28</td>
-<td>166.622</td>
-<td>168.1825</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.48</td>
-<td>2024-11-25 09:30:00</td>
-<td>-100</td>
-<td>2024-11-29 15:00:00</td>
-<td>177.0</td>
-<td>176.73</td>
-<td>False</td>
-<td>0.258</td>
-<td>176.357</td>
-<td>169.3005</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.49</td>
-<td>2024-12-02 09:30:00</td>
-<td>-100</td>
-<td>2024-12-06 15:00:00</td>
-<td>177.08</td>
-<td>178.07</td>
-<td>False</td>
-<td>0.274</td>
-<td>177.055</td>
-<td>171.0675</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.50</td>
-<td>2024-12-09 09:30:00</td>
-<td>-100</td>
-<td>2024-12-13 15:00:00</td>
-<td>178.5</td>
-<td>182.45</td>
-<td>False</td>
-<td>0.253</td>
-<td>179.03</td>
-<td>173.4205</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.51</td>
-<td>2024-12-16 09:30:00</td>
-<td>100</td>
-<td>2024-12-20 15:00:00</td>
-<td>182.28</td>
-<td>176.04</td>
-<td>False</td>
-<td>0.274</td>
-<td>182.707</td>
-<td>176.515</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.52</td>
-<td>2024-12-23 09:30:00</td>
-<td>100</td>
-<td>2024-12-26 15:00:00</td>
-<td>175.4</td>
-<td>182.260673</td>
-<td>True</td>
-<td>0.311</td>
-<td>175.14</td>
-<td>177.1885</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.01</td>
-<td>2024-12-30 09:30:00</td>
-<td>100</td>
-<td>2025-01-03 15:00:00</td>
-<td>176.92</td>
-<td>181.11</td>
-<td>False</td>
-<td>0.297</td>
-<td>176.707</td>
-<td>177.985</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.02</td>
-<td>2025-01-06 09:30:00</td>
-<td>-100</td>
-<td>2025-01-07 09:30:00</td>
-<td>183.28</td>
-<td>176.090124</td>
-<td>True</td>
-<td>0.302</td>
-<td>183.411</td>
-<td>178.7025</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.03</td>
-<td>2025-01-13 09:30:00</td>
-<td>100</td>
-<td>2025-01-14 14:00:00</td>
-<td>172.77</td>
-<td>180.026042</td>
-<td>True</td>
-<td>0.327</td>
-<td>173.467</td>
-<td>178.6665</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.04</td>
-<td>2025-01-21 09:30:00</td>
-<td>-100</td>
-<td>2025-01-24 15:00:00</td>
-<td>192.58</td>
-<td>197.32</td>
-<td>False</td>
-<td>0.303</td>
-<td>193.224</td>
-<td>180.725</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.05</td>
-<td>2025-01-27 09:30:00</td>
-<td>100</td>
-<td>2025-01-31 09:30:00</td>
-<td>191.41</td>
-<td>199.331327</td>
-<td>True</td>
-<td>0.333</td>
-<td>190.914</td>
-<td>184.2165</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.06</td>
-<td>2025-02-03 09:30:00</td>
-<td>100</td>
-<td>2025-02-07 15:00:00</td>
-<td>192.98</td>
-<td>190.34</td>
-<td>False</td>
-<td>0.38</td>
-<td>193.07</td>
-<td>188.3535</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.07</td>
-<td>2025-02-10 09:30:00</td>
-<td>-100</td>
-<td>2025-02-11 10:00:00</td>
-<td>191.37</td>
-<td>183.915844</td>
-<td>True</td>
-<td>0.295</td>
-<td>189.543</td>
-<td>191.3475</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.08</td>
-<td>2025-02-18 09:30:00</td>
-<td>-100</td>
-<td>2025-02-20 10:00:00</td>
-<td>187.43</td>
-<td>180.677669</td>
-<td>True</td>
-<td>0.313</td>
-<td>188.405</td>
-<td>191.7995</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.09</td>
-<td>2025-02-24 09:30:00</td>
-<td>-100</td>
-<td>2025-02-25 09:30:00</td>
-<td>174.33</td>
-<td>167.082125</td>
-<td>True</td>
-<td>0.367</td>
-<td>173.292</td>
-<td>188.1835</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.10</td>
-<td>2025-03-03 09:30:00</td>
-<td>-100</td>
-<td>2025-03-04 09:30:00</td>
-<td>174.63</td>
-<td>166.168308</td>
-<td>True</td>
-<td>0.386</td>
-<td>173.25</td>
-<td>181.726</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.11</td>
-<td>2025-03-10 09:30:00</td>
-<td>100</td>
-<td>2025-03-14 15:00:00</td>
-<td>147.46</td>
-<td>144.36</td>
-<td>False</td>
-<td>0.518</td>
-<td>146.115</td>
-<td>172.227</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.12</td>
-<td>2025-03-17 09:30:00</td>
-<td>100</td>
-<td>2025-03-21 15:00:00</td>
-<td>142.9</td>
-<td>147.71</td>
-<td>False</td>
-<td>0.437</td>
-<td>143.898</td>
-<td>161.7705</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.13</td>
-<td>2025-03-24 09:30:00</td>
-<td>-100</td>
-<td>2025-03-28 13:00:00</td>
-<td>151.04</td>
-<td>143.346966</td>
-<td>True</td>
-<td>0.367</td>
-<td>151.504</td>
-<td>153.937</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.14</td>
-<td>2025-03-31 09:30:00</td>
-<td>100</td>
-<td>2025-04-01 15:00:00</td>
-<td>142.0</td>
-<td>149.769949</td>
-<td>True</td>
-<td>0.44</td>
-<td>141.317</td>
-<td>149.1705</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.15</td>
-<td>2025-04-07 09:30:00</td>
-<td>100</td>
-<td>2025-04-07 10:00:00</td>
-<td>114.0</td>
-<td>125.910533</td>
-<td>True</td>
-<td>0.827</td>
-<td>113.106</td>
-<td>144.3575</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.16</td>
-<td>2025-04-14 09:30:00</td>
-<td>-100</td>
-<td>2025-04-17 15:00:00</td>
-<td>141.04</td>
-<td>141.24</td>
-<td>False</td>
-<td>0.621</td>
-<td>138.996</td>
-<td>142.201</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.17</td>
-<td>2025-04-21 09:30:00</td>
-<td>100</td>
-<td>2025-04-21 15:00:00</td>
-<td>138.7</td>
-<td>137.08</td>
-<td>False</td>
-<td>0.55</td>
-<td>138.734</td>
-<td>140.829</td>
-<td>0.0</td>
-</tr>
-</tbody>
-</table>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>entry_timestamp</th>
+      <th>qty</th>
+      <th>exit_timestamp</th>
+      <th>entry_price</th>
+      <th>exit_price</th>
+      <th>success</th>
+      <th>iv</th>
+      <th>wap</th>
+      <th>sma</th>
+      <th>prediction</th>
+    </tr>
+  </thead><tbody><tr>
+<td style="vertical-align:middle; text-align:left">
+<a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:#d9d7fc">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:#1a1366;stroke:#1a1366;">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
 
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+Loading ITables v2.3.0 from the internet...
+(need <a href="https://mwouts.github.io/itables/troubleshooting.html">help</a>?)</td>
+</tr></tbody>
+</table>
+<link href="https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.js';
+
+    document.querySelectorAll("#itables_9a4e743b_76bb_4f33_a84f_ef521fb38daa:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        // Define the table data
+        const data = [[2024.18, "2024-04-29 09:30:00", "-100", "2024-05-02 09:30:00", " 134.27", " 128.747647", "True", " 0.32", " 134.139", " 132.8195", 1.0], [2024.19, "2024-05-06 09:30:00", "-100", "2024-05-10 15:00:00", " 132.31", " 142.27", "False", " 0.292", " 133.223", " 132.98", 1.0], [2024.2, "2024-05-13 09:30:00", "-100", "2024-05-17 15:00:00", " 142.86", " 145.6", "False", " 0.239", " 142.315", " 134.893", 1.0], [2024.21, "2024-05-20 09:30:00", "100", "2024-05-24 15:00:00", " 145.14", " 146.01", "False", " 0.27", " 144.054", " 138.73", 1.0], [2024.22, "2024-05-28 09:30:00", "-100", "2024-05-31 10:00:00", " 146.25", " 141.813789", "True", " 0.236", " 146.963", " 141.1685", 1.0], [2024.23, "2024-06-03 09:30:00", "-100", "2024-06-03 13:00:00", " 141.46", " 136.499553", "True", " 0.305", " 140.544", " 142.7775", 1.0], [2024.24, "2024-06-10 09:30:00", "100", "2024-06-10 10:00:00", " 132.44", " 137.312728", "True", " 0.279", " 133.523", " 141.8615", 1.0], [2024.25, "2024-06-17 09:30:00", "-100", "2024-06-21 15:00:00", " 132.92", " 131.79", "False", " 0.273", " 132.855", " 139.188", 1.0], [2024.26, "2024-06-24 09:30:00", "-100", "2024-06-28 15:00:00", " 132.1", " 133.28", "False", " 0.259", " 132.391", " 137.0715", 1.0], [2024.27, "2024-07-01 09:30:00", "-100", "2024-07-05 15:00:00", " 134.38", " 138.26", "False", " 0.269", " 133.994", " 135.0995", 1.0], [2024.28, "2024-07-08 09:30:00", "-100", "2024-07-12 15:00:00", " 138.44", " 142.55", "False", " 0.277", " 138.061", " 135.1435", 1.0], [2024.29, "2024-07-15 09:30:00", "-100", "2024-07-19 15:00:00", " 143.31", " 147.3", "False", " 0.288", " 143.272", " 136.461", 1.0], [2024.3, "2024-07-22 09:30:00", "-100", "2024-07-26 15:00:00", " 148.47", " 147.1", "False", " 0.307", " 148.779", " 139.913", 1.0], [2024.31, "2024-07-29 09:30:00", "-100", "2024-08-02 09:30:00", " 147.83", " 141.626602", "True", " 0.325", " 146.347", " 142.8715", 1.0], [2024.32, "2024-08-05 09:30:00", "100", "2024-08-06 12:00:00", " 131.0", " 137.10709", "True", " 0.427", " 130.266", " 144.9165", 1.0], [2024.33, "2024-08-12 09:30:00", "100", "2024-08-16 15:00:00", " 141.54", " 145.0", "False", " 0.302", " 140.063", " 144.3525", 1.0], [2024.34, "2024-08-19 09:30:00", "-100", "2024-08-23 15:00:00", " 145.48", " 147.0", "False", " 0.254", " 145.221", " 143.52", 1.0], [2024.35, "2024-08-26 09:30:00", "-100", "2024-08-30 15:00:00", " 147.5", " 146.4", "False", " 0.245", " 147.664", " 143.201", 1.0], [2024.36, "2024-09-03 09:30:00", "100", "2024-09-06 15:00:00", " 145.6", " 137.45", "False", " 0.262", " 144.827", " 143.1595", 1.0], [2024.37, "2024-09-09 09:30:00", "-100", "2024-09-13 15:00:00", " 138.93", " 147.4", "False", " 0.288", " 138.973", " 143.555", 1.0], [2024.38, "2024-09-16 09:30:00", "100", "2024-09-17 11:00:00", " 146.66", " 152.069793", "True", " 0.294", " 147.768", " 143.8485", 1.0], [2024.39, "2024-09-23 09:30:00", "-100", "2024-09-27 15:00:00", " 157.66", " 156.91", "False", " 0.275", " 157.828", " 146.3625", 1.0], [2024.4, "2024-09-30 09:30:00", "100", "2024-10-04 15:00:00", " 156.4", " 160.39", "False", " 0.313", " 156.136", " 149.1195", 1.0], [2024.41, "2024-10-07 09:30:00", "-100", "2024-10-08 13:00:00", " 160.43", " 153.540354", "True", " 0.327", " 160.565", " 153.6645", 1.0], [2024.42, "2024-10-14 09:30:00", "-100", "2024-10-18 15:00:00", " 163.0", " 169.89", "False", " 0.334", " 162.486", " 157.288", 1.0], [2024.43, "2024-10-21 09:30:00", "100", "2024-10-25 15:00:00", " 169.71", " 169.47", "False", " 0.316", " 169.816", " 160.2305", 1.0], [2024.44, "2024-10-28 09:30:00", "-100", "2024-11-01 09:30:00", " 170.68", " 163.271264", "True", " 0.322", " 170.973", " 163.3435", 1.0], [2024.45, "2024-11-04 09:30:00", "100", "2024-11-06 09:30:00", " 160.25", " 166.992571", "True", " 0.314", " 160.338", " 165.157", 1.0], [2024.46, "2024-11-11 09:30:00", "-100", "2024-11-15 15:00:00", " 172.12", " 167.21", "False", " 0.262", " 172.436", " 167.773", 1.0], [2024.47, "2024-11-18 09:30:00", "-100", "2024-11-22 15:00:00", " 167.5", " 175.52", "False", " 0.28", " 166.622", " 168.1825", 1.0], [2024.48, "2024-11-25 09:30:00", "-100", "2024-11-29 15:00:00", " 177.0", " 176.73", "False", " 0.258", " 176.357", " 169.3005", 1.0], [2024.49, "2024-12-02 09:30:00", "-100", "2024-12-06 15:00:00", " 177.08", " 178.07", "False", " 0.274", " 177.055", " 171.0675", 1.0], [2024.5, "2024-12-09 09:30:00", "-100", "2024-12-13 15:00:00", " 178.5", " 182.45", "False", " 0.253", " 179.03", " 173.4205", 1.0], [2024.51, "2024-12-16 09:30:00", "100", "2024-12-20 15:00:00", " 182.28", " 176.04", "False", " 0.274", " 182.707", " 176.515", 1.0], [2024.52, "2024-12-23 09:30:00", "100", "2024-12-26 15:00:00", " 175.4", " 182.260673", "True", " 0.311", " 175.14", " 177.1885", 1.0], [2025.01, "2024-12-30 09:30:00", "100", "2025-01-03 15:00:00", " 176.92", " 181.11", "False", " 0.297", " 176.707", " 177.985", 1.0], [2025.02, "2025-01-06 09:30:00", "-100", "2025-01-07 09:30:00", " 183.28", " 176.090124", "True", " 0.302", " 183.411", " 178.7025", 0.0], [2025.03, "2025-01-13 09:30:00", "100", "2025-01-14 14:00:00", " 172.77", " 180.026042", "True", " 0.327", " 173.467", " 178.6665", 1.0], [2025.04, "2025-01-21 09:30:00", "-100", "2025-01-24 15:00:00", " 192.58", " 197.32", "False", " 0.303", " 193.224", " 180.725", 1.0], [2025.05, "2025-01-27 09:30:00", "100", "2025-01-31 09:30:00", " 191.41", " 199.331327", "True", " 0.333", " 190.914", " 184.2165", 0.0], [2025.06, "2025-02-03 09:30:00", "100", "2025-02-07 15:00:00", " 192.98", " 190.34", "False", " 0.38", " 193.07", " 188.3535", 1.0], [2025.07, "2025-02-10 09:30:00", "-100", "2025-02-11 10:00:00", " 191.37", " 183.915844", "True", " 0.295", " 189.543", " 191.3475", 0.0], [2025.08, "2025-02-18 09:30:00", "-100", "2025-02-20 10:00:00", " 187.43", " 180.677669", "True", " 0.313", " 188.405", " 191.7995", 0.0], [2025.09, "2025-02-24 09:30:00", "-100", "2025-02-25 09:30:00", " 174.33", " 167.082125", "True", " 0.367", " 173.292", " 188.1835", 0.0], [2025.1, "2025-03-03 09:30:00", "-100", "2025-03-04 09:30:00", " 174.63", " 166.168308", "True", " 0.386", " 173.25", " 181.726", 0.0], [2025.11, "2025-03-10 09:30:00", "100", "2025-03-14 15:00:00", " 147.46", " 144.36", "False", " 0.518", " 146.115", " 172.227", 1.0], [2025.12, "2025-03-17 09:30:00", "100", "2025-03-21 15:00:00", " 142.9", " 147.71", "False", " 0.437", " 143.898", " 161.7705", 0.0], [2025.13, "2025-03-24 09:30:00", "-100", "2025-03-28 13:00:00", " 151.04", " 143.346966", "True", " 0.367", " 151.504", " 153.937", 0.0], [2025.14, "2025-03-31 09:30:00", "100", "2025-04-01 15:00:00", " 142.0", " 149.769949", "True", " 0.44", " 141.317", " 149.1705", 0.0], [2025.15, "2025-04-07 09:30:00", "100", "2025-04-07 10:00:00", " 114.0", " 125.910533", "True", " 0.827", " 113.106", " 144.3575", 1.0], [2025.16, "2025-04-14 09:30:00", "-100", "2025-04-17 15:00:00", " 141.04", " 141.24", "False", " 0.621", " 138.996", " 142.201", 1.0], [2025.17, "2025-04-21 09:30:00", "100", "2025-04-21 15:00:00", " 138.7", " 137.08", "False", " 0.55", " 138.734", " 140.829", 0.0]];
+
+        // Define the dt_args
+        let dt_args = {"layout": {"topStart": "pageLength", "topEnd": "search", "bottomStart": "info", "bottomEnd": "paging"}, "order": [], "warn_on_selected_rows_not_rendered": true};
+        dt_args["data"] = data;
+
+        
+        new DataTable(table, dt_args);
+    });
+</script>
 </div>
 </div>
-</div>
-<div id="5555224c" class="cell" data-execution_count="13">
+<div id="58ebc75a" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your final ledger DataFrame already populated at this point</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ledger <span class="op">=</span> ledger.<span class="bu">round</span>(<span class="dv">2</span>)  <span class="co"># Optional: clean output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6913e112" class="cell" data-execution_count="14">
+<div id="bf304071" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display ledger as interactive table</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ledger</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>show(ledger)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="28">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<div class="cell-output cell-output-display">
+<table id="itables_1ddfdb82_f9fe_48ea_8efb_8bff00056c75" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">date</th>
-<th data-quarto-table-cell-role="th">position</th>
-<th data-quarto-table-cell-role="th">cash</th>
-<th data-quarto-table-cell-role="th">mark</th>
-<th data-quarto-table-cell-role="th">mkt_value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>2024-04-29</td>
-<td>0.0</td>
-<td>0.00</td>
-<td>134.90</td>
-<td>0.00</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6</td>
-<td>2024-04-30</td>
-<td>-100.0</td>
-<td>13427.00</td>
-<td>133.09</td>
-<td>118.00</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">7</td>
-<td>2024-05-01</td>
-<td>-100.0</td>
-<td>13427.00</td>
-<td>131.70</td>
-<td>257.00</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">8</td>
-<td>2024-05-02</td>
-<td>-100.0</td>
-<td>13427.00</td>
-<td>134.64</td>
-<td>-37.00</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">9</td>
-<td>2024-05-03</td>
-<td>0.0</td>
-<td>552.24</td>
-<td>131.91</td>
-<td>552.24</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">245</td>
-<td>2025-04-14</td>
-<td>0.0</td>
-<td>9111.05</td>
-<td>138.38</td>
-<td>9111.05</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">246</td>
-<td>2025-04-15</td>
-<td>-100.0</td>
-<td>23215.05</td>
-<td>141.32</td>
-<td>9083.05</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">247</td>
-<td>2025-04-16</td>
-<td>-100.0</td>
-<td>23215.05</td>
-<td>139.60</td>
-<td>9255.05</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">248</td>
-<td>2025-04-17</td>
-<td>-100.0</td>
-<td>23215.05</td>
-<td>141.24</td>
-<td>9091.05</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">249</td>
-<td>2025-04-21</td>
-<td>0.0</td>
-<td>9091.05</td>
-<td>137.08</td>
-<td>9091.05</td>
-</tr>
-</tbody>
-</table>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>position</th>
+      <th>cash</th>
+      <th>mark</th>
+      <th>mkt_value</th>
+    </tr>
+  </thead><tbody><tr>
+<td style="vertical-align:middle; text-align:left">
+<a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:#d9d7fc">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:#1a1366;stroke:#1a1366;">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
 
-<p>245 rows × 5 columns</p>
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+Loading ITables v2.3.0 from the internet...
+(need <a href="https://mwouts.github.io/itables/troubleshooting.html">help</a>?)</td>
+</tr></tbody>
+</table>
+<link href="https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.js';
+
+    document.querySelectorAll("#itables_1ddfdb82_f9fe_48ea_8efb_8bff00056c75:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        // Define the table data
+        const data = [[5, "2024-04-29", 0.0, 0.0, 134.9, 0.0], [6, "2024-04-30", -100.0, 13427.0, 133.09, 118.0], [7, "2024-05-01", -100.0, 13427.0, 131.7, 257.0], [8, "2024-05-02", -100.0, 13427.0, 134.64, -37.0], [9, "2024-05-03", 0.0, 552.24, 131.91, 552.24], [10, "2024-05-06", 0.0, 552.24, 136.17, 552.24], [11, "2024-05-07", -100.0, 13783.24, 137.29, 54.24], [12, "2024-05-08", -100.0, 13783.24, 138.67, -83.76], [13, "2024-05-09", -100.0, 13783.24, 142.44, -460.76], [14, "2024-05-10", -100.0, 13783.24, 142.27, -443.76], [15, "2024-05-13", 0.0, -443.76, 140.15, -443.76], [16, "2024-05-14", -100.0, 13842.24, 144.93, -650.76], [17, "2024-05-15", -100.0, 13842.24, 149.82, -1139.76], [18, "2024-05-16", -100.0, 13842.24, 146.66, -823.76], [19, "2024-05-17", -100.0, 13842.24, 145.6, -717.76], [20, "2024-05-20", 0.0, -717.76, 144.56, -717.76], [21, "2024-05-21", 100.0, -15231.76, 143.62, -869.76], [22, "2024-05-22", 100.0, -15231.76, 144.75, -756.76], [23, "2024-05-23", 100.0, -15231.76, 144.75, -756.76], [24, "2024-05-24", 100.0, -15231.76, 146.01, -630.76], [25, "2024-05-28", 0.0, -630.76, 144.34, -630.76], [26, "2024-05-29", -100.0, 13994.24, 142.17, -222.76], [27, "2024-05-30", -100.0, 13994.24, 142.98, -303.76], [28, "2024-05-31", -100.0, 13994.24, 140.17, -22.76], [29, "2024-06-03", 0.0, -187.14, 138.2, -187.14], [30, "2024-06-04", 0.0, 308.9, 135.19, 308.9], [31, "2024-06-05", 0.0, 308.9, 139.56, 308.9], [32, "2024-06-06", 0.0, 308.9, 134.0, 308.9], [33, "2024-06-07", 0.0, 308.9, 132.93, 308.9], [34, "2024-06-10", 0.0, 308.9, 136.84, 308.9], [35, "2024-06-11", 0.0, 796.17, 135.78, 796.17], [36, "2024-06-12", 0.0, 796.17, 137.49, 796.17], [37, "2024-06-13", 0.0, 796.17, 133.76, 796.17], [38, "2024-06-14", 0.0, 796.17, 132.63, 796.17], [39, "2024-06-17", 0.0, 796.17, 134.03, 796.17], [40, "2024-06-18", -100.0, 14088.17, 135.0, 588.17], [41, "2024-06-20", -100.0, 14088.17, 134.71, 617.17], [42, "2024-06-21", -100.0, 14088.17, 131.79, 909.17], [43, "2024-06-24", 0.0, 909.17, 133.85, 909.17], [44, "2024-06-25", -100.0, 14119.17, 135.35, 584.17], [45, "2024-06-26", -100.0, 14119.17, 135.45, 574.17], [46, "2024-06-27", -100.0, 14119.17, 135.95, 524.17], [47, "2024-06-28", -100.0, 14119.17, 133.28, 791.17], [48, "2024-07-01", 0.0, 791.17, 136.2, 791.17], [49, "2024-07-02", -100.0, 14229.17, 135.45, 684.17], [50, "2024-07-03", -100.0, 14229.17, 138.35, 394.17], [51, "2024-07-05", -100.0, 14229.17, 138.26, 403.17], [52, "2024-07-08", 0.0, 403.17, 135.77, 403.17], [53, "2024-07-09", -100.0, 14247.17, 134.78, 769.17], [54, "2024-07-10", -100.0, 14247.17, 138.74, 373.17], [55, "2024-07-11", -100.0, 14247.17, 141.1, 137.17], [56, "2024-07-12", -100.0, 14247.17, 142.55, -7.83], [57, "2024-07-15", 0.0, -7.83, 145.98, -7.83], [58, "2024-07-16", -100.0, 14323.17, 148.0, -476.83], [59, "2024-07-17", -100.0, 14323.17, 143.72, -48.83], [60, "2024-07-18", -100.0, 14323.17, 147.39, -415.83], [61, "2024-07-19", -100.0, 14323.17, 147.3, -406.83], [62, "2024-07-22", 0.0, -406.83, 150.79, -406.83], [63, "2024-07-23", -100.0, 14440.17, 150.79, -638.83], [64, "2024-07-24", -100.0, 14440.17, 144.51, -10.83], [65, "2024-07-25", -100.0, 14440.17, 145.3, -89.83], [66, "2024-07-26", -100.0, 14440.17, 147.1, -269.83], [67, "2024-07-29", 0.0, -269.83, 145.35, -269.83], [68, "2024-07-30", -100.0, 14513.17, 149.58, -444.83], [69, "2024-07-31", -100.0, 14513.17, 153.2, -806.83], [70, "2024-08-01", -100.0, 14513.17, 149.16, -402.83], [71, "2024-08-02", -100.0, 14513.17, 139.26, 587.17], [72, "2024-08-05", 0.0, 350.51, 133.73, 350.51], [73, "2024-08-06", 100.0, -12749.49, 135.75, 825.51], [74, "2024-08-07", 0.0, 961.22, 135.28, 961.22], [75, "2024-08-08", 0.0, 961.22, 138.96, 961.22], [76, "2024-08-09", 0.0, 961.22, 141.54, 961.22], [77, "2024-08-12", 0.0, 961.22, 140.34, 961.22], [78, "2024-08-13", 100.0, -13192.78, 141.54, 961.22], [79, "2024-08-14", 100.0, -13192.78, 143.83, 1190.22], [80, "2024-08-15", 100.0, -13192.78, 145.6, 1367.22], [81, "2024-08-16", 100.0, -13192.78, 145.0, 1307.22], [82, "2024-08-19", 0.0, 1307.22, 144.58, 1307.22], [83, "2024-08-20", -100.0, 15855.22, 144.71, 1384.22], [84, "2024-08-21", -100.0, 15855.22, 144.5, 1405.22], [85, "2024-08-22", -100.0, 15855.22, 143.5, 1505.22], [86, "2024-08-23", -100.0, 15855.22, 147.0, 1155.22], [87, "2024-08-26", 0.0, 1155.22, 146.96, 1155.22], [88, "2024-08-27", -100.0, 15905.22, 146.14, 1291.22], [89, "2024-08-28", -100.0, 15905.22, 145.19, 1386.22], [90, "2024-08-29", -100.0, 15905.22, 144.35, 1470.22], [91, "2024-08-30", -100.0, 15905.22, 146.4, 1265.22], [92, "2024-09-03", 0.0, 1265.22, 142.02, 1265.22], [93, "2024-09-04", 100.0, -13294.78, 140.86, 791.22], [94, "2024-09-05", 100.0, -13294.78, 141.05, 810.22], [95, "2024-09-06", 100.0, -13294.78, 137.45, 450.22], [96, "2024-09-09", 0.0, 450.22, 140.08, 450.22], [97, "2024-09-10", -100.0, 14343.22, 140.09, 334.22], [98, "2024-09-11", -100.0, 14343.22, 141.46, 197.22], [99, "2024-09-12", -100.0, 14343.22, 143.84, -40.78], [100, "2024-09-13", -100.0, 14343.22, 147.4, -396.78], [101, "2024-09-16", 0.0, -396.78, 149.39, -396.78], [102, "2024-09-17", 100.0, -15062.78, 152.8, 217.22], [103, "2024-09-18", 0.0, 144.2, 152.35, 144.2], [104, "2024-09-19", 0.0, 144.2, 156.51, 144.2], [105, "2024-09-20", 0.0, 144.2, 156.66, 144.2], [106, "2024-09-23", 0.0, 144.2, 156.25, 144.2], [107, "2024-09-24", -100.0, 15910.2, 157.33, 177.2], [108, "2024-09-25", -100.0, 15910.2, 158.05, 105.2], [109, "2024-09-26", -100.0, 15910.2, 156.05, 305.2], [110, "2024-09-27", -100.0, 15910.2, 156.91, 219.2], [111, "2024-09-30", 0.0, 219.2, 155.84, 219.2], [112, "2024-10-01", 100.0, -15420.8, 156.31, 210.2], [113, "2024-10-02", 100.0, -15420.8, 158.05, 384.2], [114, "2024-10-03", 100.0, -15420.8, 157.05, 284.2], [115, "2024-10-04", 100.0, -15420.8, 160.39, 618.2], [116, "2024-10-07", 0.0, 618.2, 160.56, 618.2], [117, "2024-10-08", -100.0, 16661.2, 153.38, 1323.2], [118, "2024-10-09", 0.0, 1307.17, 158.16, 1307.17], [119, "2024-10-10", 0.0, 1307.17, 157.81, 1307.17], [120, "2024-10-11", 0.0, 1307.17, 161.95, 1307.17], [121, "2024-10-14", 0.0, 1307.17, 163.35, 1307.17], [122, "2024-10-15", -100.0, 17607.17, 162.63, 1344.17], [123, "2024-10-16", -100.0, 17607.17, 163.48, 1259.17], [124, "2024-10-17", -100.0, 17607.17, 168.73, 734.17], [125, "2024-10-18", -100.0, 17607.17, 169.89, 618.17], [126, "2024-10-21", 0.0, 618.17, 168.69, 618.17], [127, "2024-10-22", 100.0, -16352.83, 167.78, 425.17], [128, "2024-10-23", 100.0, -16352.83, 167.38, 385.17], [129, "2024-10-24", 100.0, -16352.83, 170.83, 730.17], [130, "2024-10-25", 100.0, -16352.83, 169.47, 594.17], [131, "2024-10-28", 0.0, 594.17, 170.98, 594.17], [132, "2024-10-29", -100.0, 17662.17, 170.4, 622.17], [133, "2024-10-30", -100.0, 17662.17, 169.0, 762.17], [134, "2024-10-31", -100.0, 17662.17, 167.68, 894.17], [135, "2024-11-01", -100.0, 17662.17, 161.87, 1475.17], [136, "2024-11-04", 0.0, 1335.04, 159.68, 1335.04], [137, "2024-11-05", 100.0, -14689.96, 164.44, 1754.04], [138, "2024-11-06", 100.0, -14689.96, 172.5, 2560.04], [139, "2024-11-07", 0.0, 2009.3, 168.27, 2009.3], [140, "2024-11-08", 0.0, 2009.3, 170.38, 2009.3], [141, "2024-11-11", 0.0, 2009.3, 171.38, 2009.3], [142, "2024-11-12", -100.0, 19221.3, 170.5, 2171.3], [143, "2024-11-13", -100.0, 19221.3, 167.45, 2476.3], [144, "2024-11-14", -100.0, 19221.3, 169.02, 2319.3], [145, "2024-11-15", -100.0, 19221.3, 167.21, 2500.3], [146, "2024-11-18", 0.0, 2500.3, 167.43, 2500.3], [147, "2024-11-19", -100.0, 19250.3, 170.35, 2215.3], [148, "2024-11-20", -100.0, 19250.3, 171.89, 2061.3], [149, "2024-11-21", -100.0, 19250.3, 175.01, 1749.3], [150, "2024-11-22", -100.0, 19250.3, 175.52, 1698.3], [151, "2024-11-25", 0.0, 1698.3, 176.03, 1698.3], [152, "2024-11-26", -100.0, 19398.3, 178.83, 1515.3], [153, "2024-11-27", -100.0, 19398.3, 174.78, 1920.3], [154, "2024-11-29", -100.0, 19398.3, 176.73, 1725.3], [155, "2024-12-02", 0.0, 1725.3, 173.95, 1725.3], [156, "2024-12-03", -100.0, 19433.3, 175.05, 1928.3], [157, "2024-12-04", -100.0, 19433.3, 176.85, 1748.3], [158, "2024-12-05", -100.0, 19433.3, 177.07, 1726.3], [159, "2024-12-06", -100.0, 19433.3, 178.07, 1626.3], [160, "2024-12-09", 0.0, 1626.3, 175.29, 1626.3], [161, "2024-12-10", -100.0, 19476.3, 176.11, 1865.3], [162, "2024-12-11", -100.0, 19476.3, 182.45, 1231.3], [163, "2024-12-12", -100.0, 19476.3, 182.74, 1202.3], [164, "2024-12-13", -100.0, 19476.3, 182.45, 1231.3], [165, "2024-12-16", 0.0, 1231.3, 183.7, 1231.3], [166, "2024-12-17", 100.0, -16996.7, 178.33, 836.3], [167, "2024-12-18", 100.0, -16996.7, 169.22, -74.7], [168, "2024-12-19", 100.0, -16996.7, 171.08, 111.3], [169, "2024-12-20", 100.0, -16996.7, 176.04, 607.3], [170, "2024-12-23", 0.0, 607.3, 179.0, 607.3], [171, "2024-12-24", 100.0, -16932.7, 181.06, 1173.3], [172, "2024-12-26", 100.0, -16932.7, 182.72, 1339.3], [173, "2024-12-27", 0.0, 1293.36, 179.5, 1293.36], [174, "2024-12-30", 0.0, 1293.36, 179.02, 1293.36], [175, "2024-12-31", 100.0, -16398.64, 177.03, 1304.36], [176, "2025-01-02", 100.0, -16398.64, 178.83, 1484.36], [177, "2025-01-03", 100.0, -16398.64, 181.11, 1712.36], [178, "2025-01-06", 0.0, 1712.36, 180.3, 1712.36], [179, "2025-01-07", -100.0, 20040.36, 178.37, 2203.36], [180, "2025-01-08", 0.0, 2431.35, 182.3, 2431.35], [181, "2025-01-10", 0.0, 2431.35, 175.04, 2431.35], [182, "2025-01-13", 0.0, 2431.35, 175.49, 2431.35], [183, "2025-01-14", 100.0, -14845.65, 179.17, 3071.35], [184, "2025-01-15", 0.0, 3156.96, 184.5, 3156.96], [185, "2025-01-16", 0.0, 3156.96, 187.9, 3156.96], [186, "2025-01-17", 0.0, 3156.96, 191.32, 3156.96], [187, "2025-01-21", 0.0, 3156.96, 194.72, 3156.96], [188, "2025-01-22", -100.0, 22414.96, 193.81, 3033.96], [189, "2025-01-23", -100.0, 22414.96, 195.9, 2824.96], [190, "2025-01-24", -100.0, 22414.96, 197.32, 2682.96], [191, "2025-01-27", 0.0, 2682.96, 189.98, 2682.96], [192, "2025-01-28", 100.0, -16458.04, 193.6, 2901.96], [193, "2025-01-29", 100.0, -16458.04, 193.42, 2883.96], [194, "2025-01-30", 100.0, -16458.04, 198.08, 3349.96], [195, "2025-01-31", 100.0, -16458.04, 198.22, 3363.96], [196, "2025-02-03", 0.0, 3475.09, 196.52, 3475.09], [197, "2025-02-04", 100.0, -15822.91, 195.36, 3713.09], [198, "2025-02-05", 100.0, -15822.91, 189.65, 3142.09], [199, "2025-02-06", 100.0, -15822.91, 191.67, 3344.09], [200, "2025-02-07", 100.0, -15822.91, 190.34, 3211.09], [201, "2025-02-10", 0.0, 3211.09, 189.98, 3211.09], [202, "2025-02-11", -100.0, 22348.09, 186.37, 3711.09], [203, "2025-02-12", 0.0, 3956.5, 182.81, 3956.5], [204, "2025-02-13", 0.0, 3956.5, 184.39, 3956.5], [205, "2025-02-14", 0.0, 3956.5, 186.18, 3956.5], [206, "2025-02-18", 0.0, 3956.5, 187.67, 3956.5], [207, "2025-02-19", -100.0, 22699.5, 186.74, 4025.5], [208, "2025-02-20", -100.0, 22699.5, 179.69, 4730.5], [209, "2025-02-21", 0.0, 4631.74, 174.09, 4631.74], [210, "2025-02-24", 0.0, 4631.74, 168.91, 4631.74], [211, "2025-02-25", -100.0, 22064.74, 167.36, 5328.74], [212, "2025-02-26", 0.0, 5356.53, 168.97, 5356.53], [213, "2025-02-27", 0.0, 5356.53, 167.12, 5356.53], [214, "2025-02-28", 0.0, 5356.53, 170.94, 5356.53], [215, "2025-03-03", 0.0, 5356.53, 169.76, 5356.53], [216, "2025-03-04", -100.0, 22819.53, 160.99, 6720.53], [217, "2025-03-05", 0.0, 6202.69, 163.0, 6202.69], [218, "2025-03-06", 0.0, 6202.69, 153.37, 6202.69], [219, "2025-03-07", 0.0, 6202.69, 154.96, 6202.69], [220, "2025-03-10", 0.0, 6202.69, 141.24, 6202.69], [221, "2025-03-11", 100.0, -8543.31, 143.01, 5757.69], [222, "2025-03-12", 100.0, -8543.31, 145.93, 6049.69], [223, "2025-03-13", 100.0, -8543.31, 140.19, 5475.69], [224, "2025-03-14", 100.0, -8543.31, 144.36, 5892.69], [225, "2025-03-17", 0.0, 5892.69, 147.11, 5892.69], [226, "2025-03-18", 100.0, -8397.31, 144.02, 6004.69], [227, "2025-03-19", 100.0, -8397.31, 147.61, 6363.69], [228, "2025-03-20", 100.0, -8397.31, 147.34, 6336.69], [229, "2025-03-21", 100.0, -8397.31, 147.71, 6373.69], [230, "2025-03-24", 0.0, 6373.69, 153.75, 6373.69], [231, "2025-03-25", -100.0, 21477.69, 155.63, 5914.69], [232, "2025-03-26", -100.0, 21477.69, 153.28, 6149.69], [233, "2025-03-27", -100.0, 21477.69, 148.4, 6637.69], [234, "2025-03-28", -100.0, 21477.69, 144.9, 6987.69], [235, "2025-03-31", 0.0, 7143.0, 146.61, 7143.0], [236, "2025-04-01", 100.0, -7057.0, 149.44, 7887.0], [237, "2025-04-02", 0.0, 7919.99, 154.5, 7919.99], [238, "2025-04-03", 0.0, 7919.99, 130.59, 7919.99], [239, "2025-04-04", 0.0, 7919.99, 118.04, 7919.99], [240, "2025-04-07", 0.0, 7919.99, 124.73, 7919.99], [241, "2025-04-08", 0.0, 9111.05, 123.21, 9111.05], [242, "2025-04-09", 0.0, 9111.05, 142.37, 9111.05], [243, "2025-04-10", 0.0, 9111.05, 135.77, 9111.05], [244, "2025-04-11", 0.0, 9111.05, 137.74, 9111.05], [245, "2025-04-14", 0.0, 9111.05, 138.38, 9111.05], [246, "2025-04-15", -100.0, 23215.05, 141.32, 9083.05], [247, "2025-04-16", -100.0, 23215.05, 139.6, 9255.05], [248, "2025-04-17", -100.0, 23215.05, 141.24, 9091.05], [249, "2025-04-21", 0.0, 9091.05, 137.08, 9091.05]];
+
+        // Define the dt_args
+        let dt_args = {"layout": {"topStart": "pageLength", "topEnd": "search", "bottomStart": "info", "bottomEnd": "paging"}, "order": [], "warn_on_selected_rows_not_rendered": true};
+        dt_args["data"] = data;
+
+        
+        new DataTable(table, dt_args);
+    });
+</script>
 </div>
 </div>
-</div>
-<section id="navcharts-not-necessary" class="level3">
-<h3 class="anchored" data-anchor-id="navcharts-not-necessary">NAV/Charts (not necessary)</h3>
-<div id="7e00362d" class="cell" data-execution_count="15">
+<section id="navcharts-extra-not-necessary" class="level3">
+<h3 class="anchored" data-anchor-id="navcharts-extra-not-necessary">NAV/Charts &amp; Extra (not necessary)</h3>
+<div id="a92b6fdb" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty list to store categories</span></span>
@@ -2549,1070 +1617,6 @@ Blotter              entry_timestamp   qty       exit_timestamp entry_price  \
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-16-output-5.png" class="img-fluid figure-img"></p>
 </figure>
-</div>
-</div>
-</div>
-<div id="29f6cdb4" class="cell" data-execution_count="16">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your final blotter DataFrame already populated at this point</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>blotter <span class="op">=</span> blotter.<span class="bu">round</span>(<span class="dv">3</span>)  <span class="co"># Optional: round for cleaner display</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="e3b4af60" class="cell" data-execution_count="17">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display blotter as interactive table</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>blotter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="31">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">entry_timestamp</th>
-<th data-quarto-table-cell-role="th">qty</th>
-<th data-quarto-table-cell-role="th">exit_timestamp</th>
-<th data-quarto-table-cell-role="th">entry_price</th>
-<th data-quarto-table-cell-role="th">exit_price</th>
-<th data-quarto-table-cell-role="th">success</th>
-<th data-quarto-table-cell-role="th">iv</th>
-<th data-quarto-table-cell-role="th">wap</th>
-<th data-quarto-table-cell-role="th">sma</th>
-<th data-quarto-table-cell-role="th">prediction</th>
-<th data-quarto-table-cell-role="th">return</th>
-<th data-quarto-table-cell-role="th">entry_price_underlying</th>
-<th data-quarto-table-cell-role="th">exit_price_underlying</th>
-<th data-quarto-table-cell-role="th">return_underlying</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.18</td>
-<td>2024-04-29 09:30:00</td>
-<td>-100</td>
-<td>2024-05-02 09:30:00</td>
-<td>134.27</td>
-<td>128.747647</td>
-<td>True</td>
-<td>0.32</td>
-<td>134.139</td>
-<td>132.8195</td>
-<td>1.0</td>
-<td>0.041129</td>
-<td>133.97</td>
-<td>127.58</td>
-<td>0.047697</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.19</td>
-<td>2024-05-06 09:30:00</td>
-<td>-100</td>
-<td>2024-05-10 15:00:00</td>
-<td>132.31</td>
-<td>142.27</td>
-<td>False</td>
-<td>0.292</td>
-<td>133.223</td>
-<td>132.98</td>
-<td>1.0</td>
-<td>-0.075278</td>
-<td>134.07</td>
-<td>142.18</td>
-<td>-0.060491</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.20</td>
-<td>2024-05-13 09:30:00</td>
-<td>-100</td>
-<td>2024-05-17 15:00:00</td>
-<td>142.86</td>
-<td>145.6</td>
-<td>False</td>
-<td>0.239</td>
-<td>142.315</td>
-<td>134.893</td>
-<td>1.0</td>
-<td>-0.01918</td>
-<td>142.28</td>
-<td>145.59</td>
-<td>-0.023264</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.21</td>
-<td>2024-05-20 09:30:00</td>
-<td>100</td>
-<td>2024-05-24 15:00:00</td>
-<td>145.14</td>
-<td>146.01</td>
-<td>False</td>
-<td>0.27</td>
-<td>144.054</td>
-<td>138.73</td>
-<td>1.0</td>
-<td>0.005994</td>
-<td>144.07</td>
-<td>146.08</td>
-<td>0.013952</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.22</td>
-<td>2024-05-28 09:30:00</td>
-<td>-100</td>
-<td>2024-05-31 10:00:00</td>
-<td>146.25</td>
-<td>141.813789</td>
-<td>True</td>
-<td>0.236</td>
-<td>146.963</td>
-<td>141.1685</td>
-<td>1.0</td>
-<td>0.030333</td>
-<td>147.44</td>
-<td>142.12</td>
-<td>0.036082</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.23</td>
-<td>2024-06-03 09:30:00</td>
-<td>-100</td>
-<td>2024-06-03 13:00:00</td>
-<td>141.46</td>
-<td>136.499553</td>
-<td>True</td>
-<td>0.305</td>
-<td>140.544</td>
-<td>142.7775</td>
-<td>1.0</td>
-<td>0.035066</td>
-<td>138.78</td>
-<td>137.16</td>
-<td>0.011673</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.24</td>
-<td>2024-06-10 09:30:00</td>
-<td>100</td>
-<td>2024-06-10 10:00:00</td>
-<td>132.44</td>
-<td>137.312728</td>
-<td>True</td>
-<td>0.279</td>
-<td>133.523</td>
-<td>141.8615</td>
-<td>1.0</td>
-<td>0.036792</td>
-<td>134.60</td>
-<td>136.62</td>
-<td>0.015007</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.25</td>
-<td>2024-06-17 09:30:00</td>
-<td>-100</td>
-<td>2024-06-21 15:00:00</td>
-<td>132.92</td>
-<td>131.79</td>
-<td>False</td>
-<td>0.273</td>
-<td>132.855</td>
-<td>139.188</td>
-<td>1.0</td>
-<td>0.008501</td>
-<td>132.92</td>
-<td>131.84</td>
-<td>0.008125</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.26</td>
-<td>2024-06-24 09:30:00</td>
-<td>-100</td>
-<td>2024-06-28 15:00:00</td>
-<td>132.1</td>
-<td>133.28</td>
-<td>False</td>
-<td>0.259</td>
-<td>132.391</td>
-<td>137.0715</td>
-<td>1.0</td>
-<td>-0.008933</td>
-<td>133.34</td>
-<td>133.29</td>
-<td>0.000375</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.27</td>
-<td>2024-07-01 09:30:00</td>
-<td>-100</td>
-<td>2024-07-05 15:00:00</td>
-<td>134.38</td>
-<td>138.26</td>
-<td>False</td>
-<td>0.269</td>
-<td>133.994</td>
-<td>135.0995</td>
-<td>1.0</td>
-<td>-0.028873</td>
-<td>134.30</td>
-<td>138.26</td>
-<td>-0.029486</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.28</td>
-<td>2024-07-08 09:30:00</td>
-<td>-100</td>
-<td>2024-07-12 15:00:00</td>
-<td>138.44</td>
-<td>142.55</td>
-<td>False</td>
-<td>0.277</td>
-<td>138.061</td>
-<td>135.1435</td>
-<td>1.0</td>
-<td>-0.029688</td>
-<td>137.61</td>
-<td>142.48</td>
-<td>-0.03539</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.29</td>
-<td>2024-07-15 09:30:00</td>
-<td>-100</td>
-<td>2024-07-19 15:00:00</td>
-<td>143.31</td>
-<td>147.3</td>
-<td>False</td>
-<td>0.288</td>
-<td>143.272</td>
-<td>136.461</td>
-<td>1.0</td>
-<td>-0.027842</td>
-<td>143.89</td>
-<td>147.29</td>
-<td>-0.023629</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.30</td>
-<td>2024-07-22 09:30:00</td>
-<td>-100</td>
-<td>2024-07-26 15:00:00</td>
-<td>148.47</td>
-<td>147.1</td>
-<td>False</td>
-<td>0.307</td>
-<td>148.779</td>
-<td>139.913</td>
-<td>1.0</td>
-<td>0.009227</td>
-<td>148.01</td>
-<td>147.11</td>
-<td>0.006081</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.31</td>
-<td>2024-07-29 09:30:00</td>
-<td>-100</td>
-<td>2024-08-02 09:30:00</td>
-<td>147.83</td>
-<td>141.626602</td>
-<td>True</td>
-<td>0.325</td>
-<td>146.347</td>
-<td>142.8715</td>
-<td>1.0</td>
-<td>0.041963</td>
-<td>146.25</td>
-<td>143.38</td>
-<td>0.019624</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.32</td>
-<td>2024-08-05 09:30:00</td>
-<td>100</td>
-<td>2024-08-06 12:00:00</td>
-<td>131.0</td>
-<td>137.10709</td>
-<td>True</td>
-<td>0.427</td>
-<td>130.266</td>
-<td>144.9165</td>
-<td>1.0</td>
-<td>0.046619</td>
-<td>130.26</td>
-<td>137.33</td>
-<td>0.054276</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.33</td>
-<td>2024-08-12 09:30:00</td>
-<td>100</td>
-<td>2024-08-16 15:00:00</td>
-<td>141.54</td>
-<td>145.0</td>
-<td>False</td>
-<td>0.302</td>
-<td>140.063</td>
-<td>144.3525</td>
-<td>1.0</td>
-<td>0.024445</td>
-<td>139.78</td>
-<td>145.06</td>
-<td>0.037774</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.34</td>
-<td>2024-08-19 09:30:00</td>
-<td>-100</td>
-<td>2024-08-23 15:00:00</td>
-<td>145.48</td>
-<td>147.0</td>
-<td>False</td>
-<td>0.254</td>
-<td>145.221</td>
-<td>143.52</td>
-<td>1.0</td>
-<td>-0.010448</td>
-<td>144.28</td>
-<td>147.02</td>
-<td>-0.018991</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.35</td>
-<td>2024-08-26 09:30:00</td>
-<td>-100</td>
-<td>2024-08-30 15:00:00</td>
-<td>147.5</td>
-<td>146.4</td>
-<td>False</td>
-<td>0.245</td>
-<td>147.664</td>
-<td>143.201</td>
-<td>1.0</td>
-<td>0.007458</td>
-<td>147.67</td>
-<td>146.39</td>
-<td>0.008668</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.36</td>
-<td>2024-09-03 09:30:00</td>
-<td>100</td>
-<td>2024-09-06 15:00:00</td>
-<td>145.6</td>
-<td>137.45</td>
-<td>False</td>
-<td>0.262</td>
-<td>144.827</td>
-<td>143.1595</td>
-<td>1.0</td>
-<td>-0.055975</td>
-<td>144.90</td>
-<td>137.39</td>
-<td>-0.051829</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.37</td>
-<td>2024-09-09 09:30:00</td>
-<td>-100</td>
-<td>2024-09-13 15:00:00</td>
-<td>138.93</td>
-<td>147.4</td>
-<td>False</td>
-<td>0.288</td>
-<td>138.973</td>
-<td>143.555</td>
-<td>1.0</td>
-<td>-0.060966</td>
-<td>139.75</td>
-<td>147.39</td>
-<td>-0.054669</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.38</td>
-<td>2024-09-16 09:30:00</td>
-<td>100</td>
-<td>2024-09-17 11:00:00</td>
-<td>146.66</td>
-<td>152.069793</td>
-<td>True</td>
-<td>0.294</td>
-<td>147.768</td>
-<td>143.8485</td>
-<td>1.0</td>
-<td>0.036887</td>
-<td>147.80</td>
-<td>152.49</td>
-<td>0.031732</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.39</td>
-<td>2024-09-23 09:30:00</td>
-<td>-100</td>
-<td>2024-09-27 15:00:00</td>
-<td>157.66</td>
-<td>156.91</td>
-<td>False</td>
-<td>0.275</td>
-<td>157.828</td>
-<td>146.3625</td>
-<td>1.0</td>
-<td>0.004757</td>
-<td>157.59</td>
-<td>156.93</td>
-<td>0.004188</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.40</td>
-<td>2024-09-30 09:30:00</td>
-<td>100</td>
-<td>2024-10-04 15:00:00</td>
-<td>156.4</td>
-<td>160.39</td>
-<td>False</td>
-<td>0.313</td>
-<td>156.136</td>
-<td>149.1195</td>
-<td>1.0</td>
-<td>0.025512</td>
-<td>155.17</td>
-<td>160.34</td>
-<td>0.033318</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.41</td>
-<td>2024-10-07 09:30:00</td>
-<td>-100</td>
-<td>2024-10-08 13:00:00</td>
-<td>160.43</td>
-<td>153.540354</td>
-<td>True</td>
-<td>0.327</td>
-<td>160.565</td>
-<td>153.6645</td>
-<td>1.0</td>
-<td>0.042945</td>
-<td>160.62</td>
-<td>153.50</td>
-<td>0.044328</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.42</td>
-<td>2024-10-14 09:30:00</td>
-<td>-100</td>
-<td>2024-10-18 15:00:00</td>
-<td>163.0</td>
-<td>169.89</td>
-<td>False</td>
-<td>0.334</td>
-<td>162.486</td>
-<td>157.288</td>
-<td>1.0</td>
-<td>-0.04227</td>
-<td>163.31</td>
-<td>169.97</td>
-<td>-0.040781</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.43</td>
-<td>2024-10-21 09:30:00</td>
-<td>100</td>
-<td>2024-10-25 15:00:00</td>
-<td>169.71</td>
-<td>169.47</td>
-<td>False</td>
-<td>0.316</td>
-<td>169.816</td>
-<td>160.2305</td>
-<td>1.0</td>
-<td>-0.001414</td>
-<td>170.31</td>
-<td>169.48</td>
-<td>-0.004873</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.44</td>
-<td>2024-10-28 09:30:00</td>
-<td>-100</td>
-<td>2024-11-01 09:30:00</td>
-<td>170.68</td>
-<td>163.271264</td>
-<td>True</td>
-<td>0.322</td>
-<td>170.973</td>
-<td>163.3435</td>
-<td>1.0</td>
-<td>0.043407</td>
-<td>171.40</td>
-<td>163.13</td>
-<td>0.04825</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.45</td>
-<td>2024-11-04 09:30:00</td>
-<td>100</td>
-<td>2024-11-06 09:30:00</td>
-<td>160.25</td>
-<td>166.992571</td>
-<td>True</td>
-<td>0.314</td>
-<td>160.338</td>
-<td>165.157</td>
-<td>1.0</td>
-<td>0.042075</td>
-<td>160.22</td>
-<td>173.10</td>
-<td>0.080389</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.46</td>
-<td>2024-11-11 09:30:00</td>
-<td>-100</td>
-<td>2024-11-15 15:00:00</td>
-<td>172.12</td>
-<td>167.21</td>
-<td>False</td>
-<td>0.262</td>
-<td>172.436</td>
-<td>167.773</td>
-<td>1.0</td>
-<td>0.028527</td>
-<td>172.83</td>
-<td>167.09</td>
-<td>0.033212</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.47</td>
-<td>2024-11-18 09:30:00</td>
-<td>-100</td>
-<td>2024-11-22 15:00:00</td>
-<td>167.5</td>
-<td>175.52</td>
-<td>False</td>
-<td>0.28</td>
-<td>166.622</td>
-<td>168.1825</td>
-<td>1.0</td>
-<td>-0.047881</td>
-<td>166.03</td>
-<td>175.48</td>
-<td>-0.056917</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.48</td>
-<td>2024-11-25 09:30:00</td>
-<td>-100</td>
-<td>2024-11-29 15:00:00</td>
-<td>177.0</td>
-<td>176.73</td>
-<td>False</td>
-<td>0.258</td>
-<td>176.357</td>
-<td>169.3005</td>
-<td>1.0</td>
-<td>0.001525</td>
-<td>174.87</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.49</td>
-<td>2024-12-02 09:30:00</td>
-<td>-100</td>
-<td>2024-12-06 15:00:00</td>
-<td>177.08</td>
-<td>178.07</td>
-<td>False</td>
-<td>0.274</td>
-<td>177.055</td>
-<td>171.0675</td>
-<td>1.0</td>
-<td>-0.005591</td>
-<td>176.81</td>
-<td>178.01</td>
-<td>-0.006787</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.50</td>
-<td>2024-12-09 09:30:00</td>
-<td>-100</td>
-<td>2024-12-13 15:00:00</td>
-<td>178.5</td>
-<td>182.45</td>
-<td>False</td>
-<td>0.253</td>
-<td>179.03</td>
-<td>173.4205</td>
-<td>1.0</td>
-<td>-0.022129</td>
-<td>179.76</td>
-<td>182.40</td>
-<td>-0.014686</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024.51</td>
-<td>2024-12-16 09:30:00</td>
-<td>100</td>
-<td>2024-12-20 15:00:00</td>
-<td>182.28</td>
-<td>176.04</td>
-<td>False</td>
-<td>0.274</td>
-<td>182.707</td>
-<td>176.515</td>
-<td>1.0</td>
-<td>-0.034233</td>
-<td>182.76</td>
-<td>175.99</td>
-<td>-0.037043</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024.52</td>
-<td>2024-12-23 09:30:00</td>
-<td>100</td>
-<td>2024-12-26 15:00:00</td>
-<td>175.4</td>
-<td>182.260673</td>
-<td>True</td>
-<td>0.311</td>
-<td>175.14</td>
-<td>177.1885</td>
-<td>1.0</td>
-<td>0.039114</td>
-<td>175.28</td>
-<td>182.68</td>
-<td>0.042218</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.01</td>
-<td>2024-12-30 09:30:00</td>
-<td>100</td>
-<td>2025-01-03 15:00:00</td>
-<td>176.92</td>
-<td>181.11</td>
-<td>False</td>
-<td>0.297</td>
-<td>176.707</td>
-<td>177.985</td>
-<td>1.0</td>
-<td>0.023683</td>
-<td>176.20</td>
-<td>181.11</td>
-<td>0.027866</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.02</td>
-<td>2025-01-06 09:30:00</td>
-<td>-100</td>
-<td>2025-01-07 09:30:00</td>
-<td>183.28</td>
-<td>176.090124</td>
-<td>True</td>
-<td>0.302</td>
-<td>183.411</td>
-<td>178.7025</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>183.86</td>
-<td>175.85</td>
-<td>0.043566</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.03</td>
-<td>2025-01-13 09:30:00</td>
-<td>100</td>
-<td>2025-01-14 14:00:00</td>
-<td>172.77</td>
-<td>180.026042</td>
-<td>True</td>
-<td>0.327</td>
-<td>173.467</td>
-<td>178.6665</td>
-<td>1.0</td>
-<td>0.041998</td>
-<td>175.36</td>
-<td>179.24</td>
-<td>0.022126</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.04</td>
-<td>2025-01-21 09:30:00</td>
-<td>-100</td>
-<td>2025-01-24 15:00:00</td>
-<td>192.58</td>
-<td>197.32</td>
-<td>False</td>
-<td>0.303</td>
-<td>193.224</td>
-<td>180.725</td>
-<td>1.0</td>
-<td>-0.024613</td>
-<td>193.58</td>
-<td>197.21</td>
-<td>-0.018752</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.05</td>
-<td>2025-01-27 09:30:00</td>
-<td>100</td>
-<td>2025-01-31 09:30:00</td>
-<td>191.41</td>
-<td>199.331327</td>
-<td>True</td>
-<td>0.333</td>
-<td>190.914</td>
-<td>184.2165</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>191.47</td>
-<td>199.08</td>
-<td>0.039745</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.06</td>
-<td>2025-02-03 09:30:00</td>
-<td>100</td>
-<td>2025-02-07 15:00:00</td>
-<td>192.98</td>
-<td>190.34</td>
-<td>False</td>
-<td>0.38</td>
-<td>193.07</td>
-<td>188.3535</td>
-<td>1.0</td>
-<td>-0.01368</td>
-<td>193.02</td>
-<td>190.34</td>
-<td>-0.013885</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.07</td>
-<td>2025-02-10 09:30:00</td>
-<td>-100</td>
-<td>2025-02-11 10:00:00</td>
-<td>191.37</td>
-<td>183.915844</td>
-<td>True</td>
-<td>0.295</td>
-<td>189.543</td>
-<td>191.3475</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>188.75</td>
-<td>184.65</td>
-<td>0.021722</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.08</td>
-<td>2025-02-18 09:30:00</td>
-<td>-100</td>
-<td>2025-02-20 10:00:00</td>
-<td>187.43</td>
-<td>180.677669</td>
-<td>True</td>
-<td>0.313</td>
-<td>188.405</td>
-<td>191.7995</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>188.63</td>
-<td>177.23</td>
-<td>0.060436</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.09</td>
-<td>2025-02-24 09:30:00</td>
-<td>-100</td>
-<td>2025-02-25 09:30:00</td>
-<td>174.33</td>
-<td>167.082125</td>
-<td>True</td>
-<td>0.367</td>
-<td>173.292</td>
-<td>188.1835</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>171.22</td>
-<td>165.90</td>
-<td>0.031071</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.10</td>
-<td>2025-03-03 09:30:00</td>
-<td>-100</td>
-<td>2025-03-04 09:30:00</td>
-<td>174.63</td>
-<td>166.168308</td>
-<td>True</td>
-<td>0.386</td>
-<td>173.25</td>
-<td>181.726</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>171.87</td>
-<td>160.94</td>
-<td>0.063595</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.11</td>
-<td>2025-03-10 09:30:00</td>
-<td>100</td>
-<td>2025-03-14 15:00:00</td>
-<td>147.46</td>
-<td>144.36</td>
-<td>False</td>
-<td>0.518</td>
-<td>146.115</td>
-<td>172.227</td>
-<td>1.0</td>
-<td>-0.021023</td>
-<td>145.67</td>
-<td>144.22</td>
-<td>-0.009954</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.12</td>
-<td>2025-03-17 09:30:00</td>
-<td>100</td>
-<td>2025-03-21 15:00:00</td>
-<td>142.9</td>
-<td>147.71</td>
-<td>False</td>
-<td>0.437</td>
-<td>143.898</td>
-<td>161.7705</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>144.66</td>
-<td>147.71</td>
-<td>0.021084</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.13</td>
-<td>2025-03-24 09:30:00</td>
-<td>-100</td>
-<td>2025-03-28 13:00:00</td>
-<td>151.04</td>
-<td>143.346966</td>
-<td>True</td>
-<td>0.367</td>
-<td>151.504</td>
-<td>153.937</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>152.34</td>
-<td>143.34</td>
-<td>0.059078</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.14</td>
-<td>2025-03-31 09:30:00</td>
-<td>100</td>
-<td>2025-04-01 15:00:00</td>
-<td>142.0</td>
-<td>149.769949</td>
-<td>True</td>
-<td>0.44</td>
-<td>141.317</td>
-<td>149.1705</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>142.48</td>
-<td>149.48</td>
-<td>0.04913</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.15</td>
-<td>2025-04-07 09:30:00</td>
-<td>100</td>
-<td>2025-04-07 10:00:00</td>
-<td>114.0</td>
-<td>125.910533</td>
-<td>True</td>
-<td>0.827</td>
-<td>113.106</td>
-<td>144.3575</td>
-<td>1.0</td>
-<td>0.104478</td>
-<td>116.70</td>
-<td>123.47</td>
-<td>0.058012</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2025.16</td>
-<td>2025-04-14 09:30:00</td>
-<td>-100</td>
-<td>2025-04-17 15:00:00</td>
-<td>141.04</td>
-<td>141.24</td>
-<td>False</td>
-<td>0.621</td>
-<td>138.996</td>
-<td>142.201</td>
-<td>1.0</td>
-<td>-0.001418</td>
-<td>137.22</td>
-<td>141.35</td>
-<td>-0.030098</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2025.17</td>
-<td>2025-04-21 09:30:00</td>
-<td>100</td>
-<td>2025-04-21 15:00:00</td>
-<td>138.7</td>
-<td>137.08</td>
-<td>False</td>
-<td>0.55</td>
-<td>138.734</td>
-<td>140.829</td>
-<td>0.0</td>
-<td>-0.0</td>
-<td>137.96</td>
-<td>137.12</td>
-<td>-0.006089</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="b1bf338f" class="cell" data-execution_count="18">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your final ledger DataFrame already populated at this point</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ledger <span class="op">=</span> ledger.<span class="bu">round</span>(<span class="dv">2</span>)  <span class="co"># Optional: clean output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="f6d7c9e6" class="cell" data-execution_count="19">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display ledger as interactive table</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ledger</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="33">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">date</th>
-<th data-quarto-table-cell-role="th">position</th>
-<th data-quarto-table-cell-role="th">cash</th>
-<th data-quarto-table-cell-role="th">mark</th>
-<th data-quarto-table-cell-role="th">mkt_value</th>
-<th data-quarto-table-cell-role="th">position_category</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>2024-04-29</td>
-<td>0.0</td>
-<td>0.00</td>
-<td>134.90</td>
-<td>0.00</td>
-<td>Cash Only</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6</td>
-<td>2024-04-30</td>
-<td>-100.0</td>
-<td>13427.00</td>
-<td>133.09</td>
-<td>118.00</td>
-<td>Short</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">7</td>
-<td>2024-05-01</td>
-<td>-100.0</td>
-<td>13427.00</td>
-<td>131.70</td>
-<td>257.00</td>
-<td>Short</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">8</td>
-<td>2024-05-02</td>
-<td>-100.0</td>
-<td>13427.00</td>
-<td>134.64</td>
-<td>-37.00</td>
-<td>Short</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">9</td>
-<td>2024-05-03</td>
-<td>0.0</td>
-<td>552.24</td>
-<td>131.91</td>
-<td>552.24</td>
-<td>Cash Only</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">245</td>
-<td>2025-04-14</td>
-<td>0.0</td>
-<td>9111.05</td>
-<td>138.38</td>
-<td>9111.05</td>
-<td>Cash Only</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">246</td>
-<td>2025-04-15</td>
-<td>-100.0</td>
-<td>23215.05</td>
-<td>141.32</td>
-<td>9083.05</td>
-<td>Short</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">247</td>
-<td>2025-04-16</td>
-<td>-100.0</td>
-<td>23215.05</td>
-<td>139.60</td>
-<td>9255.05</td>
-<td>Short</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">248</td>
-<td>2025-04-17</td>
-<td>-100.0</td>
-<td>23215.05</td>
-<td>141.24</td>
-<td>9091.05</td>
-<td>Short</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">249</td>
-<td>2025-04-21</td>
-<td>0.0</td>
-<td>9091.05</td>
-<td>137.08</td>
-<td>9091.05</td>
-<td>Cash Only</td>
-</tr>
-</tbody>
-</table>
-
-<p>245 rows × 6 columns</p>
 </div>
 </div>
 </div>

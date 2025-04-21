@@ -486,7 +486,7 @@ print("Intercept:", model.intercept_)
 print(classification_report(y_test, y_pred))
 print("Blotter", blotter)
 ```
-# Outputting Interactive Blotter & Ledger
+# Outputting Interactive Blotter & Ledger (FINAL HW HERE)
 ```{python}
 # Your final blotter DataFrame already populated at this point
 blotter = blotter.round(3)  # Optional: round for cleaner display
