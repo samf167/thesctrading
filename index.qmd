@@ -3,6 +3,8 @@ title: "thesctrading"
 format:
   html:
     code-fold: true
+    df-print: paged
+
 jupyter: py312env
 ---
 
@@ -131,7 +133,8 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 ```
-# Model
+
+# Blotter & Ledger Code
 
 
 ```{python}
@@ -142,9 +145,10 @@ import shinybroker as sb
 import datetime
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
+```
 
-# Define an asset that you're interested in
-# (I used Netflix)
+### Fetch data
+```{python}
 asset= sb.Contract({
     'symbol': "ARES",
     'secType': "STK",
@@ -185,7 +189,7 @@ historical_data_daily_fetch = sb.fetch_historical_data(
     #keepUpToDate=False
 )
 historical_data_daily = historical_data_daily_fetch['hst_dta']
-print("HDD", historical_data_daily)
+# print("HDD", historical_data_daily)
 
 #### Fetch your liquid trading hours for the asset
 #### You'll need this later!
@@ -198,7 +202,7 @@ ares_deets = sb.fetch_contract_details(
     })
 )
 liquid_hours = ares_deets['liquidHours']
-print(liquid_hours)
+# print(liquid_hours)
 #liquid_hours = (ares_deets['liquidHours'][0])
 
 def safe_fetch_iv(contract, durationStr, barSizeSetting, label):
@@ -234,7 +238,7 @@ iv_historical_data_daily = safe_fetch_iv(
 )
 
 # Optional: preview what was fetched
-print(iv_historical_data_daily.head())
+# print(iv_historical_data_daily.head())
 
 
 historical_data_daily_fetch_SMA = sb.fetch_historical_data(
@@ -248,8 +252,10 @@ historical_data_daily_fetch_SMA = sb.fetch_historical_data(
     #keepUpToDate=False
 )
 historical_data_daily_SMA = historical_data_daily_fetch_SMA['hst_dta']#%% md
-## Fetch VWAP
+```
 
+### Clean Data
+```{python}
 import pandas as pd
 
 # Make sure 'date' is a datetime column
@@ -291,7 +297,9 @@ first_full_week = weekly_counts[weekly_counts >= 5].index.min()
 
 # Filter historical_data_daily
 historical_data_daily = historical_data_daily[historical_data_daily['trd_prd'] >= first_full_week]
-
+```
+### Print DFs
+```{python}
 # Print dataframes
 print("Historical Data Daily:")
 print(historical_data_daily)
@@ -310,7 +318,11 @@ print(historical_data_daily_SMA)
 
 print("\nLiquid Hours:")
 print(liquid_hours)
+```
 
+### Vol
+
+```{python}
 # Calc Obs & Exp Vol
 # Extract trade periods from daily historical data
 trade_periods = historical_data_daily['trd_prd'].unique()
@@ -330,8 +342,8 @@ vol_calcs['obs_vol'] = weekly_vols.values[:len(trade_periods)]
 vol_calcs['exp_vol'] = vol_calcs['obs_vol'].shift(1)
 
 # Display the DataFrame
-print("\nVolatility Calculations:")
-print(vol_calcs)
+# print("\nVolatility Calculations:")
+# print(vol_calcs)
 
 # Calc Obs & Exp Vol
 # Extract trade periods from daily historical data
@@ -360,15 +372,16 @@ print(smart_vol_calcs)
 vol_calcs = smart_vol_calcs
 
 #vol_calcs = smart_vol_calcs # manually toggle active vol calc
+```
 
+### Blotter & Ledger
+```{python}
 # Extract trade periods from daily historical data
 trade_periods = historical_data_daily['trd_prd'].unique()
 
 # Calc blotter
 blotter = pd.DataFrame(index=trade_periods[1:], columns=['entry_timestamp', 'qty', 'exit_timestamp', 'entry_price', 'exit_price', 'success', 'iv', 'wap', 'sma'])
 blotter[:] = None  # Set empty values
-print("\nBlotter:")
-print(blotter)
 
 # Initialize Ledger
 filtered_historical = historical_data_daily[historical_data_daily['trd_prd'] != historical_data_daily['trd_prd'].iloc[0]]
@@ -437,12 +450,67 @@ for trd_prd in blotter.index:
 
 # finally, calculate your strategy's end-of-day mark-to-market value
 ledger['mkt_value'] = ledger['position'] * ledger['mark'] + ledger['cash']
+```
 
-print(blotter)
-print(ledger)
+### Extra
+```{python}
+import sklearn
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
 
-# Deal with the open positions thing
+X = blotter[['iv', 'wap', 'sma']]
+y = blotter['success'].astype(int)
 
+# Split train/test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+print(y.value_counts())
+
+
+# Fit model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Predict
+# y_pred = model.predict(X_test) # 0.5 threshold
+probs = model.predict_proba(X_test)[:, 1]
+y_pred = (probs > 0.3).astype(int)
+
+fill = len(y_train)
+padded_y_pred = np.concatenate(([1.0] * fill, y_pred))
+blotter['prediction'] = pd.Series(padded_y_pred, index=blotter.index)
+
+# Results
+print("Coefficients:", model.coef_)
+print("Intercept:", model.intercept_)
+print(classification_report(y_test, y_pred))
+print("Blotter", blotter)
+```
+# Outputting Interactive Blotter & Ledger
+```{python}
+# Your final blotter DataFrame already populated at this point
+blotter = blotter.round(3)  # Optional: round for cleaner display
+```
+
+```{python}
+# Display blotter as interactive table
+from itables import show
+show(blotter)
+```
+
+```{python}
+# Your final ledger DataFrame already populated at this point
+ledger = ledger.round(2)  # Optional: clean output
+```
+
+```{python}
+# Display ledger as interactive table
+show(ledger)
+```
+
+### NAV/Charts & Extra (not necessary)
+
+```{python}
 # Create an empty list to store categories
 position_category = []
 
@@ -660,5 +728,6 @@ plt.show()
 # Print alpha and beta values
 
 alpha, beta
-
 ```
+
+
