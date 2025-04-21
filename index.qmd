@@ -129,3 +129,526 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 ```
+# Model
+
+
+'''{python}
+
+import numpy as np
+import pandas as pd
+import shinybroker as sb
+import datetime
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+
+# Define an asset that you're interested in
+# (I used Netflix)
+asset= sb.Contract({
+    'symbol': "ARES",
+    'secType': "STK",
+    'exchange': "SMART",
+    'currency': "USD"
+})
+
+benchmark = sb.Contract({
+    'symbol': "SPX",
+    'secType': "IND",
+    'exchange': "CBOE",
+    'currency': "USD"
+})
+
+#### Get hourly data to use for calculating vol
+historical_data_hourly_fetch = sb.fetch_historical_data(
+    contract=asset,
+    endDateTime='',         # Let IBKR set the "now" time
+    durationStr='1 Y',      # Past 1 year
+    barSizeSetting='1 hour', # Daily bars
+    whatToShow='TRADES',
+    useRTH=True,
+    #date_format=1,          # String time zone date
+    #keepUpToDate=False
+)
+historical_data_hourly = historical_data_hourly_fetch['hst_dta']
+
+#### Get daily data as well because it speeds up the code
+####   writing process.
+historical_data_daily_fetch = sb.fetch_historical_data(
+    contract=asset,
+    endDateTime='',         # Let IBKR set the "now" time
+    durationStr='1 Y',      # Past 1 year
+    barSizeSetting='1 day', # Daily bars
+    whatToShow='TRADES',
+    useRTH=True,
+    #date_format=1,          # String time zone date
+    #keepUpToDate=False
+)
+historical_data_daily = historical_data_daily_fetch['hst_dta']
+print(historical_data_daily)
+
+#### Fetch your liquid trading hours for the asset
+#### You'll need this later!
+ares_deets = sb.fetch_contract_details(
+    contract=sb.Contract({
+        'symbol': "ARES",
+        'secType': "STK",
+        'exchange': "SMART",
+        'currency': "USD"
+    })
+)
+liquid_hours = ares_deets['liquidHours']
+print(liquid_hours)
+#liquid_hours = (ares_deets['liquidHours'][0])
+
+#### Get hourly data to use for calculating vol
+iv_historical_data_hourly_fetch = sb.fetch_historical_data(
+    contract=asset,
+    endDateTime='',         # Let IBKR set the "now" time
+    durationStr='1 Y',      # Past 1 year
+    barSizeSetting='1 hour', # Daily bars
+    whatToShow='OPTION_IMPLIED_VOLATILITY',
+    useRTH=True,
+    #date_format=1,          # String time zone date
+    #keepUpToDate=False
+)
+iv_historical_data_hourly = iv_historical_data_hourly_fetch['hst_dta']
+
+#### Get daily data as well because it speeds up the code
+####   writing process.
+iv_historical_data_daily_fetch = sb.fetch_historical_data(
+    contract=asset,
+    endDateTime='',         # Let IBKR set the "now" time
+    durationStr='1 Y',      # Past 1 year
+    barSizeSetting='1 day', # Daily bars
+    whatToShow='OPTION_IMPLIED_VOLATILITY',
+    useRTH=True,
+    #date_format=1,          # String time zone date
+    #keepUpToDate=False
+)
+iv_historical_data_daily = iv_historical_data_daily_fetch['hst_dta']
+print(iv_historical_data_daily)
+
+historical_data_daily_fetch_SMA = sb.fetch_historical_data(
+    contract=asset,
+    endDateTime='',         # Let IBKR set the "now" time
+    durationStr='2 Y',      # Past 1 year
+    barSizeSetting='1 day', # Daily bars
+    whatToShow='TRADES',
+    useRTH=True,
+    #date_format=1,          # String time zone date
+    #keepUpToDate=False
+)
+historical_data_daily_SMA = historical_data_daily_fetch_SMA['hst_dta']#%% md
+## Fetch VWAP
+
+import pandas as pd
+
+# Make sure 'date' is a datetime column
+historical_data_daily_SMA['timestamp'] = pd.to_datetime(historical_data_daily_SMA['timestamp'])
+
+# Sort by date just to be safe
+historical_data_daily_SMA = historical_data_daily_SMA.sort_values('timestamp')
+
+# Calculate 20-day simple moving average
+historical_data_daily_SMA['SMA_20'] = historical_data_daily_SMA['close'].rolling(window=20).mean()
+
+print(historical_data_daily_SMA['SMA_20'])
+
+#### Prepare Data
+# Function to calculate trade period
+def get_trade_period(dt):
+    iso_year, iso_week, _ = dt.isocalendar()
+    return float(f"{iso_year}.{iso_week:02d}")
+
+# Ensure 'date' column is in datetime format
+historical_data_daily['timestamp'] = pd.to_datetime(historical_data_daily['timestamp'])
+historical_data_hourly['timestamp'] = pd.to_datetime(historical_data_hourly['timestamp'])
+iv_historical_data_daily['timestamp'] = pd.to_datetime(iv_historical_data_daily['timestamp'])
+iv_historical_data_hourly['timestamp'] = pd.to_datetime(iv_historical_data_hourly['timestamp'])
+#liquid_hours['timestamp'] = pd.to_datetime(liquid_hours['timestamp'])
+
+# Apply trade period calculation
+historical_data_daily['trd_prd'] = historical_data_daily['timestamp'].apply(get_trade_period)
+historical_data_hourly['trd_prd'] = historical_data_hourly['timestamp'].apply(get_trade_period)
+iv_historical_data_daily['trd_prd'] = iv_historical_data_daily['timestamp'].apply(get_trade_period)
+iv_historical_data_hourly['trd_prd'] = iv_historical_data_hourly['timestamp'].apply(get_trade_period)
+historical_data_daily_SMA['trd_prd'] = historical_data_daily_SMA['timestamp'].apply(get_trade_period)
+
+#liquid_hours['trd_prd'] = liquid_hours['timestamp'].apply(get_trade_period)
+
+# Identify the first full five-trading-day week
+weekly_counts = historical_data_daily.groupby('trd_prd')['timestamp'].count()
+first_full_week = weekly_counts[weekly_counts >= 5].index.min()
+
+# Filter historical_data_daily
+historical_data_daily = historical_data_daily[historical_data_daily['trd_prd'] >= first_full_week]
+
+# Print dataframes
+print("Historical Data Daily:")
+print(historical_data_daily)
+
+print("\nHistorical Data Hourly:")
+print(historical_data_hourly)
+
+print("IV Historical Data Daily:")
+print(iv_historical_data_daily)
+
+print("\n IV Historical Data Hourly:")
+print(iv_historical_data_hourly)
+
+print("Historical SMA Data Daily:")
+print(historical_data_daily_SMA)
+
+print("\nLiquid Hours:")
+print(liquid_hours)
+
+# Calc Obs & Exp Vol
+# Extract trade periods from daily historical data
+trade_periods = historical_data_daily['trd_prd'].unique()
+
+# Calculate observed volatility using hourly data
+hourly_log_returns = np.log(historical_data_hourly['close'] / historical_data_hourly['close'].shift(1))
+hourly_vols = hourly_log_returns.groupby(historical_data_hourly['timestamp'].dt.strftime('%Y-%W')).std()
+
+# Convert hourly vol to weekly vol (scale by sqrt(32.5))
+weekly_vols = hourly_vols * np.sqrt(32.5)
+
+# Create DataFrame
+vol_calcs = pd.DataFrame(index=trade_periods, columns=['obs_vol', 'exp_vol'])
+vol_calcs['obs_vol'] = weekly_vols.values[:len(trade_periods)]
+
+# Set expected vol (shifted obs_vol)
+vol_calcs['exp_vol'] = vol_calcs['obs_vol'].shift(1)
+
+# Display the DataFrame
+print("\nVolatility Calculations:")
+print(vol_calcs)
+
+# Calc Obs & Exp Vol
+# Extract trade periods from daily historical data
+trade_periods = historical_data_daily['trd_prd'].unique()
+
+# Calculate observed volatility using hourly data
+hourly_log_returns = np.log(historical_data_hourly['close'] / historical_data_hourly['close'].shift(1))
+hourly_vols = hourly_log_returns.groupby(historical_data_hourly['timestamp'].dt.strftime('%Y-%W')).std()
+
+# Convert hourly vol to weekly vol (scale by sqrt(32.5))
+weekly_vols = hourly_vols * np.sqrt(32.5)
+
+# Create DataFrame
+smart_vol_calcs = pd.DataFrame(index=trade_periods, columns=['obs_vol', 'exp_vol'])
+smart_vol_calcs['obs_vol'] = weekly_vols.values[:len(trade_periods)]
+
+# Set expected vol (from options IV)
+for trd_prd in smart_vol_calcs.index:
+    smart_vol_calcs.at[trd_prd, 'exp_vol'] = iv_historical_data_hourly.loc[
+        iv_historical_data_hourly['trd_prd'] == trd_prd, 'open'
+    ].iloc[0] * np.sqrt(1/52)
+
+# Display the DataFrame
+print("\nVolatility Calculations:")
+print(smart_vol_calcs)
+vol_calcs = smart_vol_calcs
+
+#vol_calcs = smart_vol_calcs # manually toggle active vol calc
+
+# Extract trade periods from daily historical data
+trade_periods = historical_data_daily['trd_prd'].unique()
+
+# Calc blotter
+blotter = pd.DataFrame(index=trade_periods[1:], columns=['entry_timestamp', 'qty', 'exit_timestamp', 'entry_price', 'exit_price', 'success', 'iv', 'wap', 'sma'])
+blotter[:] = None  # Set empty values
+print("\nBlotter:")
+print(blotter)
+
+# Initialize Ledger
+filtered_historical = historical_data_daily[historical_data_daily['trd_prd'] != historical_data_daily['trd_prd'].iloc[0]]
+ledger = pd.DataFrame()
+ledger['date'] = filtered_historical['timestamp']
+ledger['position'] = 0.0  # Placeholder values
+ledger['cash'] = 0.0  # Placeholder values
+ledger['mark'] = historical_data_daily['close'][1:]
+ledger['mkt_value'] = 0.0  # Placeholder values
+#ledger['cash'] = 50000
+
+print("\nLedger:")
+print(ledger)
+
+# Blotter & Ledger Loop
+# This is where "backtesting" really occurs. We're calculating the blotter &
+# ledger that our trading system WOULD have produced.
+for trd_prd in blotter.index:
+    entry_timestamp = historical_data_hourly.loc[historical_data_hourly['trd_prd'] == trd_prd, 'timestamp'].iloc[0]
+    entry_price = historical_data_hourly.loc[historical_data_hourly['trd_prd'] == trd_prd, 'open'].iloc[0]
+    prev_close = historical_data_daily.loc[historical_data_daily['trd_prd'] < trd_prd, 'close'].iloc[-1]
+    exp_vol = vol_calcs.loc[trd_prd, 'exp_vol']
+    iv = iv_historical_data_hourly.loc[iv_historical_data_hourly['trd_prd'] == trd_prd, 'wap'].iloc[0]
+    wap = historical_data_hourly.loc[historical_data_hourly['trd_prd'] == trd_prd, 'wap'].iloc[0]
+    sma = historical_data_daily_SMA.loc[historical_data_daily_SMA['trd_prd'] == trd_prd, 'SMA_20'].iloc[0]
+
+    if entry_price > prev_close:
+        qty = -100
+        exit_price_strategy = entry_price * (1 - exp_vol)
+    else:
+        qty = 100
+        exit_price_strategy = entry_price * (1 + exp_vol)
+
+    period_data = historical_data_hourly[historical_data_hourly['trd_prd'] == trd_prd]
+    max_high = period_data['high'].max()
+    min_low = period_data['low'].min()
+
+    if (qty > 0 and max_high >= exit_price_strategy) or (qty < 0 and min_low <= exit_price_strategy):
+        success = True
+        exit_price = exit_price_strategy
+
+        if qty > 0:
+            exit_timestamp = period_data.loc[period_data['high'] >= exit_price_strategy, 'timestamp'].iloc[0]
+            exit_high_price = period_data.loc[period_data['high'] >= exit_price_strategy, 'high'].iloc[0]
+            exit_low_price = period_data.loc[period_data['high'] >= exit_price_strategy, 'low'].iloc[0]
+        else:
+            exit_timestamp = period_data.loc[period_data['low'] <= exit_price_strategy, 'timestamp'].iloc[0]
+            exit_high_price = period_data.loc[period_data['low'] <= exit_price_strategy, 'high'].iloc[0]
+            exit_low_price = period_data.loc[period_data['low'] <= exit_price_strategy, 'low'].iloc[0]
+
+        #print(exit_low_price, exit_high_price, exit_price_strategy, exit_timestamp, qty)
+    else:
+        success = False
+        exit_price = historical_data_daily.loc[historical_data_daily['trd_prd'] == trd_prd, 'close'].iloc[-1]
+        #exit_timestamp = historical_data_daily.loc[historical_data_daily['trd_prd'] == trd_prd, 'timestamp'].iloc[-1]
+        exit_timestamp = pd.to_datetime(
+        historical_data_daily.loc[historical_data_daily['trd_prd'] == trd_prd, 'timestamp'].iloc[-1]).replace(hour=15, minute=0, second=0)
+
+
+    blotter.loc[trd_prd] = [entry_timestamp, qty, exit_timestamp, entry_price, exit_price, success, iv, wap, sma]
+
+    ledger.loc[ledger['date'] >= entry_timestamp, 'position'] += qty
+    ledger.loc[ledger['date'] >= exit_timestamp, 'position'] -= qty
+    ledger.loc[ledger['date'] >= entry_timestamp, 'cash'] -= qty * entry_price
+    ledger.loc[ledger['date'] >= exit_timestamp, 'cash'] += qty * exit_price
+
+# finally, calculate your strategy's end-of-day mark-to-market value
+ledger['mkt_value'] = ledger['position'] * ledger['mark'] + ledger['cash']
+
+print(blotter)
+print(ledger)
+
+# Deal with the open positions thing
+
+# Create an empty list to store categories
+position_category = []
+
+# Categorize positions manually
+for pos in ledger['position']:
+    if pos > 0:
+        position_category.append('Long')
+    elif pos < 0:
+        position_category.append('Short')
+    else:
+        position_category.append('Cash Only')
+
+# Add category column to ledger
+ledger['position_category'] = position_category
+
+# Define colors for each category
+color_map = {'Long': 'green', 'Short': 'red', 'Cash Only': 'blue'}
+colors = []
+
+# Assign colors manually
+for cat in ledger['position_category']:
+    colors.append(color_map[cat])
+
+# Plot NAV over time
+plt.figure(figsize=(12, 6))
+plt.scatter(ledger['date'], ledger['mkt_value'], c=colors, alpha=0.7)
+
+plt.xlabel('Date')
+plt.ylabel('Net Asset Value (NAV)')
+plt.title('NAV Over Time with Position Coloring, Standard Model')
+plt.grid(True)
+
+# Manually add legend
+for cat, color in color_map.items():
+    plt.scatter([], [], color=color, label=cat)
+
+plt.legend()
+plt.show()
+
+# Initialize Ledger
+filtered_historical = historical_data_daily[historical_data_daily['trd_prd'] != historical_data_daily['trd_prd'].iloc[0]]
+new_ledger = pd.DataFrame()
+new_ledger['date'] = filtered_historical['timestamp']
+new_ledger['position'] = 0.0  # Placeholder values
+new_ledger['cash'] = 0.0  # Placeholder values
+new_ledger['mark'] = historical_data_daily['close'][1:]
+new_ledger['mkt_value'] = 0.0  # Placeholder values
+#new_ledger['cash'] = 50000
+
+for trd_prd in blotter.index:
+    if blotter.loc[trd_prd]['prediction'] == 0: # if the trade is predicted to fail, no trade
+        qty = 0
+    else: # if in train set or predicted success, make the trade
+        qty = blotter.loc[trd_prd, 'qty']
+
+    entry_price = blotter.loc[trd_prd]['entry_price']
+    entry_timestamp = blotter.loc[trd_prd]['entry_timestamp']
+    exit_timestamp = blotter.loc[trd_prd]['exit_timestamp']
+    exit_price = blotter.loc[trd_prd]['exit_price']
+
+    new_ledger.loc[new_ledger['date'] >= entry_timestamp, 'position'] += qty
+    new_ledger.loc[new_ledger['date'] >= exit_timestamp, 'position'] -= qty
+    new_ledger.loc[new_ledger['date'] >= entry_timestamp, 'cash'] -= qty * entry_price
+    new_ledger.loc[new_ledger['date'] >= exit_timestamp, 'cash'] += qty * exit_price
+
+# finally, calculate your strategy's end-of-day mark-to-market value
+new_ledger['mkt_value'] = new_ledger['position'] * new_ledger['mark'] + new_ledger['cash']
+print(new_ledger)
+
+# Create an empty list to store categories
+position_category = []
+
+# Categorize positions manually
+for pos in new_ledger['position']:
+    if pos > 0:
+        position_category.append('Long')
+    elif pos < 0:
+        position_category.append('Short')
+    else:
+        position_category.append('Cash Only')
+
+# Add category column to new_ledger
+new_ledger['position_category'] = position_category
+
+# Define colors for each category
+color_map = {'Long': 'green', 'Short': 'red', 'Cash Only': 'blue'}
+colors = []
+
+# Assign colors manually
+for cat in new_ledger['position_category']:
+    colors.append(color_map[cat])
+
+# Plot NAV over time
+plt.figure(figsize=(12, 6))
+plt.scatter(new_ledger['date'], new_ledger['mkt_value'], c=colors, alpha=0.7)
+
+plt.xlabel('Date')
+plt.ylabel('Net Asset Value (NAV)')
+plt.title('NAV Over Time with Position Coloring, Enhanced Model')
+plt.grid(True)
+
+# Manually add legend
+for cat, color in color_map.items():
+    plt.scatter([], [], color=color, label=cat)
+
+plt.legend()
+plt.show()
+
+blotter['return'] = ((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) * (blotter['qty'] / abs(blotter['qty'])) # get returns irrespective of long/short
+
+#print("\nExit Timestamps:")
+#print(blotter['exit_timestamp'])
+
+# Fetch entry and exit prices from historical_data_hourly based on timestamps
+blotter['entry_price_underlying'] = blotter['entry_timestamp'].apply(
+    lambda ts: historical_data_hourly.loc[historical_data_hourly['timestamp'] == ts, 'close'].iloc[0]
+)
+
+blotter['exit_price_underlying'] = blotter.apply(
+    lambda row: (
+        historical_data_hourly.loc[historical_data_hourly['timestamp'] == row['exit_timestamp'], 'close'].iloc[0]
+        if not historical_data_hourly.loc[historical_data_hourly['timestamp'] == row['exit_timestamp'], 'close'].empty
+        else (
+            historical_data_daily.loc[historical_data_daily['timestamp'] == row['exit_timestamp'], 'close'].iloc[0]
+            if not historical_data_daily.loc[historical_data_daily['timestamp'] == row['exit_timestamp'], 'close'].empty
+            else None  # If neither dataset has the timestamp
+        )
+    ), axis=1
+)
+
+# Calculate return based on hourly data
+blotter['return_underlying'] = (blotter['exit_price_underlying'] - blotter['entry_price_underlying']) / blotter['entry_price_underlying']* (blotter['qty'] / abs(blotter['qty']))
+
+x = pd.to_numeric(blotter['return_underlying'])
+original_index = x.index.copy()
+x.dropna(inplace=True)
+dropped_rows = original_index.difference(x.index)
+y = pd.to_numeric(blotter['return'])
+y.drop(index=dropped_rows, inplace=True)
+
+# Scatter plot of returns
+plt.figure(figsize=(8, 6))
+plt.scatter(x, y, alpha=0.6, label="Trades")
+plt.xlabel("Underlying Return")
+plt.ylabel("Strategy Return")
+plt.title("Strategy Return vs. Underlying Return, Standard Model")
+
+#print(x,y)
+
+# Fit a linear regression model to get alpha and beta
+x_with_const = sm.add_constant(x)  # Adds intercept for regression
+model = sm.OLS(y, x_with_const).fit()
+alpha, beta = model.params
+
+# Plot regression line
+plt.plot(x, alpha + beta * x, color='red', label=f"Regression Line (α={alpha:.4f}, β={beta:.4f})")
+plt.legend()
+plt.show()
+
+# Print alpha and beta values
+
+alpha, beta
+
+blotter['return'] = ((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) * (blotter['qty'] / abs(blotter['qty'])) * blotter['prediction']# get returns irrespective of long/short
+
+#print("\nExit Timestamps:")
+#print(blotter['exit_timestamp'])
+
+# Fetch entry and exit prices from historical_data_hourly based on timestamps
+blotter['entry_price_underlying'] = blotter['entry_timestamp'].apply(
+    lambda ts: historical_data_hourly.loc[historical_data_hourly['timestamp'] == ts, 'close'].iloc[0]
+)
+
+blotter['exit_price_underlying'] = blotter.apply(
+    lambda row: (
+        historical_data_hourly.loc[historical_data_hourly['timestamp'] == row['exit_timestamp'], 'close'].iloc[0]
+        if not historical_data_hourly.loc[historical_data_hourly['timestamp'] == row['exit_timestamp'], 'close'].empty
+        else (
+            historical_data_daily.loc[historical_data_daily['timestamp'] == row['exit_timestamp'], 'close'].iloc[0]
+            if not historical_data_daily.loc[historical_data_daily['timestamp'] == row['exit_timestamp'], 'close'].empty
+            else None  # If neither dataset has the timestamp
+        )
+    ), axis=1
+)
+
+# Calculate return based on hourly data
+blotter['return_underlying'] = (blotter['exit_price_underlying'] - blotter['entry_price_underlying']) / blotter['entry_price_underlying']* (blotter['qty'] / abs(blotter['qty']))
+
+x = pd.to_numeric(blotter['return_underlying'])
+original_index = x.index.copy()
+x.dropna(inplace=True)
+dropped_rows = original_index.difference(x.index)
+y = pd.to_numeric(blotter['return'])
+y.drop(index=dropped_rows, inplace=True)
+
+# Scatter plot of returns
+plt.figure(figsize=(8, 6))
+plt.scatter(x, y, alpha=0.6, label="Trades")
+plt.xlabel("Underlying Return")
+plt.ylabel("Strategy Return")
+plt.title("Strategy Return vs. Underlying Return, Enhanced Model")
+
+#print(x,y)
+
+# Fit a linear regression model to get alpha and beta
+x_with_const = sm.add_constant(x)  # Adds intercept for regression
+model = sm.OLS(y, x_with_const).fit()
+alpha, beta = model.params
+
+# Plot regression line
+plt.plot(x, alpha + beta * x, color='red', label=f"Regression Line (α={alpha:.4f}, β={beta:.4f})")
+plt.legend()
+plt.show()
+
+# Print alpha and beta values
+
+alpha, beta
+
+'''
