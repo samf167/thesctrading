@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "thesctrading",
+    "section": "",
+    "text": "Code\nimport sys\nprint(\"Python path Quarto is using:\")\nprint(sys.executable)\n\n\nPython path Quarto is using:\n/Users/samfuller/opt/anaconda3/envs/py312env/bin/python"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  }
+]
