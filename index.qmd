@@ -185,7 +185,7 @@ historical_data_daily_fetch = sb.fetch_historical_data(
     #keepUpToDate=False
 )
 historical_data_daily = historical_data_daily_fetch['hst_dta']
-print(historical_data_daily)
+print("HDD", historical_data_daily)
 
 #### Fetch your liquid trading hours for the asset
 #### You'll need this later!
@@ -201,33 +201,41 @@ liquid_hours = ares_deets['liquidHours']
 print(liquid_hours)
 #liquid_hours = (ares_deets['liquidHours'][0])
 
-#### Get hourly data to use for calculating vol
-iv_historical_data_hourly_fetch = sb.fetch_historical_data(
-    contract=asset,
-    endDateTime='',         # Let IBKR set the "now" time
-    durationStr='1 Y',      # Past 1 year
-    barSizeSetting='1 hour', # Daily bars
-    whatToShow='OPTION_IMPLIED_VOLATILITY',
-    useRTH=True,
-    #date_format=1,          # String time zone date
-    #keepUpToDate=False
-)
-iv_historical_data_hourly = iv_historical_data_hourly_fetch['hst_dta']
+def safe_fetch_iv(contract, durationStr, barSizeSetting, label):
+    try:
+        fetch = sb.fetch_historical_data(
+            contract=contract,
+            endDateTime='',
+            durationStr=durationStr,
+            barSizeSetting=barSizeSetting,
+            whatToShow='OPTION_IMPLIED_VOLATILITY',
+            useRTH=True,
+        )
+        df = fetch['hst_dta']
+        print(f"{label} IV data fetched. Rows: {len(df)}")
+        return df
+    except Exception as e:
+        print(f"{label} IV fetch failed: {e}")
+        return pd.DataFrame()
 
-#### Get daily data as well because it speeds up the code
-####   writing process.
-iv_historical_data_daily_fetch = sb.fetch_historical_data(
+# Replace your fetch calls with:
+#iv_historical_data_hourly = safe_fetch_iv(
+#    contract=asset,
+#    durationStr='1 Y',
+#    barSizeSetting='1 hour',
+#    label="Hourly"
+#)
+
+iv_historical_data_daily = safe_fetch_iv(
     contract=asset,
-    endDateTime='',         # Let IBKR set the "now" time
-    durationStr='1 Y',      # Past 1 year
-    barSizeSetting='1 day', # Daily bars
-    whatToShow='OPTION_IMPLIED_VOLATILITY',
-    useRTH=True,
-    #date_format=1,          # String time zone date
-    #keepUpToDate=False
+    durationStr='1 Y',
+    barSizeSetting='1 day',
+    label="Daily"
 )
-iv_historical_data_daily = iv_historical_data_daily_fetch['hst_dta']
-print(iv_historical_data_daily)
+
+# Optional: preview what was fetched
+print(iv_historical_data_daily.head())
+
 
 historical_data_daily_fetch_SMA = sb.fetch_historical_data(
     contract=asset,
@@ -265,14 +273,14 @@ def get_trade_period(dt):
 historical_data_daily['timestamp'] = pd.to_datetime(historical_data_daily['timestamp'])
 historical_data_hourly['timestamp'] = pd.to_datetime(historical_data_hourly['timestamp'])
 iv_historical_data_daily['timestamp'] = pd.to_datetime(iv_historical_data_daily['timestamp'])
-iv_historical_data_hourly['timestamp'] = pd.to_datetime(iv_historical_data_hourly['timestamp'])
+#iv_historical_data_hourly['timestamp'] = pd.to_datetime(iv_historical_data_hourly['timestamp'])
 #liquid_hours['timestamp'] = pd.to_datetime(liquid_hours['timestamp'])
 
 # Apply trade period calculation
 historical_data_daily['trd_prd'] = historical_data_daily['timestamp'].apply(get_trade_period)
 historical_data_hourly['trd_prd'] = historical_data_hourly['timestamp'].apply(get_trade_period)
 iv_historical_data_daily['trd_prd'] = iv_historical_data_daily['timestamp'].apply(get_trade_period)
-iv_historical_data_hourly['trd_prd'] = iv_historical_data_hourly['timestamp'].apply(get_trade_period)
+#iv_historical_data_hourly['trd_prd'] = iv_historical_data_hourly['timestamp'].apply(get_trade_period)
 historical_data_daily_SMA['trd_prd'] = historical_data_daily_SMA['timestamp'].apply(get_trade_period)
 
 #liquid_hours['trd_prd'] = liquid_hours['timestamp'].apply(get_trade_period)
@@ -294,8 +302,8 @@ print(historical_data_hourly)
 print("IV Historical Data Daily:")
 print(iv_historical_data_daily)
 
-print("\n IV Historical Data Hourly:")
-print(iv_historical_data_hourly)
+#print("\n IV Historical Data Hourly:")
+#print(iv_historical_data_daily)
 
 print("Historical SMA Data Daily:")
 print(historical_data_daily_SMA)
@@ -342,8 +350,8 @@ smart_vol_calcs['obs_vol'] = weekly_vols.values[:len(trade_periods)]
 
 # Set expected vol (from options IV)
 for trd_prd in smart_vol_calcs.index:
-    smart_vol_calcs.at[trd_prd, 'exp_vol'] = iv_historical_data_hourly.loc[
-        iv_historical_data_hourly['trd_prd'] == trd_prd, 'open'
+    smart_vol_calcs.at[trd_prd, 'exp_vol'] = iv_historical_data_daily.loc[
+        iv_historical_data_daily['trd_prd'] == trd_prd, 'open'
     ].iloc[0] * np.sqrt(1/52)
 
 # Display the DataFrame
@@ -383,7 +391,7 @@ for trd_prd in blotter.index:
     entry_price = historical_data_hourly.loc[historical_data_hourly['trd_prd'] == trd_prd, 'open'].iloc[0]
     prev_close = historical_data_daily.loc[historical_data_daily['trd_prd'] < trd_prd, 'close'].iloc[-1]
     exp_vol = vol_calcs.loc[trd_prd, 'exp_vol']
-    iv = iv_historical_data_hourly.loc[iv_historical_data_hourly['trd_prd'] == trd_prd, 'wap'].iloc[0]
+    iv = iv_historical_data_daily.loc[iv_historical_data_daily['trd_prd'] == trd_prd, 'wap'].iloc[0]
     wap = historical_data_hourly.loc[historical_data_hourly['trd_prd'] == trd_prd, 'wap'].iloc[0]
     sma = historical_data_daily_SMA.loc[historical_data_daily_SMA['trd_prd'] == trd_prd, 'SMA_20'].iloc[0]
 
