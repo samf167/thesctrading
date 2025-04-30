@@ -265,10 +265,10 @@ historical_data_daily_SMA['timestamp'] = pd.to_datetime(historical_data_daily_SM
 # Sort by date just to be safe
 historical_data_daily_SMA = historical_data_daily_SMA.sort_values('timestamp')
 
-# Calculate 20-day simple moving average
-historical_data_daily_SMA['SMA_20'] = historical_data_daily_SMA['close'].rolling(window=20).mean()
+# Calculate 30-day simple moving average
+historical_data_daily_SMA['SMA_30'] = historical_data_daily_SMA['close'].rolling(window=30).mean()
 
-#print(historical_data_daily_SMA['SMA_20'])
+#print(historical_data_daily_SMA['SMA_30'])
 
 #### Prepare Data
 # Function to calculate trade period
@@ -443,7 +443,7 @@ for trd_prd in blotter.index:
     exp_vol = vol_calcs.loc[trd_prd, 'exp_vol']
     iv = iv_historical_data_daily.loc[iv_historical_data_daily['trd_prd'] == trd_prd, 'wap'].iloc[0]
     wap = historical_data_hourly.loc[historical_data_hourly['trd_prd'] == trd_prd, 'wap'].iloc[0]
-    sma = historical_data_daily_SMA.loc[historical_data_daily_SMA['trd_prd'] == trd_prd, 'SMA_20'].iloc[0]
+    sma = historical_data_daily_SMA.loc[historical_data_daily_SMA['trd_prd'] == trd_prd, 'SMA_30'].iloc[0]
     prev_iv = prev_iv_percentiles.get(trd_prd, None)
     # INPUT PRE-TRADE FILTERS HERE
 
@@ -453,7 +453,7 @@ for trd_prd in blotter.index:
         or not (40 < prev_iv < 90)
     ):
         qty = 0
-    elif entry_price > prev_close:
+    elif entry_price > sma:
         qty = -100
         exit_price_strategy = entry_price * (1 - exp_vol)
     else:
