@@ -24,7 +24,7 @@ Pre-Trade Filter
 
 1. Check if job postings for software roles increased week-over-week
    (as well as other FRED/alternative data including pairs performance)
-2. Check if implied volatility (IV) percentile > 50% and < 90%
+2. Check if implied volatility (IV) percentile > 40% and < 90%
 3. If both are true → proceed to trade evaluation
 
 ---
@@ -422,7 +422,7 @@ for trd_prd in blotter.index:
     # INPUT PRE-TRADE FILTERS HERE
 
 
-    if prev_iv is None or not (85 < prev_iv < 90):
+    if prev_iv is None or not (40 < prev_iv < 90):
         qty = 0
         print("no trade")
     elif entry_price > prev_close:
@@ -640,7 +640,7 @@ for cat, color in color_map.items():
 plt.legend()
 plt.show()
 
-blotter['return'] = ((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) * (blotter['qty'] / abs(blotter['qty'])) # get returns irrespective of long/short
+blotter['return'] = (((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) )* np.sign(blotter['qty'])# get returns irrespective of long/short
 
 #print("\nExit Timestamps:")
 #print(blotter['exit_timestamp'])
@@ -665,10 +665,8 @@ blotter['exit_price_underlying'] = blotter.apply(
 
 # Calculate return based on hourly data
 
-#blotter['return_underlying'] = (
-#    ((blotter['exit_price_underlying'] - blotter['entry_price_underlying']) / blotter['entry_price_underlying']) *
-#    np.sign(blotter['qty'])
-#)
+blotter['return_underlying'] = (
+    (blotter['exit_price_underlying'] - blotter['entry_price_underlying'])/ blotter['entry_price_underlying']) * np.sign(blotter['qty'])
 
 x = pd.to_numeric(blotter['return_underlying'])
 original_index = x.index.copy()
@@ -700,10 +698,8 @@ plt.show()
 
 alpha, beta
 
-#blotter['return'] = (
-#    ((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) *
-#    np.sign(blotter['qty'])
-#)
+blotter['return'] = ((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) * np.sign(blotter['qty'])
+
 #print("\nExit Timestamps:")
 #print(blotter['exit_timestamp'])
 
@@ -725,7 +721,7 @@ blotter['exit_price_underlying'] = blotter.apply(
 )
 
 # Calculate return based on hourly data
-blotter['return_underlying'] = (blotter['exit_price_underlying'] - blotter['entry_price_underlying']) / blotter['entry_price_underlying']* (blotter['qty'] / abs(blotter['qty']))
+blotter['return_underlying'] = ((blotter['exit_price_underlying'] - blotter['entry_price_underlying']) / blotter['entry_price_underlying'])* np.sign(blotter['qty'])
 
 x = pd.to_numeric(blotter['return_underlying'])
 original_index = x.index.copy()
