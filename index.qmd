@@ -112,7 +112,7 @@ weekly_jobs    = df.groupby("trd_prd")["Job Postings"].last().sort_index()
 job_diff       = weekly_jobs.diff()
 job_increased  = job_diff > 0
 
-print(job_increased.head(10))
+#print(job_increased.head(10))
 # Display last 5 rows as table
 df.tail()
 ```
@@ -221,7 +221,6 @@ def safe_fetch_iv(contract, durationStr, barSizeSetting, label):
             useRTH=True,
         )
         df = fetch['hst_dta']
-#        print(f"{label} IV data fetched. Rows: {len(df)}")
         return df
     except Exception as e:
 #        print(f"{label} IV fetch failed: {e}")
@@ -269,7 +268,7 @@ historical_data_daily_SMA = historical_data_daily_SMA.sort_values('timestamp')
 # Calculate 20-day simple moving average
 historical_data_daily_SMA['SMA_20'] = historical_data_daily_SMA['close'].rolling(window=20).mean()
 
-print(historical_data_daily_SMA['SMA_20'])
+#print(historical_data_daily_SMA['SMA_20'])
 
 #### Prepare Data
 # Function to calculate trade period
@@ -303,6 +302,8 @@ historical_data_daily = historical_data_daily[historical_data_daily['trd_prd'] >
 ### Print DFs
 ```{python}
 # Print dataframes
+# Commented out these prints for now
+"""
 print("Historical Data Daily:")
 print(historical_data_daily)
 
@@ -320,6 +321,8 @@ print(historical_data_daily_SMA)
 
 #print("\nLiquid Hours:")
 #print(liquid_hours)
+
+"""
 ```
 
 ### Vol
@@ -369,8 +372,8 @@ for trd_prd in smart_vol_calcs.index:
     ].iloc[0] * np.sqrt(1/52)
 
 # Display the DataFrame
-print("\nVolatility Calculations:")
-print(smart_vol_calcs)
+#print("\nVolatility Calculations:")
+#print(smart_vol_calcs)
 vol_calcs = smart_vol_calcs
 
 #vol_calcs = smart_vol_calcs # manually toggle active vol calc
@@ -555,7 +558,7 @@ ledger = ledger.round(2)  # Optional: clean output
 show(ledger)
 ```
 
-### NAV/Charts & Extra (not necessary)
+### NAV/Charts & Extra
 
 ```{python}
 # Create an empty list to store categories
