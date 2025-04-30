@@ -132,7 +132,7 @@ import statsmodels.api as sm
 ### Fetch data
 ```{python}
 asset= sb.Contract({
-    'symbol': "ARES",
+    'symbol': "TSLA",
     'secType': "STK",
     'exchange': "SMART",
     'currency': "USD"
@@ -177,7 +177,7 @@ historical_data_daily = historical_data_daily_fetch['hst_dta']
 #### You'll need this later!
 ares_deets = sb.fetch_contract_details(
     contract=sb.Contract({
-        'symbol': "ARES",
+        'symbol': "TSLA",
         'secType': "STK",
         'exchange': "SMART",
         'currency': "USD"
@@ -198,10 +198,10 @@ def safe_fetch_iv(contract, durationStr, barSizeSetting, label):
             useRTH=True,
         )
         df = fetch['hst_dta']
-        print(f"{label} IV data fetched. Rows: {len(df)}")
+#        print(f"{label} IV data fetched. Rows: {len(df)}")
         return df
     except Exception as e:
-        print(f"{label} IV fetch failed: {e}")
+#        print(f"{label} IV fetch failed: {e}")
         return pd.DataFrame()
 
 # Replace your fetch calls with:
@@ -218,9 +218,6 @@ iv_historical_data_daily = safe_fetch_iv(
     barSizeSetting='1 day',
     label="Daily"
 )
-
-# Optional: preview what was fetched
-# print(iv_historical_data_daily.head())
 
 
 historical_data_daily_fetch_SMA = sb.fetch_historical_data(
@@ -298,8 +295,8 @@ print(iv_historical_data_daily)
 print("Historical SMA Data Daily:")
 print(historical_data_daily_SMA)
 
-print("\nLiquid Hours:")
-print(liquid_hours)
+#print("\nLiquid Hours:")
+#print(liquid_hours)
 ```
 
 ### Vol
@@ -356,7 +353,7 @@ vol_calcs = smart_vol_calcs
 #vol_calcs = smart_vol_calcs # manually toggle active vol calc
 ```
 
-### Blotter & Ledger
+### Blotter & Ledger Initialization
 ```{python}
 # Extract trade periods from daily historical data
 trade_periods = historical_data_daily['trd_prd'].unique()
@@ -364,6 +361,8 @@ trade_periods = historical_data_daily['trd_prd'].unique()
 # Calc blotter
 blotter = pd.DataFrame(index=trade_periods[1:], columns=['entry_timestamp', 'qty', 'exit_timestamp', 'entry_price', 'exit_price', 'success', 'iv', 'wap', 'sma'])
 blotter[:] = None  # Set empty values
+#print("\nBlotter:")
+#print(blotter)
 
 # Initialize Ledger
 filtered_historical = historical_data_daily[historical_data_daily['trd_prd'] != historical_data_daily['trd_prd'].iloc[0]]
@@ -375,8 +374,38 @@ ledger['mark'] = historical_data_daily['close'][1:]
 ledger['mkt_value'] = 0.0  # Placeholder values
 #ledger['cash'] = 50000
 
-print("\nLedger:")
-print(ledger)
+#print("\nLedger:")
+#print(ledger)
+```
+### Blotter & Ledger Loop
+```{python}
+# create function for IV percentile
+def calc_iv_percentile_series(iv_df, window=252):
+    iv_percentiles = {}
+    iv_df_sorted = iv_df.sort_values("timestamp")
+
+    for i, row in iv_df_sorted.iterrows():
+        trd_prd = row['trd_prd']
+        curr_iv = row['open']
+        recent_ivs = iv_df_sorted[iv_df_sorted['timestamp'] < row['timestamp']].tail(window)['open']
+
+        if len(recent_ivs) >= 10:
+            percentile = (recent_ivs < curr_iv).mean() * 100
+            iv_percentiles[trd_prd] = percentile
+
+    return iv_percentiles
+
+# calc percentiles for each trade period...
+# want to only trade if IV percentile is >50% and <90%
+iv_percentiles_by_trdprd = calc_iv_percentile_series(iv_historical_data_daily)
+
+# shift dict to use previous iv percentile
+prev_iv_percentiles = {}
+sorted_keys = sorted(iv_percentiles_by_trdprd.keys())
+for i in range(1, len(sorted_keys)):
+    curr = sorted_keys[i]
+    prev = sorted_keys[i - 1]
+    prev_iv_percentiles[curr] = iv_percentiles_by_trdprd[prev]
 
 # Blotter & Ledger Loop
 # This is where "backtesting" really occurs. We're calculating the blotter &
@@ -389,8 +418,14 @@ for trd_prd in blotter.index:
     iv = iv_historical_data_daily.loc[iv_historical_data_daily['trd_prd'] == trd_prd, 'wap'].iloc[0]
     wap = historical_data_hourly.loc[historical_data_hourly['trd_prd'] == trd_prd, 'wap'].iloc[0]
     sma = historical_data_daily_SMA.loc[historical_data_daily_SMA['trd_prd'] == trd_prd, 'SMA_20'].iloc[0]
+    prev_iv = prev_iv_percentiles.get(trd_prd, None)
+    # INPUT PRE-TRADE FILTERS HERE
 
-    if entry_price > prev_close:
+
+    if prev_iv is None or not (85 < prev_iv < 90):
+        qty = 0
+        print("no trade")
+    elif entry_price > prev_close:
         qty = -100
         exit_price_strategy = entry_price * (1 - exp_vol)
     else:
@@ -415,6 +450,10 @@ for trd_prd in blotter.index:
             exit_low_price = period_data.loc[period_data['low'] <= exit_price_strategy, 'low'].iloc[0]
 
         #print(exit_low_price, exit_high_price, exit_price_strategy, exit_timestamp, qty)
+    elif qty == 0:
+        success = False
+        exit_price = entry_price  # or set to None if preferred
+        exit_timestamp = entry_timestamp
     else:
         success = False
         exit_price = historical_data_daily.loc[historical_data_daily['trd_prd'] == trd_prd, 'close'].iloc[-1]
@@ -623,8 +662,13 @@ blotter['exit_price_underlying'] = blotter.apply(
     ), axis=1
 )
 
+
 # Calculate return based on hourly data
-blotter['return_underlying'] = (blotter['exit_price_underlying'] - blotter['entry_price_underlying']) / blotter['entry_price_underlying']* (blotter['qty'] / abs(blotter['qty']))
+
+#blotter['return_underlying'] = (
+#    ((blotter['exit_price_underlying'] - blotter['entry_price_underlying']) / blotter['entry_price_underlying']) *
+#    np.sign(blotter['qty'])
+#)
 
 x = pd.to_numeric(blotter['return_underlying'])
 original_index = x.index.copy()
@@ -656,8 +700,10 @@ plt.show()
 
 alpha, beta
 
-blotter['return'] = ((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) * (blotter['qty'] / abs(blotter['qty'])) * blotter['prediction']# get returns irrespective of long/short
-
+#blotter['return'] = (
+#    ((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) *
+#    np.sign(blotter['qty'])
+#)
 #print("\nExit Timestamps:")
 #print(blotter['exit_timestamp'])
 

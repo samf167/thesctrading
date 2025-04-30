@@ -166,7 +166,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#clean-data" id="toc-clean-data" class="nav-link" data-scroll-target="#clean-data">Clean Data</a></li>
   <li><a href="#print-dfs" id="toc-print-dfs" class="nav-link" data-scroll-target="#print-dfs">Print DFs</a></li>
   <li><a href="#vol" id="toc-vol" class="nav-link" data-scroll-target="#vol">Vol</a></li>
-  <li><a href="#blotter-ledger" id="toc-blotter-ledger" class="nav-link" data-scroll-target="#blotter-ledger">Blotter &amp; Ledger</a></li>
+  <li><a href="#blotter-ledger-initialization" id="toc-blotter-ledger-initialization" class="nav-link" data-scroll-target="#blotter-ledger-initialization">Blotter &amp; Ledger Initialization</a></li>
+  <li><a href="#blotter-ledger-loop" id="toc-blotter-ledger-loop" class="nav-link" data-scroll-target="#blotter-ledger-loop">Blotter &amp; Ledger Loop</a></li>
   <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra">Extra</a></li>
   </ul></li>
   <li><a href="#outputting-interactive-blotter-ledger-final-hw-here" id="toc-outputting-interactive-blotter-ledger-final-hw-here" class="nav-link" data-scroll-target="#outputting-interactive-blotter-ledger-final-hw-here">Outputting Interactive Blotter &amp; Ledger (FINAL HW HERE)</a>
@@ -262,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="fred-data-software-developer-job-postings" class="level3">
 <h3 class="anchored" data-anchor-id="fred-data-software-developer-job-postings">6. FRED Data: Software Developer Job Postings</h3>
 <p>The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely <strong>backward selection</strong> where the model evaluates all the features and removes the least powerful/most noisy one by one.</p>
-<div id="cea51292" class="cell" data-execution_count="1">
+<div id="e0ab0c88" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -284,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Display last 5 rows as table</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="40">
 <div>
 
 
@@ -328,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="a4d5a357" class="cell" data-execution_count="2">
+<div id="75a80ebc" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the time series</span></span>
@@ -353,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="blotter-ledger-code" class="level1">
 <h1>Blotter &amp; Ledger Code</h1>
-<div id="6955e261" class="cell" data-execution_count="3">
+<div id="a92de9ae" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -366,11 +367,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="fetch-data" class="level3">
 <h3 class="anchored" data-anchor-id="fetch-data">Fetch data</h3>
-<div id="88d4e5d3" class="cell" data-execution_count="4">
+<div id="0c31689b" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>asset<span class="op">=</span> sb.Contract({</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'symbol'</span>: <span class="st">"ARES"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'symbol'</span>: <span class="st">"TSLA"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'secType'</span>: <span class="st">"STK"</span>,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'exchange'</span>: <span class="st">"SMART"</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'currency'</span>: <span class="st">"USD"</span></span>
@@ -415,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co">#### You'll need this later!</span></span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>ares_deets <span class="op">=</span> sb.fetch_contract_details(</span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    contract<span class="op">=</span>sb.Contract({</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">'symbol'</span>: <span class="st">"ARES"</span>,</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">'symbol'</span>: <span class="st">"TSLA"</span>,</span>
 <span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">'secType'</span>: <span class="st">"STK"</span>,</span>
 <span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">'exchange'</span>: <span class="st">"SMART"</span>,</span>
 <span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">'currency'</span>: <span class="st">"USD"</span></span>
@@ -436,10 +437,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>            useRTH<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> fetch[<span class="st">'hst_dta'</span>]</span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss"> IV data fetched. Rows: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="co">#        print(f"{label} IV data fetched. Rows: {len(df)}")</span></span>
 <span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> df</span>
 <span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss"> IV fetch failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="co">#        print(f"{label} IV fetch failed: {e}")</span></span>
 <span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pd.DataFrame()</span>
 <span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace your fetch calls with:</span></span>
@@ -457,128 +458,122 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Daily"</span></span>
 <span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: preview what was fetched</span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="co"># print(iv_historical_data_daily.head())</span></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>historical_data_daily_fetch_SMA <span class="op">=</span> sb.fetch_historical_data(</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    contract<span class="op">=</span>asset,</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>    endDateTime<span class="op">=</span><span class="st">''</span>,         <span class="co"># Let IBKR set the "now" time</span></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>    durationStr<span class="op">=</span><span class="st">'2 Y'</span>,      <span class="co"># Past 1 year</span></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>    barSizeSetting<span class="op">=</span><span class="st">'1 day'</span>, <span class="co"># Daily bars</span></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    whatToShow<span class="op">=</span><span class="st">'TRADES'</span>,</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>    useRTH<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>    <span class="co">#date_format=1,          # String time zone date</span></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>    <span class="co">#keepUpToDate=False</span></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA <span class="op">=</span> historical_data_daily_fetch_SMA[<span class="st">'hst_dta'</span>]<span class="co">#%% md</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>historical_data_daily_fetch_SMA <span class="op">=</span> sb.fetch_historical_data(</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>    contract<span class="op">=</span>asset,</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>    endDateTime<span class="op">=</span><span class="st">''</span>,         <span class="co"># Let IBKR set the "now" time</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>    durationStr<span class="op">=</span><span class="st">'2 Y'</span>,      <span class="co"># Past 1 year</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    barSizeSetting<span class="op">=</span><span class="st">'1 day'</span>, <span class="co"># Daily bars</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>    whatToShow<span class="op">=</span><span class="st">'TRADES'</span>,</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>    useRTH<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>    <span class="co">#date_format=1,          # String time zone date</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    <span class="co">#keepUpToDate=False</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA <span class="op">=</span> historical_data_daily_fetch_SMA[<span class="st">'hst_dta'</span>]<span class="co">#%% md</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Daily IV data fetched. Rows: 250</code></pre>
-</div>
 </div>
 </section>
 <section id="clean-data" class="level3">
 <h3 class="anchored" data-anchor-id="clean-data">Clean Data</h3>
-<div id="4f88e051" class="cell" data-execution_count="5">
+<div id="2703f81a" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure 'date' is a datetime column</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(historical_data_daily_SMA[<span class="st">'timestamp'</span>])</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by date just to be safe</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA <span class="op">=</span> historical_data_daily_SMA.sort_values(<span class="st">'timestamp'</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate 20-day simple moving average</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA[<span class="st">'SMA_20'</span>] <span class="op">=</span> historical_data_daily_SMA[<span class="st">'close'</span>].rolling(window<span class="op">=</span><span class="dv">20</span>).mean()</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_data_daily_SMA[<span class="st">'SMA_20'</span>])</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#### Prepare Data</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate trade period</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_trade_period(dt):</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    iso_year, iso_week, _ <span class="op">=</span> dt.isocalendar()</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(<span class="ss">f"</span><span class="sc">{</span>iso_year<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>iso_week<span class="sc">:02d}</span><span class="ss">"</span>)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure 'date' column is in datetime format</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>historical_data_daily[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(historical_data_daily[<span class="st">'timestamp'</span>])</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>historical_data_hourly[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(historical_data_hourly[<span class="st">'timestamp'</span>])</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>iv_historical_data_daily[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(iv_historical_data_daily[<span class="st">'timestamp'</span>])</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#iv_historical_data_hourly['timestamp'] = pd.to_datetime(iv_historical_data_hourly['timestamp'])</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#liquid_hours['timestamp'] = pd.to_datetime(liquid_hours['timestamp'])</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply trade period calculation</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">=</span> historical_data_daily[<span class="st">'timestamp'</span>].<span class="bu">apply</span>(get_trade_period)</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">=</span> historical_data_hourly[<span class="st">'timestamp'</span>].<span class="bu">apply</span>(get_trade_period)</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>iv_historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">=</span> iv_historical_data_daily[<span class="st">'timestamp'</span>].<span class="bu">apply</span>(get_trade_period)</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#iv_historical_data_hourly['trd_prd'] = iv_historical_data_hourly['timestamp'].apply(get_trade_period)</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA[<span class="st">'trd_prd'</span>] <span class="op">=</span> historical_data_daily_SMA[<span class="st">'timestamp'</span>].<span class="bu">apply</span>(get_trade_period)</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">#liquid_hours['trd_prd'] = liquid_hours['timestamp'].apply(get_trade_period)</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the first full five-trading-day week</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>weekly_counts <span class="op">=</span> historical_data_daily.groupby(<span class="st">'trd_prd'</span>)[<span class="st">'timestamp'</span>].count()</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>first_full_week <span class="op">=</span> weekly_counts[weekly_counts <span class="op">&gt;=</span> <span class="dv">5</span>].index.<span class="bu">min</span>()</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter historical_data_daily</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>historical_data_daily <span class="op">=</span> historical_data_daily[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">&gt;=</span> first_full_week]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure 'date' is a datetime column</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(historical_data_daily_SMA[<span class="st">'timestamp'</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by date just to be safe</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA <span class="op">=</span> historical_data_daily_SMA.sort_values(<span class="st">'timestamp'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate 20-day simple moving average</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA[<span class="st">'SMA_20'</span>] <span class="op">=</span> historical_data_daily_SMA[<span class="st">'close'</span>].rolling(window<span class="op">=</span><span class="dv">20</span>).mean()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_data_daily_SMA[<span class="st">'SMA_20'</span>])</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#### Prepare Data</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate trade period</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_trade_period(dt):</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    iso_year, iso_week, _ <span class="op">=</span> dt.isocalendar()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(<span class="ss">f"</span><span class="sc">{</span>iso_year<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>iso_week<span class="sc">:02d}</span><span class="ss">"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure 'date' column is in datetime format</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>historical_data_daily[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(historical_data_daily[<span class="st">'timestamp'</span>])</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>historical_data_hourly[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(historical_data_hourly[<span class="st">'timestamp'</span>])</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>iv_historical_data_daily[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(iv_historical_data_daily[<span class="st">'timestamp'</span>])</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#iv_historical_data_hourly['timestamp'] = pd.to_datetime(iv_historical_data_hourly['timestamp'])</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#liquid_hours['timestamp'] = pd.to_datetime(liquid_hours['timestamp'])</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply trade period calculation</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">=</span> historical_data_daily[<span class="st">'timestamp'</span>].<span class="bu">apply</span>(get_trade_period)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">=</span> historical_data_hourly[<span class="st">'timestamp'</span>].<span class="bu">apply</span>(get_trade_period)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>iv_historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">=</span> iv_historical_data_daily[<span class="st">'timestamp'</span>].<span class="bu">apply</span>(get_trade_period)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">#iv_historical_data_hourly['trd_prd'] = iv_historical_data_hourly['timestamp'].apply(get_trade_period)</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>historical_data_daily_SMA[<span class="st">'trd_prd'</span>] <span class="op">=</span> historical_data_daily_SMA[<span class="st">'timestamp'</span>].<span class="bu">apply</span>(get_trade_period)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co">#liquid_hours['trd_prd'] = liquid_hours['timestamp'].apply(get_trade_period)</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the first full five-trading-day week</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>weekly_counts <span class="op">=</span> historical_data_daily.groupby(<span class="st">'trd_prd'</span>)[<span class="st">'timestamp'</span>].count()</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>first_full_week <span class="op">=</span> weekly_counts[weekly_counts <span class="op">&gt;=</span> <span class="dv">5</span>].index.<span class="bu">min</span>()</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter historical_data_daily</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>historical_data_daily <span class="op">=</span> historical_data_daily[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">&gt;=</span> first_full_week]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>0          NaN
-1          NaN
-2          NaN
-3          NaN
-4          NaN
-        ...   
-496    139.728
-497    140.002
-498    140.426
-499    140.735
-500    140.737
+<pre><code>0           NaN
+1           NaN
+2           NaN
+3           NaN
+4           NaN
+         ...   
+496    252.5465
+497    253.1375
+498    254.2540
+499    255.8975
+500    256.5825
 Name: SMA_20, Length: 501, dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="print-dfs" class="level3">
 <h3 class="anchored" data-anchor-id="print-dfs">Print DFs</h3>
-<div id="08142a0d" class="cell" data-execution_count="6">
+<div id="c6c68002" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print dataframes</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Historical Data Daily:"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_data_daily)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Historical Data Hourly:"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_data_hourly)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IV Historical Data Daily:"</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(iv_historical_data_daily)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print("\n IV Historical Data Hourly:")</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#print(iv_historical_data_daily)</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Historical SMA Data Daily:"</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_data_daily_SMA)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Liquid Hours:"</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(liquid_hours)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print dataframes</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Historical Data Daily:"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_data_daily)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Historical Data Hourly:"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_data_hourly)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IV Historical Data Daily:"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(iv_historical_data_daily)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print("\n IV Historical Data Hourly:")</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#print(iv_historical_data_daily)</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Historical SMA Data Daily:"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_data_daily_SMA)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#print("\nLiquid Hours:")</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#print(liquid_hours)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Historical Data Daily:
-     timestamp    open    high     low   close  volume      wap  barCount  \
-3   2024-05-06  132.31  136.22  132.28  136.17  931552  134.566      4521   
-4   2024-05-07  137.03  140.35  136.54  137.29  854703  138.385      5278   
-5   2024-05-08  136.25  138.75  135.46  138.67  408812  137.935      2941   
-6   2024-05-09  138.34  143.13  138.34  142.44  940456  142.102      6212   
-7   2024-05-10  143.69  144.35  141.60  142.27  422158  142.562      2688   
-..         ...     ...     ...     ...     ...     ...      ...       ...   
-245 2025-04-24  146.35  153.92  145.15  152.97  739281  151.828      5002   
-246 2025-04-25  151.93  154.41  150.82  153.88  639964  153.333      4120   
-247 2025-04-28  153.94  156.54  151.93  153.38  824638  153.635      5268   
-248 2025-04-29  153.00  153.68  150.82  152.79  477799  152.673      3390   
-249 2025-04-30  148.81  150.70  146.18  149.48  321291  148.582      1756   
+     timestamp    open    high     low   close     volume      wap  barCount  \
+3   2024-05-06  183.82  187.56  182.20  184.76   67560804  184.514    211750   
+4   2024-05-07  182.40  183.26  177.40  177.81   56540364  179.213    188515   
+5   2024-05-08  171.61  176.06  170.15  174.72   60452680  173.845    206507   
+6   2024-05-09  175.04  175.62  171.37  171.97   49326575  173.059    160082   
+7   2024-05-10  173.00  173.06  167.75  168.47   56253503  169.465    195279   
+..         ...     ...     ...     ...     ...        ...      ...       ...   
+245 2025-04-24  250.71  259.54  249.20  259.51   66589238  255.298    308174   
+246 2025-04-25  261.69  286.85  259.63  284.95  121592392  277.990    539626   
+247 2025-04-28  289.01  294.86  272.42  285.88  107320088  282.586    490614   
+248 2025-04-29  285.46  293.29  279.46  292.03   80220219  284.814    358174   
+249 2025-04-30  279.91  284.45  270.78  282.16   86840626  277.788    388239   
 
      trd_prd  
 3    2024.19  
@@ -596,46 +591,46 @@ Name: SMA_20, Length: 501, dtype: float64</code></pre>
 [247 rows x 9 columns]
 
 Historical Data Hourly:
-               timestamp    open    high     low   close  volume      wap  \
-0    2024-05-01 09:30:00  132.88  133.27  131.57  132.11   35410  132.256   
-1    2024-05-01 10:00:00  132.26  133.58  132.21  132.93  145326  132.939   
-2    2024-05-01 11:00:00  132.95  132.99  131.90  132.18   70533  132.445   
-3    2024-05-01 12:00:00  132.18  132.51  131.74  132.15   54395  132.108   
-4    2024-05-01 13:00:00  132.15  132.44  131.53  132.42   70340  131.964   
-...                  ...     ...     ...     ...     ...     ...      ...   
-1733 2025-04-29 15:00:00  152.61  153.14  152.37  152.72  193788  152.795   
-1734 2025-04-30 09:30:00  148.81  149.80  146.18  146.46   45424  147.802   
-1735 2025-04-30 10:00:00  146.63  148.88  146.39  148.66  168982  148.252   
-1736 2025-04-30 11:00:00  148.67  150.12  148.67  150.03   95532  149.355   
-1737 2025-04-30 12:00:00  150.28  150.70  149.19  149.48   11353  150.097   
+               timestamp    open    high     low   close    volume      wap  \
+0    2024-05-01 09:30:00  182.00  184.11  180.42  182.79  10441797  182.492   
+1    2024-05-01 10:00:00  182.79  183.17  179.41  180.86  14119172  180.777   
+2    2024-05-01 11:00:00  180.89  181.94  179.01  180.00   9513004  180.165   
+3    2024-05-01 12:00:00  179.99  182.88  179.71  181.22   7272803  181.450   
+4    2024-05-01 13:00:00  181.22  181.25  179.82  180.98   6011126  180.507   
+...                  ...     ...     ...     ...     ...       ...      ...   
+1736 2025-04-30 11:00:00  276.70  281.43  276.66  278.58  12486884  278.941   
+1737 2025-04-30 12:00:00  278.53  279.45  275.14  277.44   8963199  277.066   
+1738 2025-04-30 13:00:00  277.43  280.24  275.33  279.15   9147764  278.138   
+1739 2025-04-30 14:00:00  279.22  281.16  277.84  278.46   8842429  279.395   
+1740 2025-04-30 15:00:00  278.44  284.45  278.44  282.07  14770252  282.075   
 
       barCount  trd_prd  
-0          156  2024.18  
-1          790  2024.18  
-2          528  2024.18  
-3          387  2024.18  
-4          438  2024.18  
+0        35696  2024.18  
+1        48243  2024.18  
+2        34310  2024.18  
+3        23907  2024.18  
+4        20066  2024.18  
 ...        ...      ...  
-1733      1442  2025.18  
-1734       237  2025.18  
-1735       778  2025.18  
-1736       654  2025.18  
-1737        87  2025.18  
+1736     53341  2025.18  
+1737     38724  2025.18  
+1738     39027  2025.18  
+1739     39796  2025.18  
+1740     71176  2025.18  
 
-[1738 rows x 9 columns]
+[1741 rows x 9 columns]
 IV Historical Data Daily:
      timestamp      open      high       low     close  volume    wap  \
-0   2024-05-01  0.310617  0.337032  0.290694  0.307918       1  0.337   
-1   2024-05-02  0.296456  0.317855  0.251341  0.276788       1  0.318   
-2   2024-05-03  0.283535  0.283535  0.239022  0.256929       1  0.284   
-3   2024-05-06  0.258627  0.291964  0.237848  0.245769       1  0.292   
-4   2024-05-07  0.248674  0.254627  0.233101  0.237181       1  0.255   
+0   2024-05-01  0.481093  0.483109  0.451011  0.454455       1  0.483   
+1   2024-05-02  0.459488  0.469330  0.442692  0.444137       1  0.469   
+2   2024-05-03  0.446375  0.446375  0.431739  0.431977       1  0.446   
+3   2024-05-06  0.435755  0.449979  0.435755  0.440089       1  0.450   
+4   2024-05-07  0.442296  0.442962  0.419881  0.421135       1  0.443   
 ..         ...       ...       ...       ...       ...     ...    ...   
-245 2025-04-24  0.482426  0.497269  0.435708  0.446375       1  0.497   
-246 2025-04-25  0.453360  0.502476  0.453360  0.460440       1  0.502   
-247 2025-04-28  0.447153  0.469917  0.416912  0.442311       1  0.470   
-248 2025-04-29  0.433961  0.470314  0.433961  0.461631       1  0.470   
-249 2025-04-30  0.448566  0.481013  0.401149  0.410340       1  0.481   
+245 2025-04-24  0.671968  0.671968  0.633996  0.637854       1  0.672   
+246 2025-04-25  0.638552  0.705876  0.635520  0.644997       1  0.706   
+247 2025-04-28  0.634837  0.676476  0.634837  0.644505       1  0.676   
+248 2025-04-29  0.644775  0.657697  0.626440  0.636044       1  0.658   
+249 2025-04-30  0.636203  0.705177  0.634774  0.638933       1  0.705   
 
      barCount  trd_prd  
 0           0  2024.18  
@@ -652,258 +647,332 @@ IV Historical Data Daily:
 
 [250 rows x 9 columns]
 Historical SMA Data Daily:
-     timestamp    open    high     low   close   volume      wap  barCount  \
-0   2023-05-02   84.81   84.90   81.63   82.46  1130134   82.666      8112   
-1   2023-05-03   82.17   83.75   81.84   82.09   487278   82.595      3801   
-2   2023-05-04   82.01   82.01   77.97   79.53   993988   79.411      6526   
-3   2023-05-05   80.77   82.16   80.42   81.95   576112   81.691      3728   
-4   2023-05-08   82.20   83.86   81.60   81.96   584637   82.383      4334   
-..         ...     ...     ...     ...     ...      ...      ...       ...   
-496 2025-04-24  146.35  153.92  145.15  152.97   739281  151.828      5002   
-497 2025-04-25  151.93  154.41  150.82  153.88   639964  153.333      4120   
-498 2025-04-28  153.94  156.54  151.93  153.38   824638  153.635      5268   
-499 2025-04-29  153.00  153.68  150.82  152.79   477799  152.673      3390   
-500 2025-04-30  148.81  150.70  146.18  149.48   321291  148.582      1756   
+     timestamp    open    high     low   close     volume      wap  barCount  \
+0   2023-05-02  161.88  165.49  158.93  160.31  109355709  161.851    327664   
+1   2023-05-03  160.01  165.00  159.91  160.61  101261209  163.367    312305   
+2   2023-05-04  162.71  162.95  159.65  161.20   80745661  161.374    254071   
+3   2023-05-05  163.97  170.79  163.51  170.06   87252277  168.131    295930   
+4   2023-05-08  173.71  173.80  169.19  171.79   92489431  171.316    292637   
+..         ...     ...     ...     ...     ...        ...      ...       ...   
+496 2025-04-24  250.71  259.54  249.20  259.51   66589238  255.298    308174   
+497 2025-04-25  261.69  286.85  259.63  284.95  121592392  277.990    539626   
+498 2025-04-28  289.01  294.86  272.42  285.88  107320088  282.586    490614   
+499 2025-04-29  285.46  293.29  279.46  292.03   80220219  284.814    358174   
+500 2025-04-30  279.91  284.45  270.78  282.16   86840626  277.788    388239   
 
-      SMA_20  trd_prd  
-0        NaN  2023.18  
-1        NaN  2023.18  
-2        NaN  2023.18  
-3        NaN  2023.18  
-4        NaN  2023.19  
-..       ...      ...  
-496  139.728  2025.17  
-497  140.002  2025.17  
-498  140.426  2025.18  
-499  140.735  2025.18  
-500  140.737  2025.18  
+       SMA_20  trd_prd  
+0         NaN  2023.18  
+1         NaN  2023.18  
+2         NaN  2023.18  
+3         NaN  2023.18  
+4         NaN  2023.19  
+..        ...      ...  
+496  252.5465  2025.17  
+497  253.1375  2025.17  
+498  254.2540  2025.18  
+499  255.8975  2025.18  
+500  256.5825  2025.18  
 
-[501 rows x 10 columns]
-
-Liquid Hours:
-0               start_time  end_time  closed
-2025-0...
-Name: liquidHours, dtype: object</code></pre>
+[501 rows x 10 columns]</code></pre>
 </div>
 </div>
 </section>
 <section id="vol" class="level3">
 <h3 class="anchored" data-anchor-id="vol">Vol</h3>
-<div id="32b39fdd" class="cell" data-execution_count="7">
+<div id="0101930e" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc Obs &amp; Exp Vol</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>trade_periods <span class="op">=</span> historical_data_daily[<span class="st">'trd_prd'</span>].unique()</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate observed volatility using hourly data</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>hourly_log_returns <span class="op">=</span> np.log(historical_data_hourly[<span class="st">'close'</span>] <span class="op">/</span> historical_data_hourly[<span class="st">'close'</span>].shift(<span class="dv">1</span>))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>hourly_vols <span class="op">=</span> hourly_log_returns.groupby(historical_data_hourly[<span class="st">'timestamp'</span>].dt.strftime(<span class="st">'%Y-%W'</span>)).std()</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert hourly vol to weekly vol (scale by sqrt(32.5))</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>weekly_vols <span class="op">=</span> hourly_vols <span class="op">*</span> np.sqrt(<span class="fl">32.5</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>vol_calcs <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>trade_periods, columns<span class="op">=</span>[<span class="st">'obs_vol'</span>, <span class="st">'exp_vol'</span>])</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>vol_calcs[<span class="st">'obs_vol'</span>] <span class="op">=</span> weekly_vols.values[:<span class="bu">len</span>(trade_periods)]</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Set expected vol (shifted obs_vol)</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>vol_calcs[<span class="st">'exp_vol'</span>] <span class="op">=</span> vol_calcs[<span class="st">'obs_vol'</span>].shift(<span class="dv">1</span>)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># print("\nVolatility Calculations:")</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># print(vol_calcs)</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc Obs &amp; Exp Vol</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>trade_periods <span class="op">=</span> historical_data_daily[<span class="st">'trd_prd'</span>].unique()</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate observed volatility using hourly data</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>hourly_log_returns <span class="op">=</span> np.log(historical_data_hourly[<span class="st">'close'</span>] <span class="op">/</span> historical_data_hourly[<span class="st">'close'</span>].shift(<span class="dv">1</span>))</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>hourly_vols <span class="op">=</span> hourly_log_returns.groupby(historical_data_hourly[<span class="st">'timestamp'</span>].dt.strftime(<span class="st">'%Y-%W'</span>)).std()</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert hourly vol to weekly vol (scale by sqrt(32.5))</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>weekly_vols <span class="op">=</span> hourly_vols <span class="op">*</span> np.sqrt(<span class="fl">32.5</span>)</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>smart_vol_calcs <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>trade_periods, columns<span class="op">=</span>[<span class="st">'obs_vol'</span>, <span class="st">'exp_vol'</span>])</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>smart_vol_calcs[<span class="st">'obs_vol'</span>] <span class="op">=</span> weekly_vols.values[:<span class="bu">len</span>(trade_periods)]</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Set expected vol (from options IV)</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trd_prd <span class="kw">in</span> smart_vol_calcs.index:</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    smart_vol_calcs.at[trd_prd, <span class="st">'exp_vol'</span>] <span class="op">=</span> iv_historical_data_daily.loc[</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>        iv_historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'open'</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    ].iloc[<span class="dv">0</span>] <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">/</span><span class="dv">52</span>)</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Volatility Calculations:"</span>)</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(smart_vol_calcs)</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>vol_calcs <span class="op">=</span> smart_vol_calcs</span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="co">#vol_calcs = smart_vol_calcs # manually toggle active vol calc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc Obs &amp; Exp Vol</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>trade_periods <span class="op">=</span> historical_data_daily[<span class="st">'trd_prd'</span>].unique()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate observed volatility using hourly data</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>hourly_log_returns <span class="op">=</span> np.log(historical_data_hourly[<span class="st">'close'</span>] <span class="op">/</span> historical_data_hourly[<span class="st">'close'</span>].shift(<span class="dv">1</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>hourly_vols <span class="op">=</span> hourly_log_returns.groupby(historical_data_hourly[<span class="st">'timestamp'</span>].dt.strftime(<span class="st">'%Y-%W'</span>)).std()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert hourly vol to weekly vol (scale by sqrt(32.5))</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>weekly_vols <span class="op">=</span> hourly_vols <span class="op">*</span> np.sqrt(<span class="fl">32.5</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>vol_calcs <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>trade_periods, columns<span class="op">=</span>[<span class="st">'obs_vol'</span>, <span class="st">'exp_vol'</span>])</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>vol_calcs[<span class="st">'obs_vol'</span>] <span class="op">=</span> weekly_vols.values[:<span class="bu">len</span>(trade_periods)]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Set expected vol (shifted obs_vol)</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>vol_calcs[<span class="st">'exp_vol'</span>] <span class="op">=</span> vol_calcs[<span class="st">'obs_vol'</span>].shift(<span class="dv">1</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># print("\nVolatility Calculations:")</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># print(vol_calcs)</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc Obs &amp; Exp Vol</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>trade_periods <span class="op">=</span> historical_data_daily[<span class="st">'trd_prd'</span>].unique()</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate observed volatility using hourly data</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>hourly_log_returns <span class="op">=</span> np.log(historical_data_hourly[<span class="st">'close'</span>] <span class="op">/</span> historical_data_hourly[<span class="st">'close'</span>].shift(<span class="dv">1</span>))</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>hourly_vols <span class="op">=</span> hourly_log_returns.groupby(historical_data_hourly[<span class="st">'timestamp'</span>].dt.strftime(<span class="st">'%Y-%W'</span>)).std()</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert hourly vol to weekly vol (scale by sqrt(32.5))</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>weekly_vols <span class="op">=</span> hourly_vols <span class="op">*</span> np.sqrt(<span class="fl">32.5</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>smart_vol_calcs <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>trade_periods, columns<span class="op">=</span>[<span class="st">'obs_vol'</span>, <span class="st">'exp_vol'</span>])</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>smart_vol_calcs[<span class="st">'obs_vol'</span>] <span class="op">=</span> weekly_vols.values[:<span class="bu">len</span>(trade_periods)]</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Set expected vol (from options IV)</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trd_prd <span class="kw">in</span> smart_vol_calcs.index:</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    smart_vol_calcs.at[trd_prd, <span class="st">'exp_vol'</span>] <span class="op">=</span> iv_historical_data_daily.loc[</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        iv_historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'open'</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    ].iloc[<span class="dv">0</span>] <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">/</span><span class="dv">52</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Volatility Calculations:"</span>)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(smart_vol_calcs)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>vol_calcs <span class="op">=</span> smart_vol_calcs</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co">#vol_calcs = smart_vol_calcs # manually toggle active vol calc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Volatility Calculations:
           obs_vol   exp_vol
-2024.19  0.075695  0.035865
-2024.20  0.041709   0.03117
-2024.21  0.030747  0.028702
-2024.22  0.055541  0.030333
-2024.23  0.026734  0.035066
-2024.24  0.035181  0.036792
-2024.25  0.049880  0.033094
-2024.26  0.024201  0.034252
-2024.27  0.025558   0.03603
-2024.28  0.025460  0.035568
-2024.29  0.035751  0.037886
-2024.30  0.040661  0.041298
-2024.31  0.038725  0.041963
-2024.32  0.065120  0.046619
-2024.33  0.078962  0.038366
-2024.34  0.028736  0.031572
-2024.35  0.019785  0.032297
-2024.36  0.026346  0.030705
-2024.37  0.031696  0.037873
-2024.38  0.034750  0.036887
-2024.39  0.032657  0.035955
-2024.40  0.019770  0.040691
-2024.41  0.031140  0.042945
-2024.42  0.044910  0.041672
-2024.43  0.030065  0.042331
-2024.44  0.027089  0.043407
-2024.45  0.048315  0.042075
-2024.46  0.064099  0.033809
-2024.47  0.033129  0.035425
-2024.48  0.024092  0.034119
-2024.49  0.028234  0.034258
-2024.50  0.021655  0.034498
-2024.51  0.039611   0.03404
-2024.52  0.052050  0.039114
-2025.01  0.025411  0.038806
-2025.02  0.036901  0.039229
-2025.03  0.035510  0.041998
-2025.04  0.051092   0.03981
-2025.05  0.038692  0.041384
-2025.06  0.020813  0.045005
-2025.07  0.041087  0.038952
-2025.08  0.065741  0.036026
-2025.09  0.033773  0.041576
-2025.10  0.056267  0.048455
-2025.11  0.045554  0.063275
-2025.12  0.079776  0.058095
-2025.13  0.099292  0.050934
-2025.14  0.037189  0.054718
-2025.15  0.054198  0.104478
-2025.16  0.142716  0.083072
-2025.17  0.180665  0.063312
-2025.18  0.049677  0.062009</code></pre>
+2024.19  0.068504  0.060428
+2024.20  0.061715  0.056235
+2024.21  0.060780  0.057065
+2024.22  0.054364   0.05865
+2024.23  0.058449  0.062852
+2024.24  0.037432  0.066161
+2024.25  0.094526  0.063209
+2024.26  0.053955  0.068624
+2024.27  0.057880  0.072917
+2024.28  0.092603  0.089998
+2024.29  0.092234  0.087609
+2024.30  0.074038  0.082953
+2024.31  0.144589  0.065302
+2024.32  0.089899  0.077582
+2024.33  0.071581  0.067391
+2024.34  0.074922  0.067607
+2024.35  0.054022    0.0644
+2024.36  0.066319  0.065056
+2024.37  0.089354  0.084408
+2024.38  0.071509  0.085434
+2024.39  0.065599  0.086869
+2024.40  0.059781  0.102473
+2024.41  0.086492  0.091437
+2024.42  0.095892  0.081762
+2024.43  0.023740  0.072765
+2024.44  0.155556  0.077749
+2024.45  0.044636  0.069555
+2024.46  0.118930  0.081791
+2024.47  0.113059  0.080485
+2024.48  0.084483  0.083869
+2024.49  0.056495  0.069864
+2024.50  0.060759  0.081762
+2024.51  0.066586  0.087517
+2024.52  0.120209  0.093676
+2025.01  0.072765  0.098979
+2025.02  0.064760  0.093683
+2025.03  0.101750  0.090645
+2025.04  0.058076  0.095296
+2025.05  0.088851  0.084076
+2025.06  0.054660  0.073864
+2025.07  0.067115  0.069304
+2025.08  0.079422  0.071383
+2025.09  0.073297  0.070159
+2025.10  0.053188  0.086255
+2025.11  0.092879  0.092589
+2025.12  0.113185  0.093491
+2025.13  0.143258   0.09621
+2025.14  0.094862   0.10395
+2025.15  0.111623  0.125462
+2025.16  0.131136   0.11333
+2025.17  0.183519  0.098171
+2025.18  0.065244  0.088036</code></pre>
 </div>
 </div>
 </section>
-<section id="blotter-ledger" class="level3">
-<h3 class="anchored" data-anchor-id="blotter-ledger">Blotter &amp; Ledger</h3>
-<div id="c558ae0f" class="cell" data-execution_count="8">
+<section id="blotter-ledger-initialization" class="level3">
+<h3 class="anchored" data-anchor-id="blotter-ledger-initialization">Blotter &amp; Ledger Initialization</h3>
+<div id="b4c77515" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>trade_periods <span class="op">=</span> historical_data_daily[<span class="st">'trd_prd'</span>].unique()</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc blotter</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>blotter <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>trade_periods[<span class="dv">1</span>:], columns<span class="op">=</span>[<span class="st">'entry_timestamp'</span>, <span class="st">'qty'</span>, <span class="st">'exit_timestamp'</span>, <span class="st">'entry_price'</span>, <span class="st">'exit_price'</span>, <span class="st">'success'</span>, <span class="st">'iv'</span>, <span class="st">'wap'</span>, <span class="st">'sma'</span>])</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>blotter[:] <span class="op">=</span> <span class="va">None</span>  <span class="co"># Set empty values</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Ledger</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>filtered_historical <span class="op">=</span> historical_data_daily[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">!=</span> historical_data_daily[<span class="st">'trd_prd'</span>].iloc[<span class="dv">0</span>]]</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ledger <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'date'</span>] <span class="op">=</span> filtered_historical[<span class="st">'timestamp'</span>]</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'position'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'cash'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mark'</span>] <span class="op">=</span> historical_data_daily[<span class="st">'close'</span>][<span class="dv">1</span>:]</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mkt_value'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#ledger['cash'] = 50000</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Ledger:"</span>)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ledger)</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>trade_periods <span class="op">=</span> historical_data_daily[<span class="st">'trd_prd'</span>].unique()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc blotter</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>blotter <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>trade_periods[<span class="dv">1</span>:], columns<span class="op">=</span>[<span class="st">'entry_timestamp'</span>, <span class="st">'qty'</span>, <span class="st">'exit_timestamp'</span>, <span class="st">'entry_price'</span>, <span class="st">'exit_price'</span>, <span class="st">'success'</span>, <span class="st">'iv'</span>, <span class="st">'wap'</span>, <span class="st">'sma'</span>])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>blotter[:] <span class="op">=</span> <span class="va">None</span>  <span class="co"># Set empty values</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#print("\nBlotter:")</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#print(blotter)</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Ledger</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>filtered_historical <span class="op">=</span> historical_data_daily[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">!=</span> historical_data_daily[<span class="st">'trd_prd'</span>].iloc[<span class="dv">0</span>]]</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>ledger <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'date'</span>] <span class="op">=</span> filtered_historical[<span class="st">'timestamp'</span>]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'position'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'cash'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mark'</span>] <span class="op">=</span> historical_data_daily[<span class="st">'close'</span>][<span class="dv">1</span>:]</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mkt_value'</span>] <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Placeholder values</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#ledger['cash'] = 50000</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#print("\nLedger:")</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">#print(ledger)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="blotter-ledger-loop" class="level3">
+<h3 class="anchored" data-anchor-id="blotter-ledger-loop">Blotter &amp; Ledger Loop</h3>
+<div id="d87e1142" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create function for IV percentile</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_iv_percentile_series(iv_df, window<span class="op">=</span><span class="dv">252</span>):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    iv_percentiles <span class="op">=</span> {}</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    iv_df_sorted <span class="op">=</span> iv_df.sort_values(<span class="st">"timestamp"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, row <span class="kw">in</span> iv_df_sorted.iterrows():</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        trd_prd <span class="op">=</span> row[<span class="st">'trd_prd'</span>]</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        curr_iv <span class="op">=</span> row[<span class="st">'open'</span>]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        recent_ivs <span class="op">=</span> iv_df_sorted[iv_df_sorted[<span class="st">'timestamp'</span>] <span class="op">&lt;</span> row[<span class="st">'timestamp'</span>]].tail(window)[<span class="st">'open'</span>]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(recent_ivs) <span class="op">&gt;=</span> <span class="dv">10</span>:</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            percentile <span class="op">=</span> (recent_ivs <span class="op">&lt;</span> curr_iv).mean() <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            iv_percentiles[trd_prd] <span class="op">=</span> percentile</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> iv_percentiles</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># calc percentiles for each trade period...</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># want to only trade if IV percentile is &gt;50% and &lt;90%</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>iv_percentiles_by_trdprd <span class="op">=</span> calc_iv_percentile_series(iv_historical_data_daily)</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Blotter &amp; Ledger Loop</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># This is where "backtesting" really occurs. We're calculating the blotter &amp;</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ledger that our trading system WOULD have produced.</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trd_prd <span class="kw">in</span> blotter.index:</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    entry_timestamp <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    entry_price <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'open'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    prev_close <span class="op">=</span> historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">&lt;</span> trd_prd, <span class="st">'close'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    exp_vol <span class="op">=</span> vol_calcs.loc[trd_prd, <span class="st">'exp_vol'</span>]</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    iv <span class="op">=</span> iv_historical_data_daily.loc[iv_historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'wap'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    wap <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'wap'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    sma <span class="op">=</span> historical_data_daily_SMA.loc[historical_data_daily_SMA[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'SMA_20'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> entry_price <span class="op">&gt;</span> prev_close:</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>        exit_price_strategy <span class="op">=</span> entry_price <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> exp_vol)</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>        exit_price_strategy <span class="op">=</span> entry_price <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> exp_vol)</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    period_data <span class="op">=</span> historical_data_hourly[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd]</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    max_high <span class="op">=</span> period_data[<span class="st">'high'</span>].<span class="bu">max</span>()</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    min_low <span class="op">=</span> period_data[<span class="st">'low'</span>].<span class="bu">min</span>()</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># shift dict to use previous iv percentile</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>prev_iv_percentiles <span class="op">=</span> {}</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>sorted_keys <span class="op">=</span> <span class="bu">sorted</span>(iv_percentiles_by_trdprd.keys())</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(sorted_keys)):</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    curr <span class="op">=</span> sorted_keys[i]</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    prev <span class="op">=</span> sorted_keys[i <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    prev_iv_percentiles[curr] <span class="op">=</span> iv_percentiles_by_trdprd[prev]</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Blotter &amp; Ledger Loop</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co"># This is where "backtesting" really occurs. We're calculating the blotter &amp;</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co"># ledger that our trading system WOULD have produced.</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trd_prd <span class="kw">in</span> blotter.index:</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    entry_timestamp <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    entry_price <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'open'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    prev_close <span class="op">=</span> historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">&lt;</span> trd_prd, <span class="st">'close'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    exp_vol <span class="op">=</span> vol_calcs.loc[trd_prd, <span class="st">'exp_vol'</span>]</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    iv <span class="op">=</span> iv_historical_data_daily.loc[iv_historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'wap'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    wap <span class="op">=</span> historical_data_hourly.loc[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'wap'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    sma <span class="op">=</span> historical_data_daily_SMA.loc[historical_data_daily_SMA[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'SMA_20'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    prev_iv <span class="op">=</span> prev_iv_percentiles.get(trd_prd, <span class="va">None</span>)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># INPUT PRE-TRADE FILTERS HERE</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (qty <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> max_high <span class="op">&gt;=</span> exit_price_strategy) <span class="kw">or</span> (qty <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">and</span> min_low <span class="op">&lt;=</span> exit_price_strategy):</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> exit_price_strategy</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> qty <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>            exit_timestamp <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>            exit_high_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'high'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>            exit_low_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'low'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>            exit_timestamp <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>            exit_high_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'high'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>            exit_low_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'low'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>        <span class="co">#print(exit_low_price, exit_high_price, exit_price_strategy, exit_timestamp, qty)</span></span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'close'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>        <span class="co">#exit_timestamp = historical_data_daily.loc[historical_data_daily['trd_prd'] == trd_prd, 'timestamp'].iloc[-1]</span></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>        exit_timestamp <span class="op">=</span> pd.to_datetime(</span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>        historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'timestamp'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]).replace(hour<span class="op">=</span><span class="dv">15</span>, minute<span class="op">=</span><span class="dv">0</span>, second<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>    blotter.loc[trd_prd] <span class="op">=</span> [entry_timestamp, qty, exit_timestamp, entry_price, exit_price, success, iv, wap, sma]</span>
-<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> entry_timestamp, <span class="st">'position'</span>] <span class="op">+=</span> qty</span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> exit_timestamp, <span class="st">'position'</span>] <span class="op">-=</span> qty</span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> entry_timestamp, <span class="st">'cash'</span>] <span class="op">-=</span> qty <span class="op">*</span> entry_price</span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> exit_timestamp, <span class="st">'cash'</span>] <span class="op">+=</span> qty <span class="op">*</span> exit_price</span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a><span class="co"># finally, calculate your strategy's end-of-day mark-to-market value</span></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mkt_value'</span>] <span class="op">=</span> ledger[<span class="st">'position'</span>] <span class="op">*</span> ledger[<span class="st">'mark'</span>] <span class="op">+</span> ledger[<span class="st">'cash'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> prev_iv <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> <span class="kw">not</span> (<span class="dv">85</span> <span class="op">&lt;</span> prev_iv <span class="op">&lt;</span> <span class="dv">90</span>):</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"no trade"</span>)</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> entry_price <span class="op">&gt;</span> prev_close:</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>        exit_price_strategy <span class="op">=</span> entry_price <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> exp_vol)</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>        qty <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>        exit_price_strategy <span class="op">=</span> entry_price <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> exp_vol)</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    period_data <span class="op">=</span> historical_data_hourly[historical_data_hourly[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd]</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>    max_high <span class="op">=</span> period_data[<span class="st">'high'</span>].<span class="bu">max</span>()</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    min_low <span class="op">=</span> period_data[<span class="st">'low'</span>].<span class="bu">min</span>()</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (qty <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> max_high <span class="op">&gt;=</span> exit_price_strategy) <span class="kw">or</span> (qty <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">and</span> min_low <span class="op">&lt;=</span> exit_price_strategy):</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> exit_price_strategy</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> qty <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>            exit_timestamp <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>            exit_high_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'high'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>            exit_low_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'high'</span>] <span class="op">&gt;=</span> exit_price_strategy, <span class="st">'low'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>            exit_timestamp <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'timestamp'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>            exit_high_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'high'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>            exit_low_price <span class="op">=</span> period_data.loc[period_data[<span class="st">'low'</span>] <span class="op">&lt;=</span> exit_price_strategy, <span class="st">'low'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>        <span class="co">#print(exit_low_price, exit_high_price, exit_price_strategy, exit_timestamp, qty)</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> qty <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> <span class="va">None</span>  <span class="co"># or set to None if preferred</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>        exit_timestamp <span class="op">=</span> entry_timestamp</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>        success <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>        exit_price <span class="op">=</span> historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'close'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>        <span class="co">#exit_timestamp = historical_data_daily.loc[historical_data_daily['trd_prd'] == trd_prd, 'timestamp'].iloc[-1]</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>        exit_timestamp <span class="op">=</span> pd.to_datetime(</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>        historical_data_daily.loc[historical_data_daily[<span class="st">'trd_prd'</span>] <span class="op">==</span> trd_prd, <span class="st">'timestamp'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]).replace(hour<span class="op">=</span><span class="dv">15</span>, minute<span class="op">=</span><span class="dv">0</span>, second<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    blotter.loc[trd_prd] <span class="op">=</span> [entry_timestamp, qty, exit_timestamp, entry_price, exit_price, success, iv, wap, sma]</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> entry_timestamp, <span class="st">'position'</span>] <span class="op">+=</span> qty</span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> exit_timestamp, <span class="st">'position'</span>] <span class="op">-=</span> qty</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> entry_timestamp, <span class="st">'cash'</span>] <span class="op">-=</span> qty <span class="op">*</span> entry_price</span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    ledger.loc[ledger[<span class="st">'date'</span>] <span class="op">&gt;=</span> exit_timestamp, <span class="st">'cash'</span>] <span class="op">+=</span> qty <span class="op">*</span> exit_price</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a><span class="co"># finally, calculate your strategy's end-of-day mark-to-market value</span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>ledger[<span class="st">'mkt_value'</span>] <span class="op">=</span> ledger[<span class="st">'position'</span>] <span class="op">*</span> ledger[<span class="st">'mark'</span>] <span class="op">+</span> ledger[<span class="st">'cash'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Ledger:
-          date  position  cash    mark  mkt_value
-8   2024-05-13       0.0   0.0  140.15        0.0
-9   2024-05-14       0.0   0.0  144.93        0.0
-10  2024-05-15       0.0   0.0  149.82        0.0
-11  2024-05-16       0.0   0.0  146.66        0.0
-12  2024-05-17       0.0   0.0  145.60        0.0
-..         ...       ...   ...     ...        ...
-245 2025-04-24       0.0   0.0  152.97        0.0
-246 2025-04-25       0.0   0.0  153.88        0.0
-247 2025-04-28       0.0   0.0  153.38        0.0
-248 2025-04-29       0.0   0.0  152.79        0.0
-249 2025-04-30       0.0   0.0  149.48        0.0
-
-[242 rows x 5 columns]</code></pre>
+<pre><code>no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade
+no trade</code></pre>
 </div>
 </div>
 </section>
 <section id="extra" class="level3">
 <h3 class="anchored" data-anchor-id="extra">Extra</h3>
-<div id="3f266ff8" class="cell" data-execution_count="9">
+<div id="9b5daaec" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
@@ -940,139 +1009,139 @@ Ledger:
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>success
-0    30
-1    21
+0    33
+1    18
 Name: count, dtype: int64
-Coefficients: [[-0.04985929 -0.06708008  0.10414947]]
-Intercept: [-6.44315096]
+Coefficients: [[-0.06087965  0.00140635  0.00508984]]
+Intercept: [-2.73227591]
               precision    recall  f1-score   support
 
-           0       0.40      0.29      0.33         7
-           1       0.55      0.67      0.60         9
+           0       0.33      0.50      0.40         8
+           1       0.00      0.00      0.00         8
 
-    accuracy                           0.50        16
-   macro avg       0.47      0.48      0.47        16
-weighted avg       0.48      0.50      0.48        16
+    accuracy                           0.25        16
+   macro avg       0.17      0.25      0.20        16
+weighted avg       0.17      0.25      0.20        16
 
 Blotter              entry_timestamp   qty       exit_timestamp entry_price  \
-2024.20  2024-05-13 09:30:00  -100  2024-05-17 15:00:00      142.86   
-2024.21  2024-05-20 09:30:00   100  2024-05-24 15:00:00      145.14   
-2024.22  2024-05-28 09:30:00  -100  2024-05-31 10:00:00      146.25   
-2024.23  2024-06-03 09:30:00  -100  2024-06-03 13:00:00      141.46   
-2024.24  2024-06-10 09:30:00   100  2024-06-10 10:00:00      132.44   
-2024.25  2024-06-17 09:30:00  -100  2024-06-21 15:00:00      132.92   
-2024.26  2024-06-24 09:30:00  -100  2024-06-28 15:00:00       132.1   
-2024.27  2024-07-01 09:30:00  -100  2024-07-05 15:00:00      134.38   
-2024.28  2024-07-08 09:30:00  -100  2024-07-12 15:00:00      138.44   
-2024.29  2024-07-15 09:30:00  -100  2024-07-19 15:00:00      143.31   
-2024.30  2024-07-22 09:30:00  -100  2024-07-26 15:00:00      148.47   
-2024.31  2024-07-29 09:30:00  -100  2024-08-02 09:30:00      147.83   
-2024.32  2024-08-05 09:30:00   100  2024-08-06 12:00:00       131.0   
-2024.33  2024-08-12 09:30:00   100  2024-08-16 15:00:00      141.54   
-2024.34  2024-08-19 09:30:00  -100  2024-08-23 15:00:00      145.48   
-2024.35  2024-08-26 09:30:00  -100  2024-08-30 15:00:00       147.5   
-2024.36  2024-09-03 09:30:00   100  2024-09-06 15:00:00       145.6   
-2024.37  2024-09-09 09:30:00  -100  2024-09-13 15:00:00      138.93   
-2024.38  2024-09-16 09:30:00   100  2024-09-17 11:00:00      146.66   
-2024.39  2024-09-23 09:30:00  -100  2024-09-27 15:00:00      157.66   
-2024.40  2024-09-30 09:30:00   100  2024-10-04 15:00:00       156.4   
-2024.41  2024-10-07 09:30:00  -100  2024-10-08 13:00:00      160.43   
-2024.42  2024-10-14 09:30:00  -100  2024-10-18 15:00:00       163.0   
-2024.43  2024-10-21 09:30:00   100  2024-10-25 15:00:00      169.71   
-2024.44  2024-10-28 09:30:00  -100  2024-11-01 09:30:00      170.68   
-2024.45  2024-11-04 09:30:00   100  2024-11-06 09:30:00      160.25   
-2024.46  2024-11-11 09:30:00  -100  2024-11-15 15:00:00      172.12   
-2024.47  2024-11-18 09:30:00  -100  2024-11-22 15:00:00       167.5   
-2024.48  2024-11-25 09:30:00  -100  2024-11-29 15:00:00       177.0   
-2024.49  2024-12-02 09:30:00  -100  2024-12-06 15:00:00      177.08   
-2024.50  2024-12-09 09:30:00  -100  2024-12-13 15:00:00       178.5   
-2024.51  2024-12-16 09:30:00   100  2024-12-20 15:00:00      182.28   
-2024.52  2024-12-23 09:30:00   100  2024-12-26 15:00:00       175.4   
-2025.01  2024-12-30 09:30:00   100  2025-01-03 15:00:00      176.92   
-2025.02  2025-01-06 09:30:00  -100  2025-01-07 09:30:00      183.28   
-2025.03  2025-01-13 09:30:00   100  2025-01-14 14:00:00      172.77   
-2025.04  2025-01-21 09:30:00  -100  2025-01-24 15:00:00      192.58   
-2025.05  2025-01-27 09:30:00   100  2025-01-31 09:30:00      191.41   
-2025.06  2025-02-03 09:30:00   100  2025-02-07 15:00:00      192.98   
-2025.07  2025-02-10 09:30:00  -100  2025-02-11 10:00:00      191.37   
-2025.08  2025-02-18 09:30:00  -100  2025-02-20 10:00:00      187.43   
-2025.09  2025-02-24 09:30:00  -100  2025-02-25 09:30:00      174.33   
-2025.10  2025-03-03 09:30:00  -100  2025-03-04 09:30:00      174.63   
-2025.11  2025-03-10 09:30:00   100  2025-03-14 15:00:00      147.46   
-2025.12  2025-03-17 09:30:00   100  2025-03-21 15:00:00       142.9   
-2025.13  2025-03-24 09:30:00  -100  2025-03-28 13:00:00      151.04   
-2025.14  2025-03-31 09:30:00   100  2025-04-01 15:00:00       142.0   
-2025.15  2025-04-07 09:30:00   100  2025-04-07 10:00:00       114.0   
-2025.16  2025-04-14 09:30:00  -100  2025-04-17 15:00:00      141.04   
-2025.17  2025-04-21 09:30:00   100  2025-04-23 09:30:00       138.7   
-2025.18  2025-04-28 09:30:00  -100  2025-04-30 15:00:00      153.94   
+2024.20  2024-05-13 09:30:00  -100  2024-05-17 15:00:00       170.0   
+2024.21  2024-05-20 09:30:00  -100  2024-05-24 15:00:00      177.62   
+2024.22  2024-05-28 09:30:00   100  2024-05-31 15:00:00      176.43   
+2024.23  2024-06-03 09:30:00  -100  2024-06-07 15:00:00      178.13   
+2024.24  2024-06-10 09:30:00   100  2024-06-13 09:30:00      176.11   
+2024.25  2024-06-17 09:30:00   100  2024-06-21 15:00:00      177.95   
+2024.26  2024-06-24 09:30:00  -100  2024-06-28 15:00:00      184.95   
+2024.27  2024-07-01 09:30:00  -100  2024-07-05 15:00:00      201.02   
+2024.28  2024-07-08 09:30:00   100  2024-07-11 09:30:00      247.74   
+2024.29  2024-07-15 09:30:00  -100  2024-07-19 15:00:00      256.02   
+2024.30  2024-07-22 09:30:00  -100  2024-07-24 09:30:00      244.22   
+2024.31  2024-07-29 09:30:00  -100  2024-08-02 10:00:00      224.91   
+2024.32  2024-08-05 09:30:00   100  2024-08-05 09:30:00      185.15   
+2024.33  2024-08-12 09:30:00   100  2024-08-15 10:00:00      199.02   
+2024.34  2024-08-19 09:30:00  -100  2024-08-23 15:00:00      217.05   
+2024.35  2024-08-26 09:30:00   100  2024-08-30 15:00:00      218.76   
+2024.36  2024-09-03 09:30:00  -100  2024-09-06 15:00:00      215.26   
+2024.37  2024-09-09 09:30:00  -100  2024-09-13 15:00:00      216.03   
+2024.38  2024-09-16 09:30:00   100  2024-09-20 15:00:00       229.3   
+2024.39  2024-09-23 09:30:00  -100  2024-09-27 15:00:00      242.61   
+2024.40  2024-09-30 09:30:00   100  2024-10-04 15:00:00      259.02   
+2024.41  2024-10-07 09:30:00   100  2024-10-11 15:00:00       249.0   
+2024.42  2024-10-14 09:30:00  -100  2024-10-18 15:00:00      220.13   
+2024.43  2024-10-21 09:30:00   100  2024-10-24 09:30:00      218.91   
+2024.44  2024-10-28 09:30:00  -100  2024-11-01 12:00:00      269.95   
+2024.45  2024-11-04 09:30:00   100  2024-11-06 09:30:00      244.56   
+2024.46  2024-11-11 09:30:00  -100  2024-11-14 10:00:00      346.38   
+2024.47  2024-11-18 09:30:00  -100  2024-11-22 15:00:00      340.75   
+2024.48  2024-11-25 09:30:00  -100  2024-11-27 10:00:00      360.56   
+2024.49  2024-12-02 09:30:00  -100  2024-12-06 15:00:00      352.51   
+2024.50  2024-12-09 09:30:00  -100  2024-12-13 15:00:00       397.8   
+2024.51  2024-12-16 09:30:00  -100  2024-12-20 15:00:00      441.11   
+2024.52  2024-12-23 09:30:00  -100  2024-12-27 15:00:00       431.0   
+2025.01  2024-12-30 09:30:00   100  2025-01-03 15:00:00       419.4   
+2025.02  2025-01-06 09:30:00  -100  2025-01-10 10:00:00      423.22   
+2025.03  2025-01-13 09:30:00   100  2025-01-14 09:30:00      383.24   
+2025.04  2025-01-21 09:30:00  -100  2025-01-24 15:00:00      432.67   
+2025.05  2025-01-27 09:30:00   100  2025-01-31 15:00:00       394.9   
+2025.06  2025-02-03 09:30:00   100  2025-02-07 15:00:00      386.68   
+2025.07  2025-02-10 09:30:00   100  2025-02-14 15:00:00       356.4   
+2025.08  2025-02-18 09:30:00   100  2025-02-21 15:00:00      355.22   
+2025.09  2025-02-24 09:30:00  -100  2025-02-25 09:30:00      338.14   
+2025.10  2025-03-03 09:30:00  -100  2025-03-04 09:30:00      300.32   
+2025.11  2025-03-10 09:30:00   100  2025-03-14 15:00:00       252.5   
+2025.12  2025-03-17 09:30:00   100  2025-03-21 15:00:00      245.01   
+2025.13  2025-03-24 09:30:00  -100  2025-03-28 15:00:00      258.13   
+2025.14  2025-03-31 09:30:00   100  2025-04-01 11:00:00      249.41   
+2025.15  2025-04-07 09:30:00   100  2025-04-07 10:00:00       223.8   
+2025.16  2025-04-14 09:30:00  -100  2025-04-17 15:00:00       258.3   
+2025.17  2025-04-21 09:30:00   100  2025-04-23 09:30:00      230.27   
+2025.18  2025-04-28 09:30:00  -100  2025-04-30 15:00:00      289.01   
 
          exit_price success     iv      wap       sma  prediction  
-2024.20       145.6   False  0.239  142.315   134.893         1.0  
-2024.21      146.01   False   0.27  144.054    138.73         1.0  
-2024.22  141.813789    True  0.236  146.963  141.1685         1.0  
-2024.23  136.499553    True  0.305  140.544  142.7775         1.0  
-2024.24  137.312728    True  0.279  133.523  141.8615         1.0  
-2024.25      131.79   False  0.273  132.855   139.188         1.0  
-2024.26      133.28   False  0.259  132.391  137.0715         1.0  
-2024.27      138.26   False  0.269  133.994  135.0995         1.0  
-2024.28      142.55   False  0.277  138.061  135.1435         1.0  
-2024.29       147.3   False  0.288  143.272   136.461         1.0  
-2024.30       147.1   False  0.307  148.779   139.913         1.0  
-2024.31  141.626602    True  0.325  146.347  142.8715         1.0  
-2024.32   137.10709    True  0.427  130.266  144.9165         1.0  
-2024.33       145.0   False  0.302  140.063  144.3525         1.0  
-2024.34       147.0   False  0.254  145.221    143.52         1.0  
-2024.35       146.4   False  0.245  147.664   143.201         1.0  
-2024.36      137.45   False  0.262  144.827  143.1595         1.0  
-2024.37       147.4   False  0.288  138.973   143.555         1.0  
-2024.38  152.069793    True  0.294  147.768  143.8485         1.0  
-2024.39      156.91   False  0.275  157.828  146.3625         1.0  
-2024.40      160.39   False  0.313  156.136  149.1195         1.0  
-2024.41  153.540354    True  0.327  160.565  153.6645         1.0  
-2024.42      169.89   False  0.334  162.486   157.288         1.0  
-2024.43      169.47   False  0.316  169.816  160.2305         1.0  
-2024.44  163.271264    True  0.322  170.973  163.3435         1.0  
-2024.45  166.992571    True  0.314  160.338   165.157         1.0  
-2024.46      167.21   False  0.262  172.436   167.773         1.0  
-2024.47      175.52   False   0.28  166.622  168.1825         1.0  
-2024.48      176.73   False  0.258  176.357  169.3005         1.0  
-2024.49      178.07   False  0.274  177.055  171.0675         1.0  
-2024.50      182.45   False  0.253   179.03  173.4205         1.0  
-2024.51      176.04   False  0.274  182.707   176.515         1.0  
-2024.52  182.260673    True  0.311   175.14  177.1885         1.0  
-2025.01      181.11   False  0.297  176.707   177.985         1.0  
-2025.02  176.090124    True  0.302  183.411  178.7025         1.0  
-2025.03  180.026042    True  0.327  173.467  178.6665         1.0  
-2025.04      197.32   False  0.303  193.224   180.725         1.0  
-2025.05  199.331327    True  0.333  190.914  184.2165         1.0  
-2025.06      190.34   False   0.38   193.07  188.3535         1.0  
-2025.07  183.915844    True  0.295  189.543  191.3475         0.0  
-2025.08  180.677669    True  0.313  188.405  191.7995         1.0  
-2025.09  167.082125    True  0.367  173.292  188.1835         1.0  
-2025.10  166.168308    True  0.386   173.25   181.726         1.0  
-2025.11      144.36   False  0.518  146.115   172.227         0.0  
-2025.12      147.71   False  0.437  143.898  161.7705         1.0  
-2025.13  143.346966    True  0.367  151.504   153.937         1.0  
-2025.14  149.769949    True   0.44  141.317  149.1705         0.0  
-2025.15  125.910533    True  0.827  113.106  144.3575         0.0  
-2025.16      141.24   False  0.621  138.996   142.201         0.0  
-2025.17  147.481404    True   0.55  138.735   140.829         1.0  
-2025.18      149.48   False   0.47  155.247   140.426         1.0  </code></pre>
+2024.20      177.46   False  0.429  172.588  168.2505         1.0  
+2024.21      179.24   False   0.43  175.238  174.6105         1.0  
+2024.22      178.08   False  0.449  174.397   177.466         1.0  
+2024.23      177.48   False  0.477  180.856    176.71         1.0  
+2024.24  187.761582    True  0.506  177.165  176.7725         1.0  
+2024.25      183.01   False   0.48  180.164  177.7795         1.0  
+2024.26      197.88   False  0.525  187.008  178.6105         1.0  
+2024.27      251.52   False  0.571  204.955   183.602         1.0  
+2024.28  270.035995    True  0.701  246.958  197.5075         1.0  
+2024.29       239.2   False  0.675  258.883  216.7975         1.0  
+2024.30  223.961197    True  0.626  248.676   233.303         1.0  
+2024.31  210.222865    True  0.504   228.68   241.949         1.0  
+2024.32  199.514247    True  0.775  191.031  236.2555         1.0  
+2024.33  212.432237    True  0.504   197.01  222.3175         1.0  
+2024.34      220.32   False  0.518  217.117   213.177         1.0  
+2024.35      214.11   False  0.489  217.328   210.879         1.0  
+2024.36      210.73   False  0.522  216.047  209.2715         1.0  
+2024.37      230.29   False  0.624  216.879  213.5385         1.0  
+2024.38      238.25   False  0.644   225.89  218.7495         1.0  
+2024.39      260.46   False  0.669  245.968   223.208         1.0  
+2024.40      250.08   False  0.763  262.508    235.16         1.0  
+2024.41       217.8   False  0.701  246.881  242.7315         1.0  
+2024.42       220.7   False  0.598  219.021  243.7365         1.0  
+2024.43  234.838989    True  0.549  217.696  239.4415         1.0  
+2024.44  248.961663    True  0.567  268.218  236.2515         1.0  
+2024.45  261.570463    True  0.539  241.768   237.258         1.0  
+2024.46  318.049321    True  0.732  345.854   254.599         1.0  
+2024.47      352.56   False  0.679  341.486  281.0005         1.0  
+2024.48  330.320241    True   0.63  356.733  305.7515         1.0  
+2024.49      389.22   False  0.543  355.734   323.625         1.0  
+2024.50      436.23   False  0.625  398.662  346.4705         1.0  
+2024.51      421.06   False  0.708  441.734  371.5945         1.0  
+2024.52      431.66   False  0.688  426.689   396.037         1.0  
+2025.01      410.44   False  0.733    421.8  416.5675         1.0  
+2025.02  383.571608    True  0.713  420.501  425.0015         1.0  
+2025.03  417.978702    True  0.677  385.577  424.1305         0.0  
+2025.04      406.58   False  0.708  417.007   416.712         1.0  
+2025.05       404.6   False  0.636  399.837  410.7675         0.0  
+2025.06      361.62   False  0.589  384.267   405.239         0.0  
+2025.07      355.84   False  0.516  353.953   397.815         0.0  
+2025.08       337.8   False  0.534  355.598  380.9495         1.0  
+2025.09  314.416585    True  0.557  337.061   367.207         0.0  
+2025.10  274.415843    True  0.702  298.757   340.405         1.0  
+2025.11      249.98   False  0.901   247.49  310.8755         0.0  
+2025.12      248.71   False  0.718  242.375  284.8665         1.0  
+2025.13      263.55   False   0.72  263.314   259.223         0.0  
+2025.14  275.336175    True  0.831  246.706   254.366         0.0  
+2025.15  251.878414    True  1.108  221.791  253.9565         0.0  
+2025.16      241.37   False  0.832  256.864  256.1455         0.0  
+2025.17  252.875917    True  0.834  228.847   257.065         0.0  
+2025.18      282.16   False  0.676  290.517   254.254         0.0  </code></pre>
 </div>
 </div>
 </section>
 </section>
 <section id="outputting-interactive-blotter-ledger-final-hw-here" class="level1">
 <h1>Outputting Interactive Blotter &amp; Ledger (FINAL HW HERE)</h1>
-<div id="ada438a0" class="cell" data-execution_count="10">
+<div id="85d64e93" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your final blotter DataFrame already populated at this point</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>blotter <span class="op">=</span> blotter.<span class="bu">round</span>(<span class="dv">3</span>)  <span class="co"># Optional: round for cleaner display</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="584373a4" class="cell" data-execution_count="11">
+<div id="7b950335" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display blotter as interactive table</span></span>
@@ -1080,7 +1149,7 @@ Blotter              entry_timestamp   qty       exit_timestamp entry_price  \
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>show(blotter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<table id="itables_96637758_24ab_453a_aee6_2ab491b69aea" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_2e1c402d_9653_4406_be85_8a14220eaf08" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1162,12 +1231,12 @@ Loading ITables v2.3.0 from the internet...
 <script type="module">
     import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.js';
 
-    document.querySelectorAll("#itables_96637758_24ab_453a_aee6_2ab491b69aea:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_2e1c402d_9653_4406_be85_8a14220eaf08:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
         // Define the table data
-        const data = [[2024.2, "2024-05-13 09:30:00", "-100", "2024-05-17 15:00:00", " 142.86", " 145.6", "False", " 0.239", " 142.315", " 134.893", 1.0], [2024.21, "2024-05-20 09:30:00", "100", "2024-05-24 15:00:00", " 145.14", " 146.01", "False", " 0.27", " 144.054", " 138.73", 1.0], [2024.22, "2024-05-28 09:30:00", "-100", "2024-05-31 10:00:00", " 146.25", " 141.813789", "True", " 0.236", " 146.963", " 141.1685", 1.0], [2024.23, "2024-06-03 09:30:00", "-100", "2024-06-03 13:00:00", " 141.46", " 136.499553", "True", " 0.305", " 140.544", " 142.7775", 1.0], [2024.24, "2024-06-10 09:30:00", "100", "2024-06-10 10:00:00", " 132.44", " 137.312728", "True", " 0.279", " 133.523", " 141.8615", 1.0], [2024.25, "2024-06-17 09:30:00", "-100", "2024-06-21 15:00:00", " 132.92", " 131.79", "False", " 0.273", " 132.855", " 139.188", 1.0], [2024.26, "2024-06-24 09:30:00", "-100", "2024-06-28 15:00:00", " 132.1", " 133.28", "False", " 0.259", " 132.391", " 137.0715", 1.0], [2024.27, "2024-07-01 09:30:00", "-100", "2024-07-05 15:00:00", " 134.38", " 138.26", "False", " 0.269", " 133.994", " 135.0995", 1.0], [2024.28, "2024-07-08 09:30:00", "-100", "2024-07-12 15:00:00", " 138.44", " 142.55", "False", " 0.277", " 138.061", " 135.1435", 1.0], [2024.29, "2024-07-15 09:30:00", "-100", "2024-07-19 15:00:00", " 143.31", " 147.3", "False", " 0.288", " 143.272", " 136.461", 1.0], [2024.3, "2024-07-22 09:30:00", "-100", "2024-07-26 15:00:00", " 148.47", " 147.1", "False", " 0.307", " 148.779", " 139.913", 1.0], [2024.31, "2024-07-29 09:30:00", "-100", "2024-08-02 09:30:00", " 147.83", " 141.626602", "True", " 0.325", " 146.347", " 142.8715", 1.0], [2024.32, "2024-08-05 09:30:00", "100", "2024-08-06 12:00:00", " 131.0", " 137.10709", "True", " 0.427", " 130.266", " 144.9165", 1.0], [2024.33, "2024-08-12 09:30:00", "100", "2024-08-16 15:00:00", " 141.54", " 145.0", "False", " 0.302", " 140.063", " 144.3525", 1.0], [2024.34, "2024-08-19 09:30:00", "-100", "2024-08-23 15:00:00", " 145.48", " 147.0", "False", " 0.254", " 145.221", " 143.52", 1.0], [2024.35, "2024-08-26 09:30:00", "-100", "2024-08-30 15:00:00", " 147.5", " 146.4", "False", " 0.245", " 147.664", " 143.201", 1.0], [2024.36, "2024-09-03 09:30:00", "100", "2024-09-06 15:00:00", " 145.6", " 137.45", "False", " 0.262", " 144.827", " 143.1595", 1.0], [2024.37, "2024-09-09 09:30:00", "-100", "2024-09-13 15:00:00", " 138.93", " 147.4", "False", " 0.288", " 138.973", " 143.555", 1.0], [2024.38, "2024-09-16 09:30:00", "100", "2024-09-17 11:00:00", " 146.66", " 152.069793", "True", " 0.294", " 147.768", " 143.8485", 1.0], [2024.39, "2024-09-23 09:30:00", "-100", "2024-09-27 15:00:00", " 157.66", " 156.91", "False", " 0.275", " 157.828", " 146.3625", 1.0], [2024.4, "2024-09-30 09:30:00", "100", "2024-10-04 15:00:00", " 156.4", " 160.39", "False", " 0.313", " 156.136", " 149.1195", 1.0], [2024.41, "2024-10-07 09:30:00", "-100", "2024-10-08 13:00:00", " 160.43", " 153.540354", "True", " 0.327", " 160.565", " 153.6645", 1.0], [2024.42, "2024-10-14 09:30:00", "-100", "2024-10-18 15:00:00", " 163.0", " 169.89", "False", " 0.334", " 162.486", " 157.288", 1.0], [2024.43, "2024-10-21 09:30:00", "100", "2024-10-25 15:00:00", " 169.71", " 169.47", "False", " 0.316", " 169.816", " 160.2305", 1.0], [2024.44, "2024-10-28 09:30:00", "-100", "2024-11-01 09:30:00", " 170.68", " 163.271264", "True", " 0.322", " 170.973", " 163.3435", 1.0], [2024.45, "2024-11-04 09:30:00", "100", "2024-11-06 09:30:00", " 160.25", " 166.992571", "True", " 0.314", " 160.338", " 165.157", 1.0], [2024.46, "2024-11-11 09:30:00", "-100", "2024-11-15 15:00:00", " 172.12", " 167.21", "False", " 0.262", " 172.436", " 167.773", 1.0], [2024.47, "2024-11-18 09:30:00", "-100", "2024-11-22 15:00:00", " 167.5", " 175.52", "False", " 0.28", " 166.622", " 168.1825", 1.0], [2024.48, "2024-11-25 09:30:00", "-100", "2024-11-29 15:00:00", " 177.0", " 176.73", "False", " 0.258", " 176.357", " 169.3005", 1.0], [2024.49, "2024-12-02 09:30:00", "-100", "2024-12-06 15:00:00", " 177.08", " 178.07", "False", " 0.274", " 177.055", " 171.0675", 1.0], [2024.5, "2024-12-09 09:30:00", "-100", "2024-12-13 15:00:00", " 178.5", " 182.45", "False", " 0.253", " 179.03", " 173.4205", 1.0], [2024.51, "2024-12-16 09:30:00", "100", "2024-12-20 15:00:00", " 182.28", " 176.04", "False", " 0.274", " 182.707", " 176.515", 1.0], [2024.52, "2024-12-23 09:30:00", "100", "2024-12-26 15:00:00", " 175.4", " 182.260673", "True", " 0.311", " 175.14", " 177.1885", 1.0], [2025.01, "2024-12-30 09:30:00", "100", "2025-01-03 15:00:00", " 176.92", " 181.11", "False", " 0.297", " 176.707", " 177.985", 1.0], [2025.02, "2025-01-06 09:30:00", "-100", "2025-01-07 09:30:00", " 183.28", " 176.090124", "True", " 0.302", " 183.411", " 178.7025", 1.0], [2025.03, "2025-01-13 09:30:00", "100", "2025-01-14 14:00:00", " 172.77", " 180.026042", "True", " 0.327", " 173.467", " 178.6665", 1.0], [2025.04, "2025-01-21 09:30:00", "-100", "2025-01-24 15:00:00", " 192.58", " 197.32", "False", " 0.303", " 193.224", " 180.725", 1.0], [2025.05, "2025-01-27 09:30:00", "100", "2025-01-31 09:30:00", " 191.41", " 199.331327", "True", " 0.333", " 190.914", " 184.2165", 1.0], [2025.06, "2025-02-03 09:30:00", "100", "2025-02-07 15:00:00", " 192.98", " 190.34", "False", " 0.38", " 193.07", " 188.3535", 1.0], [2025.07, "2025-02-10 09:30:00", "-100", "2025-02-11 10:00:00", " 191.37", " 183.915844", "True", " 0.295", " 189.543", " 191.3475", 0.0], [2025.08, "2025-02-18 09:30:00", "-100", "2025-02-20 10:00:00", " 187.43", " 180.677669", "True", " 0.313", " 188.405", " 191.7995", 1.0], [2025.09, "2025-02-24 09:30:00", "-100", "2025-02-25 09:30:00", " 174.33", " 167.082125", "True", " 0.367", " 173.292", " 188.1835", 1.0], [2025.1, "2025-03-03 09:30:00", "-100", "2025-03-04 09:30:00", " 174.63", " 166.168308", "True", " 0.386", " 173.25", " 181.726", 1.0], [2025.11, "2025-03-10 09:30:00", "100", "2025-03-14 15:00:00", " 147.46", " 144.36", "False", " 0.518", " 146.115", " 172.227", 0.0], [2025.12, "2025-03-17 09:30:00", "100", "2025-03-21 15:00:00", " 142.9", " 147.71", "False", " 0.437", " 143.898", " 161.7705", 1.0], [2025.13, "2025-03-24 09:30:00", "-100", "2025-03-28 13:00:00", " 151.04", " 143.346966", "True", " 0.367", " 151.504", " 153.937", 1.0], [2025.14, "2025-03-31 09:30:00", "100", "2025-04-01 15:00:00", " 142.0", " 149.769949", "True", " 0.44", " 141.317", " 149.1705", 0.0], [2025.15, "2025-04-07 09:30:00", "100", "2025-04-07 10:00:00", " 114.0", " 125.910533", "True", " 0.827", " 113.106", " 144.3575", 0.0], [2025.16, "2025-04-14 09:30:00", "-100", "2025-04-17 15:00:00", " 141.04", " 141.24", "False", " 0.621", " 138.996", " 142.201", 0.0], [2025.17, "2025-04-21 09:30:00", "100", "2025-04-23 09:30:00", " 138.7", " 147.481404", "True", " 0.55", " 138.735", " 140.829", 1.0], [2025.18, "2025-04-28 09:30:00", "-100", "2025-04-30 15:00:00", " 153.94", " 149.48", "False", " 0.47", " 155.247", " 140.426", 1.0]];
+        const data = [[2024.2, "2024-05-13 09:30:00", "-100", "2024-05-17 15:00:00", " 170.0", " 177.46", "False", " 0.429", " 172.588", " 168.2505", 1.0], [2024.21, "2024-05-20 09:30:00", "-100", "2024-05-24 15:00:00", " 177.62", " 179.24", "False", " 0.43", " 175.238", " 174.6105", 1.0], [2024.22, "2024-05-28 09:30:00", "100", "2024-05-31 15:00:00", " 176.43", " 178.08", "False", " 0.449", " 174.397", " 177.466", 1.0], [2024.23, "2024-06-03 09:30:00", "-100", "2024-06-07 15:00:00", " 178.13", " 177.48", "False", " 0.477", " 180.856", " 176.71", 1.0], [2024.24, "2024-06-10 09:30:00", "100", "2024-06-13 09:30:00", " 176.11", " 187.761582", "True", " 0.506", " 177.165", " 176.7725", 1.0], [2024.25, "2024-06-17 09:30:00", "100", "2024-06-21 15:00:00", " 177.95", " 183.01", "False", " 0.48", " 180.164", " 177.7795", 1.0], [2024.26, "2024-06-24 09:30:00", "-100", "2024-06-28 15:00:00", " 184.95", " 197.88", "False", " 0.525", " 187.008", " 178.6105", 1.0], [2024.27, "2024-07-01 09:30:00", "-100", "2024-07-05 15:00:00", " 201.02", " 251.52", "False", " 0.571", " 204.955", " 183.602", 1.0], [2024.28, "2024-07-08 09:30:00", "100", "2024-07-11 09:30:00", " 247.74", " 270.035995", "True", " 0.701", " 246.958", " 197.5075", 1.0], [2024.29, "2024-07-15 09:30:00", "-100", "2024-07-19 15:00:00", " 256.02", " 239.2", "False", " 0.675", " 258.883", " 216.7975", 1.0], [2024.3, "2024-07-22 09:30:00", "-100", "2024-07-24 09:30:00", " 244.22", " 223.961197", "True", " 0.626", " 248.676", " 233.303", 1.0], [2024.31, "2024-07-29 09:30:00", "-100", "2024-08-02 10:00:00", " 224.91", " 210.222865", "True", " 0.504", " 228.68", " 241.949", 1.0], [2024.32, "2024-08-05 09:30:00", "100", "2024-08-05 09:30:00", " 185.15", " 199.514247", "True", " 0.775", " 191.031", " 236.2555", 1.0], [2024.33, "2024-08-12 09:30:00", "100", "2024-08-15 10:00:00", " 199.02", " 212.432237", "True", " 0.504", " 197.01", " 222.3175", 1.0], [2024.34, "2024-08-19 09:30:00", "-100", "2024-08-23 15:00:00", " 217.05", " 220.32", "False", " 0.518", " 217.117", " 213.177", 1.0], [2024.35, "2024-08-26 09:30:00", "100", "2024-08-30 15:00:00", " 218.76", " 214.11", "False", " 0.489", " 217.328", " 210.879", 1.0], [2024.36, "2024-09-03 09:30:00", "-100", "2024-09-06 15:00:00", " 215.26", " 210.73", "False", " 0.522", " 216.047", " 209.2715", 1.0], [2024.37, "2024-09-09 09:30:00", "-100", "2024-09-13 15:00:00", " 216.03", " 230.29", "False", " 0.624", " 216.879", " 213.5385", 1.0], [2024.38, "2024-09-16 09:30:00", "100", "2024-09-20 15:00:00", " 229.3", " 238.25", "False", " 0.644", " 225.89", " 218.7495", 1.0], [2024.39, "2024-09-23 09:30:00", "-100", "2024-09-27 15:00:00", " 242.61", " 260.46", "False", " 0.669", " 245.968", " 223.208", 1.0], [2024.4, "2024-09-30 09:30:00", "100", "2024-10-04 15:00:00", " 259.02", " 250.08", "False", " 0.763", " 262.508", " 235.16", 1.0], [2024.41, "2024-10-07 09:30:00", "100", "2024-10-11 15:00:00", " 249.0", " 217.8", "False", " 0.701", " 246.881", " 242.7315", 1.0], [2024.42, "2024-10-14 09:30:00", "-100", "2024-10-18 15:00:00", " 220.13", " 220.7", "False", " 0.598", " 219.021", " 243.7365", 1.0], [2024.43, "2024-10-21 09:30:00", "100", "2024-10-24 09:30:00", " 218.91", " 234.838989", "True", " 0.549", " 217.696", " 239.4415", 1.0], [2024.44, "2024-10-28 09:30:00", "-100", "2024-11-01 12:00:00", " 269.95", " 248.961663", "True", " 0.567", " 268.218", " 236.2515", 1.0], [2024.45, "2024-11-04 09:30:00", "100", "2024-11-06 09:30:00", " 244.56", " 261.570463", "True", " 0.539", " 241.768", " 237.258", 1.0], [2024.46, "2024-11-11 09:30:00", "-100", "2024-11-14 10:00:00", " 346.38", " 318.049321", "True", " 0.732", " 345.854", " 254.599", 1.0], [2024.47, "2024-11-18 09:30:00", "-100", "2024-11-22 15:00:00", " 340.75", " 352.56", "False", " 0.679", " 341.486", " 281.0005", 1.0], [2024.48, "2024-11-25 09:30:00", "-100", "2024-11-27 10:00:00", " 360.56", " 330.320241", "True", " 0.63", " 356.733", " 305.7515", 1.0], [2024.49, "2024-12-02 09:30:00", "-100", "2024-12-06 15:00:00", " 352.51", " 389.22", "False", " 0.543", " 355.734", " 323.625", 1.0], [2024.5, "2024-12-09 09:30:00", "-100", "2024-12-13 15:00:00", " 397.8", " 436.23", "False", " 0.625", " 398.662", " 346.4705", 1.0], [2024.51, "2024-12-16 09:30:00", "-100", "2024-12-20 15:00:00", " 441.11", " 421.06", "False", " 0.708", " 441.734", " 371.5945", 1.0], [2024.52, "2024-12-23 09:30:00", "-100", "2024-12-27 15:00:00", " 431.0", " 431.66", "False", " 0.688", " 426.689", " 396.037", 1.0], [2025.01, "2024-12-30 09:30:00", "100", "2025-01-03 15:00:00", " 419.4", " 410.44", "False", " 0.733", " 421.8", " 416.5675", 1.0], [2025.02, "2025-01-06 09:30:00", "-100", "2025-01-10 10:00:00", " 423.22", " 383.571608", "True", " 0.713", " 420.501", " 425.0015", 1.0], [2025.03, "2025-01-13 09:30:00", "100", "2025-01-14 09:30:00", " 383.24", " 417.978702", "True", " 0.677", " 385.577", " 424.1305", 0.0], [2025.04, "2025-01-21 09:30:00", "-100", "2025-01-24 15:00:00", " 432.67", " 406.58", "False", " 0.708", " 417.007", " 416.712", 1.0], [2025.05, "2025-01-27 09:30:00", "100", "2025-01-31 15:00:00", " 394.9", " 404.6", "False", " 0.636", " 399.837", " 410.7675", 0.0], [2025.06, "2025-02-03 09:30:00", "100", "2025-02-07 15:00:00", " 386.68", " 361.62", "False", " 0.589", " 384.267", " 405.239", 0.0], [2025.07, "2025-02-10 09:30:00", "100", "2025-02-14 15:00:00", " 356.4", " 355.84", "False", " 0.516", " 353.953", " 397.815", 0.0], [2025.08, "2025-02-18 09:30:00", "100", "2025-02-21 15:00:00", " 355.22", " 337.8", "False", " 0.534", " 355.598", " 380.9495", 1.0], [2025.09, "2025-02-24 09:30:00", "-100", "2025-02-25 09:30:00", " 338.14", " 314.416585", "True", " 0.557", " 337.061", " 367.207", 0.0], [2025.1, "2025-03-03 09:30:00", "-100", "2025-03-04 09:30:00", " 300.32", " 274.415843", "True", " 0.702", " 298.757", " 340.405", 1.0], [2025.11, "2025-03-10 09:30:00", "100", "2025-03-14 15:00:00", " 252.5", " 249.98", "False", " 0.901", " 247.49", " 310.8755", 0.0], [2025.12, "2025-03-17 09:30:00", "100", "2025-03-21 15:00:00", " 245.01", " 248.71", "False", " 0.718", " 242.375", " 284.8665", 1.0], [2025.13, "2025-03-24 09:30:00", "-100", "2025-03-28 15:00:00", " 258.13", " 263.55", "False", " 0.72", " 263.314", " 259.223", 0.0], [2025.14, "2025-03-31 09:30:00", "100", "2025-04-01 11:00:00", " 249.41", " 275.336175", "True", " 0.831", " 246.706", " 254.366", 0.0], [2025.15, "2025-04-07 09:30:00", "100", "2025-04-07 10:00:00", " 223.8", " 251.878414", "True", " 1.108", " 221.791", " 253.9565", 0.0], [2025.16, "2025-04-14 09:30:00", "-100", "2025-04-17 15:00:00", " 258.3", " 241.37", "False", " 0.832", " 256.864", " 256.1455", 0.0], [2025.17, "2025-04-21 09:30:00", "100", "2025-04-23 09:30:00", " 230.27", " 252.875917", "True", " 0.834", " 228.847", " 257.065", 0.0], [2025.18, "2025-04-28 09:30:00", "-100", "2025-04-30 15:00:00", " 289.01", " 282.16", "False", " 0.676", " 290.517", " 254.254", 0.0]];
 
         // Define the dt_args
         let dt_args = {"layout": {"topStart": "pageLength", "topEnd": "search", "bottomStart": "info", "bottomEnd": "paging"}, "order": [], "warn_on_selected_rows_not_rendered": true};
@@ -1179,21 +1248,21 @@ Loading ITables v2.3.0 from the internet...
 </script>
 </div>
 </div>
-<div id="84bd0fa5" class="cell" data-execution_count="12">
+<div id="3e4f593e" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your final ledger DataFrame already populated at this point</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ledger <span class="op">=</span> ledger.<span class="bu">round</span>(<span class="dv">2</span>)  <span class="co"># Optional: clean output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="28a6814f" class="cell" data-execution_count="13">
+<div id="fd79364d" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display ledger as interactive table</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>show(ledger)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<table id="itables_f56f4c71_9dd8_4202_ba58_0ab217ec92c1" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_bedce3f9_f1b0_45a4_b8c8_57a8a4e714a9" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1270,12 +1339,12 @@ Loading ITables v2.3.0 from the internet...
 <script type="module">
     import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.js';
 
-    document.querySelectorAll("#itables_f56f4c71_9dd8_4202_ba58_0ab217ec92c1:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_bedce3f9_f1b0_45a4_b8c8_57a8a4e714a9:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
         // Define the table data
-        const data = [[8, "2024-05-13", 0.0, 0.0, 140.15, 0.0], [9, "2024-05-14", -100.0, 14286.0, 144.93, -207.0], [10, "2024-05-15", -100.0, 14286.0, 149.82, -696.0], [11, "2024-05-16", -100.0, 14286.0, 146.66, -380.0], [12, "2024-05-17", -100.0, 14286.0, 145.6, -274.0], [13, "2024-05-20", 0.0, -274.0, 144.56, -274.0], [14, "2024-05-21", 100.0, -14788.0, 143.62, -426.0], [15, "2024-05-22", 100.0, -14788.0, 144.75, -313.0], [16, "2024-05-23", 100.0, -14788.0, 144.75, -313.0], [17, "2024-05-24", 100.0, -14788.0, 146.01, -187.0], [18, "2024-05-28", 0.0, -187.0, 144.34, -187.0], [19, "2024-05-29", -100.0, 14438.0, 142.17, 221.0], [20, "2024-05-30", -100.0, 14438.0, 142.98, 140.0], [21, "2024-05-31", -100.0, 14438.0, 140.17, 421.0], [22, "2024-06-03", 0.0, 256.62, 138.2, 256.62], [23, "2024-06-04", 0.0, 752.67, 135.19, 752.67], [24, "2024-06-05", 0.0, 752.67, 139.56, 752.67], [25, "2024-06-06", 0.0, 752.67, 134.0, 752.67], [26, "2024-06-07", 0.0, 752.67, 132.93, 752.67], [27, "2024-06-10", 0.0, 752.67, 136.84, 752.67], [28, "2024-06-11", 0.0, 1239.94, 135.78, 1239.94], [29, "2024-06-12", 0.0, 1239.94, 137.49, 1239.94], [30, "2024-06-13", 0.0, 1239.94, 133.76, 1239.94], [31, "2024-06-14", 0.0, 1239.94, 132.63, 1239.94], [32, "2024-06-17", 0.0, 1239.94, 134.03, 1239.94], [33, "2024-06-18", -100.0, 14531.94, 135.0, 1031.94], [34, "2024-06-20", -100.0, 14531.94, 134.71, 1060.94], [35, "2024-06-21", -100.0, 14531.94, 131.79, 1352.94], [36, "2024-06-24", 0.0, 1352.94, 133.85, 1352.94], [37, "2024-06-25", -100.0, 14562.94, 135.35, 1027.94], [38, "2024-06-26", -100.0, 14562.94, 135.45, 1017.94], [39, "2024-06-27", -100.0, 14562.94, 135.95, 967.94], [40, "2024-06-28", -100.0, 14562.94, 133.28, 1234.94], [41, "2024-07-01", 0.0, 1234.94, 136.2, 1234.94], [42, "2024-07-02", -100.0, 14672.94, 135.45, 1127.94], [43, "2024-07-03", -100.0, 14672.94, 138.35, 837.94], [44, "2024-07-05", -100.0, 14672.94, 138.26, 846.94], [45, "2024-07-08", 0.0, 846.94, 135.77, 846.94], [46, "2024-07-09", -100.0, 14690.94, 134.78, 1212.94], [47, "2024-07-10", -100.0, 14690.94, 138.74, 816.94], [48, "2024-07-11", -100.0, 14690.94, 141.1, 580.94], [49, "2024-07-12", -100.0, 14690.94, 142.55, 435.94], [50, "2024-07-15", 0.0, 435.94, 145.98, 435.94], [51, "2024-07-16", -100.0, 14766.94, 148.0, -33.06], [52, "2024-07-17", -100.0, 14766.94, 143.72, 394.94], [53, "2024-07-18", -100.0, 14766.94, 147.39, 27.94], [54, "2024-07-19", -100.0, 14766.94, 147.3, 36.94], [55, "2024-07-22", 0.0, 36.94, 150.79, 36.94], [56, "2024-07-23", -100.0, 14883.94, 150.79, -195.06], [57, "2024-07-24", -100.0, 14883.94, 144.51, 432.94], [58, "2024-07-25", -100.0, 14883.94, 145.3, 353.94], [59, "2024-07-26", -100.0, 14883.94, 147.1, 173.94], [60, "2024-07-29", 0.0, 173.94, 145.35, 173.94], [61, "2024-07-30", -100.0, 14956.94, 149.58, -1.06], [62, "2024-07-31", -100.0, 14956.94, 153.2, -363.06], [63, "2024-08-01", -100.0, 14956.94, 149.16, 40.94], [64, "2024-08-02", -100.0, 14956.94, 139.26, 1030.94], [65, "2024-08-05", 0.0, 794.28, 133.73, 794.28], [66, "2024-08-06", 100.0, -12305.72, 135.75, 1269.28], [67, "2024-08-07", 0.0, 1404.99, 135.28, 1404.99], [68, "2024-08-08", 0.0, 1404.99, 138.96, 1404.99], [69, "2024-08-09", 0.0, 1404.99, 141.54, 1404.99], [70, "2024-08-12", 0.0, 1404.99, 140.34, 1404.99], [71, "2024-08-13", 100.0, -12749.01, 141.54, 1404.99], [72, "2024-08-14", 100.0, -12749.01, 143.83, 1633.99], [73, "2024-08-15", 100.0, -12749.01, 145.6, 1810.99], [74, "2024-08-16", 100.0, -12749.01, 145.0, 1750.99], [75, "2024-08-19", 0.0, 1750.99, 144.58, 1750.99], [76, "2024-08-20", -100.0, 16298.99, 144.71, 1827.99], [77, "2024-08-21", -100.0, 16298.99, 144.5, 1848.99], [78, "2024-08-22", -100.0, 16298.99, 143.5, 1948.99], [79, "2024-08-23", -100.0, 16298.99, 147.0, 1598.99], [80, "2024-08-26", 0.0, 1598.99, 146.96, 1598.99], [81, "2024-08-27", -100.0, 16348.99, 146.14, 1734.99], [82, "2024-08-28", -100.0, 16348.99, 145.19, 1829.99], [83, "2024-08-29", -100.0, 16348.99, 144.35, 1913.99], [84, "2024-08-30", -100.0, 16348.99, 146.4, 1708.99], [85, "2024-09-03", 0.0, 1708.99, 142.02, 1708.99], [86, "2024-09-04", 100.0, -12851.01, 140.86, 1234.99], [87, "2024-09-05", 100.0, -12851.01, 141.05, 1253.99], [88, "2024-09-06", 100.0, -12851.01, 137.45, 893.99], [89, "2024-09-09", 0.0, 893.99, 140.08, 893.99], [90, "2024-09-10", -100.0, 14786.99, 140.09, 777.99], [91, "2024-09-11", -100.0, 14786.99, 141.46, 640.99], [92, "2024-09-12", -100.0, 14786.99, 143.84, 402.99], [93, "2024-09-13", -100.0, 14786.99, 147.4, 46.99], [94, "2024-09-16", 0.0, 46.99, 149.39, 46.99], [95, "2024-09-17", 100.0, -14619.01, 152.8, 660.99], [96, "2024-09-18", 0.0, 587.97, 152.35, 587.97], [97, "2024-09-19", 0.0, 587.97, 156.51, 587.97], [98, "2024-09-20", 0.0, 587.97, 156.66, 587.97], [99, "2024-09-23", 0.0, 587.97, 156.25, 587.97], [100, "2024-09-24", -100.0, 16353.97, 157.33, 620.97], [101, "2024-09-25", -100.0, 16353.97, 158.05, 548.97], [102, "2024-09-26", -100.0, 16353.97, 156.05, 748.97], [103, "2024-09-27", -100.0, 16353.97, 156.91, 662.97], [104, "2024-09-30", 0.0, 662.97, 155.84, 662.97], [105, "2024-10-01", 100.0, -14977.03, 156.31, 653.97], [106, "2024-10-02", 100.0, -14977.03, 158.05, 827.97], [107, "2024-10-03", 100.0, -14977.03, 157.05, 727.97], [108, "2024-10-04", 100.0, -14977.03, 160.39, 1061.97], [109, "2024-10-07", 0.0, 1061.97, 160.56, 1061.97], [110, "2024-10-08", -100.0, 17104.97, 153.38, 1766.97], [111, "2024-10-09", 0.0, 1750.93, 158.16, 1750.93], [112, "2024-10-10", 0.0, 1750.93, 157.81, 1750.93], [113, "2024-10-11", 0.0, 1750.93, 161.95, 1750.93], [114, "2024-10-14", 0.0, 1750.93, 163.35, 1750.93], [115, "2024-10-15", -100.0, 18050.93, 162.63, 1787.93], [116, "2024-10-16", -100.0, 18050.93, 163.48, 1702.93], [117, "2024-10-17", -100.0, 18050.93, 168.73, 1177.93], [118, "2024-10-18", -100.0, 18050.93, 169.89, 1061.93], [119, "2024-10-21", 0.0, 1061.93, 168.69, 1061.93], [120, "2024-10-22", 100.0, -15909.07, 167.78, 868.93], [121, "2024-10-23", 100.0, -15909.07, 167.38, 828.93], [122, "2024-10-24", 100.0, -15909.07, 170.83, 1173.93], [123, "2024-10-25", 100.0, -15909.07, 169.47, 1037.93], [124, "2024-10-28", 0.0, 1037.93, 170.98, 1037.93], [125, "2024-10-29", -100.0, 18105.93, 170.4, 1065.93], [126, "2024-10-30", -100.0, 18105.93, 169.0, 1205.93], [127, "2024-10-31", -100.0, 18105.93, 167.68, 1337.93], [128, "2024-11-01", -100.0, 18105.93, 161.87, 1918.93], [129, "2024-11-04", 0.0, 1778.8, 159.68, 1778.8], [130, "2024-11-05", 100.0, -14246.2, 164.44, 2197.8], [131, "2024-11-06", 100.0, -14246.2, 172.5, 3003.8], [132, "2024-11-07", 0.0, 2453.06, 168.27, 2453.06], [133, "2024-11-08", 0.0, 2453.06, 170.38, 2453.06], [134, "2024-11-11", 0.0, 2453.06, 171.38, 2453.06], [135, "2024-11-12", -100.0, 19665.06, 170.5, 2615.06], [136, "2024-11-13", -100.0, 19665.06, 167.45, 2920.06], [137, "2024-11-14", -100.0, 19665.06, 169.02, 2763.06], [138, "2024-11-15", -100.0, 19665.06, 167.21, 2944.06], [139, "2024-11-18", 0.0, 2944.06, 167.43, 2944.06], [140, "2024-11-19", -100.0, 19694.06, 170.35, 2659.06], [141, "2024-11-20", -100.0, 19694.06, 171.89, 2505.06], [142, "2024-11-21", -100.0, 19694.06, 175.01, 2193.06], [143, "2024-11-22", -100.0, 19694.06, 175.52, 2142.06], [144, "2024-11-25", 0.0, 2142.06, 176.03, 2142.06], [145, "2024-11-26", -100.0, 19842.06, 178.83, 1959.06], [146, "2024-11-27", -100.0, 19842.06, 174.78, 2364.06], [147, "2024-11-29", -100.0, 19842.06, 176.73, 2169.06], [148, "2024-12-02", 0.0, 2169.06, 173.95, 2169.06], [149, "2024-12-03", -100.0, 19877.06, 175.05, 2372.06], [150, "2024-12-04", -100.0, 19877.06, 176.85, 2192.06], [151, "2024-12-05", -100.0, 19877.06, 177.07, 2170.06], [152, "2024-12-06", -100.0, 19877.06, 178.07, 2070.06], [153, "2024-12-09", 0.0, 2070.06, 175.29, 2070.06], [154, "2024-12-10", -100.0, 19920.06, 176.11, 2309.06], [155, "2024-12-11", -100.0, 19920.06, 182.45, 1675.06], [156, "2024-12-12", -100.0, 19920.06, 182.74, 1646.06], [157, "2024-12-13", -100.0, 19920.06, 182.45, 1675.06], [158, "2024-12-16", 0.0, 1675.06, 183.7, 1675.06], [159, "2024-12-17", 100.0, -16552.94, 178.33, 1280.06], [160, "2024-12-18", 100.0, -16552.94, 169.22, 369.06], [161, "2024-12-19", 100.0, -16552.94, 171.08, 555.06], [162, "2024-12-20", 100.0, -16552.94, 176.04, 1051.06], [163, "2024-12-23", 0.0, 1051.06, 179.0, 1051.06], [164, "2024-12-24", 100.0, -16488.94, 181.06, 1617.06], [165, "2024-12-26", 100.0, -16488.94, 182.72, 1783.06], [166, "2024-12-27", 0.0, 1737.13, 179.5, 1737.13], [167, "2024-12-30", 0.0, 1737.13, 179.02, 1737.13], [168, "2024-12-31", 100.0, -15954.87, 177.03, 1748.13], [169, "2025-01-02", 100.0, -15954.87, 178.83, 1928.13], [170, "2025-01-03", 100.0, -15954.87, 181.11, 2156.13], [171, "2025-01-06", 0.0, 2156.13, 180.3, 2156.13], [172, "2025-01-07", -100.0, 20484.13, 178.37, 2647.13], [173, "2025-01-08", 0.0, 2875.12, 182.3, 2875.12], [174, "2025-01-10", 0.0, 2875.12, 175.04, 2875.12], [175, "2025-01-13", 0.0, 2875.12, 175.49, 2875.12], [176, "2025-01-14", 100.0, -14401.88, 179.17, 3515.12], [177, "2025-01-15", 0.0, 3600.72, 184.5, 3600.72], [178, "2025-01-16", 0.0, 3600.72, 187.9, 3600.72], [179, "2025-01-17", 0.0, 3600.72, 191.32, 3600.72], [180, "2025-01-21", 0.0, 3600.72, 194.72, 3600.72], [181, "2025-01-22", -100.0, 22858.72, 193.81, 3477.72], [182, "2025-01-23", -100.0, 22858.72, 195.9, 3268.72], [183, "2025-01-24", -100.0, 22858.72, 197.32, 3126.72], [184, "2025-01-27", 0.0, 3126.72, 189.98, 3126.72], [185, "2025-01-28", 100.0, -16014.28, 193.6, 3345.72], [186, "2025-01-29", 100.0, -16014.28, 193.42, 3327.72], [187, "2025-01-30", 100.0, -16014.28, 198.08, 3793.72], [188, "2025-01-31", 100.0, -16014.28, 198.22, 3807.72], [189, "2025-02-03", 0.0, 3918.85, 196.52, 3918.85], [190, "2025-02-04", 100.0, -15379.15, 195.36, 4156.85], [191, "2025-02-05", 100.0, -15379.15, 189.65, 3585.85], [192, "2025-02-06", 100.0, -15379.15, 191.67, 3787.85], [193, "2025-02-07", 100.0, -15379.15, 190.34, 3654.85], [194, "2025-02-10", 0.0, 3654.85, 189.98, 3654.85], [195, "2025-02-11", -100.0, 22791.85, 186.37, 4154.85], [196, "2025-02-12", 0.0, 4400.27, 182.81, 4400.27], [197, "2025-02-13", 0.0, 4400.27, 184.39, 4400.27], [198, "2025-02-14", 0.0, 4400.27, 186.18, 4400.27], [199, "2025-02-18", 0.0, 4400.27, 187.67, 4400.27], [200, "2025-02-19", -100.0, 23143.27, 186.74, 4469.27], [201, "2025-02-20", -100.0, 23143.27, 179.69, 5174.27], [202, "2025-02-21", 0.0, 5075.5, 174.09, 5075.5], [203, "2025-02-24", 0.0, 5075.5, 168.91, 5075.5], [204, "2025-02-25", -100.0, 22508.5, 167.36, 5772.5], [205, "2025-02-26", 0.0, 5800.29, 168.97, 5800.29], [206, "2025-02-27", 0.0, 5800.29, 167.12, 5800.29], [207, "2025-02-28", 0.0, 5800.29, 170.94, 5800.29], [208, "2025-03-03", 0.0, 5800.29, 169.76, 5800.29], [209, "2025-03-04", -100.0, 23263.29, 160.99, 7164.29], [210, "2025-03-05", 0.0, 6646.46, 163.0, 6646.46], [211, "2025-03-06", 0.0, 6646.46, 153.37, 6646.46], [212, "2025-03-07", 0.0, 6646.46, 154.96, 6646.46], [213, "2025-03-10", 0.0, 6646.46, 141.24, 6646.46], [214, "2025-03-11", 100.0, -8099.54, 143.01, 6201.46], [215, "2025-03-12", 100.0, -8099.54, 145.93, 6493.46], [216, "2025-03-13", 100.0, -8099.54, 140.19, 5919.46], [217, "2025-03-14", 100.0, -8099.54, 144.36, 6336.46], [218, "2025-03-17", 0.0, 6336.46, 147.11, 6336.46], [219, "2025-03-18", 100.0, -7953.54, 144.02, 6448.46], [220, "2025-03-19", 100.0, -7953.54, 147.61, 6807.46], [221, "2025-03-20", 100.0, -7953.54, 147.34, 6780.46], [222, "2025-03-21", 100.0, -7953.54, 147.71, 6817.46], [223, "2025-03-24", 0.0, 6817.46, 153.75, 6817.46], [224, "2025-03-25", -100.0, 21921.46, 155.63, 6358.46], [225, "2025-03-26", -100.0, 21921.46, 153.28, 6593.46], [226, "2025-03-27", -100.0, 21921.46, 148.4, 7081.46], [227, "2025-03-28", -100.0, 21921.46, 144.9, 7431.46], [228, "2025-03-31", 0.0, 7586.76, 146.61, 7586.76], [229, "2025-04-01", 100.0, -6613.24, 149.44, 8330.76], [230, "2025-04-02", 0.0, 8363.76, 154.5, 8363.76], [231, "2025-04-03", 0.0, 8363.76, 130.59, 8363.76], [232, "2025-04-04", 0.0, 8363.76, 118.04, 8363.76], [233, "2025-04-07", 0.0, 8363.76, 124.73, 8363.76], [234, "2025-04-08", 0.0, 9554.81, 123.21, 9554.81], [235, "2025-04-09", 0.0, 9554.81, 142.37, 9554.81], [236, "2025-04-10", 0.0, 9554.81, 135.77, 9554.81], [237, "2025-04-11", 0.0, 9554.81, 137.74, 9554.81], [238, "2025-04-14", 0.0, 9554.81, 138.38, 9554.81], [239, "2025-04-15", -100.0, 23658.81, 141.32, 9526.81], [240, "2025-04-16", -100.0, 23658.81, 139.6, 9698.81], [241, "2025-04-17", -100.0, 23658.81, 141.24, 9534.81], [242, "2025-04-21", 0.0, 9534.81, 137.08, 9534.81], [243, "2025-04-22", 100.0, -4335.19, 141.72, 9836.81], [244, "2025-04-23", 100.0, -4335.19, 145.95, 10259.81], [245, "2025-04-24", 0.0, 10412.95, 152.97, 10412.95], [246, "2025-04-25", 0.0, 10412.95, 153.88, 10412.95], [247, "2025-04-28", 0.0, 10412.95, 153.38, 10412.95], [248, "2025-04-29", -100.0, 25806.95, 152.79, 10527.95], [249, "2025-04-30", -100.0, 25806.95, 149.48, 10858.95]];
+        const data = [[8, "2024-05-13", 0.0, 0.0, 171.89, 0.0], [9, "2024-05-14", -100.0, 17000.0, 177.55, -755.0], [10, "2024-05-15", -100.0, 17000.0, 173.99, -399.0], [11, "2024-05-16", -100.0, 17000.0, 174.84, -484.0], [12, "2024-05-17", -100.0, 17000.0, 177.46, -746.0], [13, "2024-05-20", 0.0, -746.0, 174.95, -746.0], [14, "2024-05-21", -100.0, 17016.0, 186.6, -1644.0], [15, "2024-05-22", -100.0, 17016.0, 180.11, -995.0], [16, "2024-05-23", -100.0, 17016.0, 173.74, -358.0], [17, "2024-05-24", -100.0, 17016.0, 179.24, -908.0], [18, "2024-05-28", 0.0, -908.0, 176.75, -908.0], [19, "2024-05-29", 100.0, -18551.0, 176.19, -932.0], [20, "2024-05-30", 100.0, -18551.0, 178.79, -672.0], [21, "2024-05-31", 100.0, -18551.0, 178.08, -743.0], [22, "2024-06-03", 0.0, -743.0, 176.29, -743.0], [23, "2024-06-04", -100.0, 17070.0, 174.77, -407.0], [24, "2024-06-05", -100.0, 17070.0, 175.0, -430.0], [25, "2024-06-06", -100.0, 17070.0, 177.94, -724.0], [26, "2024-06-07", -100.0, 17070.0, 177.48, -678.0], [27, "2024-06-10", 0.0, -678.0, 173.79, -678.0], [28, "2024-06-11", 100.0, -18289.0, 170.66, -1223.0], [29, "2024-06-12", 100.0, -18289.0, 177.29, -560.0], [30, "2024-06-13", 100.0, -18289.0, 182.47, -42.0], [31, "2024-06-14", 0.0, 487.16, 178.01, 487.16], [32, "2024-06-17", 0.0, 487.16, 187.44, 487.16], [33, "2024-06-18", 100.0, -17307.84, 184.86, 1178.16], [34, "2024-06-20", 100.0, -17307.84, 181.57, 849.16], [35, "2024-06-21", 100.0, -17307.84, 183.01, 993.16], [36, "2024-06-24", 0.0, 993.16, 182.58, 993.16], [37, "2024-06-25", -100.0, 19488.16, 187.35, 753.16], [38, "2024-06-26", -100.0, 19488.16, 196.37, -148.84], [39, "2024-06-27", -100.0, 19488.16, 197.42, -253.84], [40, "2024-06-28", -100.0, 19488.16, 197.88, -299.84], [41, "2024-07-01", 0.0, -299.84, 209.86, -299.84], [42, "2024-07-02", -100.0, 19802.16, 231.26, -3323.84], [43, "2024-07-03", -100.0, 19802.16, 246.39, -4836.84], [44, "2024-07-05", -100.0, 19802.16, 251.52, -5349.84], [45, "2024-07-08", 0.0, -5349.84, 252.94, -5349.84], [46, "2024-07-09", 100.0, -30123.84, 262.33, -3890.84], [47, "2024-07-10", 100.0, -30123.84, 263.26, -3797.84], [48, "2024-07-11", 100.0, -30123.84, 241.03, -6020.84], [49, "2024-07-12", 0.0, -3120.24, 248.23, -3120.24], [50, "2024-07-15", 0.0, -3120.24, 252.64, -3120.24], [51, "2024-07-16", -100.0, 22481.76, 256.56, -3174.24], [52, "2024-07-17", -100.0, 22481.76, 248.5, -2368.24], [53, "2024-07-18", -100.0, 22481.76, 249.23, -2441.24], [54, "2024-07-19", -100.0, 22481.76, 239.2, -1438.24], [55, "2024-07-22", 0.0, -1438.24, 251.51, -1438.24], [56, "2024-07-23", -100.0, 22983.76, 246.38, -1654.24], [57, "2024-07-24", -100.0, 22983.76, 215.99, 1384.76], [58, "2024-07-25", 0.0, 587.64, 220.25, 587.64], [59, "2024-07-26", 0.0, 587.64, 219.8, 587.64], [60, "2024-07-29", 0.0, 587.64, 232.1, 587.64], [61, "2024-07-30", -100.0, 23078.64, 222.62, 816.64], [62, "2024-07-31", -100.0, 23078.64, 232.07, -128.36], [63, "2024-08-01", -100.0, 23078.64, 216.86, 1392.64], [64, "2024-08-02", -100.0, 23078.64, 207.67, 2311.64], [65, "2024-08-05", 0.0, 2056.35, 198.88, 2056.35], [66, "2024-08-06", 0.0, 3492.78, 200.64, 3492.78], [67, "2024-08-07", 0.0, 3492.78, 191.76, 3492.78], [68, "2024-08-08", 0.0, 3492.78, 198.84, 3492.78], [69, "2024-08-09", 0.0, 3492.78, 200.0, 3492.78], [70, "2024-08-12", 0.0, 3492.78, 197.49, 3492.78], [71, "2024-08-13", 100.0, -16409.22, 207.83, 4373.78], [72, "2024-08-14", 100.0, -16409.22, 201.38, 3728.78], [73, "2024-08-15", 100.0, -16409.22, 214.14, 5004.78], [74, "2024-08-16", 0.0, 4834.0, 216.12, 4834.0], [75, "2024-08-19", 0.0, 4834.0, 222.72, 4834.0], [76, "2024-08-20", -100.0, 26539.0, 221.1, 4429.0], [77, "2024-08-21", -100.0, 26539.0, 223.27, 4212.0], [78, "2024-08-22", -100.0, 26539.0, 210.66, 5473.0], [79, "2024-08-23", -100.0, 26539.0, 220.32, 4507.0], [80, "2024-08-26", 0.0, 4507.0, 213.21, 4507.0], [81, "2024-08-27", 100.0, -17369.0, 209.21, 3552.0], [82, "2024-08-28", 100.0, -17369.0, 205.75, 3206.0], [83, "2024-08-29", 100.0, -17369.0, 206.28, 3259.0], [84, "2024-08-30", 100.0, -17369.0, 214.11, 4042.0], [85, "2024-09-03", 0.0, 4042.0, 210.6, 4042.0], [86, "2024-09-04", -100.0, 25568.0, 219.41, 3627.0], [87, "2024-09-05", -100.0, 25568.0, 230.17, 2551.0], [88, "2024-09-06", -100.0, 25568.0, 210.73, 4495.0], [89, "2024-09-09", 0.0, 4495.0, 216.27, 4495.0], [90, "2024-09-10", -100.0, 26098.0, 226.17, 3481.0], [91, "2024-09-11", -100.0, 26098.0, 228.13, 3285.0], [92, "2024-09-12", -100.0, 26098.0, 229.81, 3117.0], [93, "2024-09-13", -100.0, 26098.0, 230.29, 3069.0], [94, "2024-09-16", 0.0, 3069.0, 226.78, 3069.0], [95, "2024-09-17", 100.0, -19861.0, 227.87, 2926.0], [96, "2024-09-18", 100.0, -19861.0, 227.2, 2859.0], [97, "2024-09-19", 100.0, -19861.0, 243.92, 4531.0], [98, "2024-09-20", 100.0, -19861.0, 238.25, 3964.0], [99, "2024-09-23", 0.0, 3964.0, 250.0, 3964.0], [100, "2024-09-24", -100.0, 28225.0, 254.27, 2798.0], [101, "2024-09-25", -100.0, 28225.0, 257.02, 2523.0], [102, "2024-09-26", -100.0, 28225.0, 254.22, 2803.0], [103, "2024-09-27", -100.0, 28225.0, 260.46, 2179.0], [104, "2024-09-30", 0.0, 2179.0, 261.63, 2179.0], [105, "2024-10-01", 100.0, -23723.0, 258.02, 2079.0], [106, "2024-10-02", 100.0, -23723.0, 249.02, 1179.0], [107, "2024-10-03", 100.0, -23723.0, 240.66, 343.0], [108, "2024-10-04", 100.0, -23723.0, 250.08, 1285.0], [109, "2024-10-07", 0.0, 1285.0, 240.83, 1285.0], [110, "2024-10-08", 100.0, -23615.0, 244.5, 835.0], [111, "2024-10-09", 100.0, -23615.0, 241.05, 490.0], [112, "2024-10-10", 100.0, -23615.0, 238.77, 262.0], [113, "2024-10-11", 100.0, -23615.0, 217.8, -1835.0], [114, "2024-10-14", 0.0, -1835.0, 219.16, -1835.0], [115, "2024-10-15", -100.0, 20178.0, 219.57, -1779.0], [116, "2024-10-16", -100.0, 20178.0, 221.33, -1955.0], [117, "2024-10-17", -100.0, 20178.0, 220.89, -1911.0], [118, "2024-10-18", -100.0, 20178.0, 220.7, -1892.0], [119, "2024-10-21", 0.0, -1892.0, 218.85, -1892.0], [120, "2024-10-22", 100.0, -23783.0, 217.97, -1986.0], [121, "2024-10-23", 100.0, -23783.0, 213.65, -2418.0], [122, "2024-10-24", 100.0, -23783.0, 260.48, 2265.0], [123, "2024-10-25", 0.0, -299.1, 269.19, -299.1], [124, "2024-10-28", 0.0, -299.1, 262.51, -299.1], [125, "2024-10-29", -100.0, 26695.9, 259.52, 743.9], [126, "2024-10-30", -100.0, 26695.9, 257.55, 940.9], [127, "2024-10-31", -100.0, 26695.9, 249.85, 1710.9], [128, "2024-11-01", -100.0, 26695.9, 248.98, 1797.9], [129, "2024-11-04", 0.0, 1799.73, 242.84, 1799.73], [130, "2024-11-05", 100.0, -22656.27, 251.44, 2487.73], [131, "2024-11-06", 100.0, -22656.27, 288.53, 6196.73], [132, "2024-11-07", 0.0, 3500.78, 296.91, 3500.78], [133, "2024-11-08", 0.0, 3500.78, 321.22, 3500.78], [134, "2024-11-11", 0.0, 3500.78, 350.0, 3500.78], [135, "2024-11-12", -100.0, 38138.78, 328.49, 5289.78], [136, "2024-11-13", -100.0, 38138.78, 330.24, 5114.78], [137, "2024-11-14", -100.0, 38138.78, 311.18, 7020.78], [138, "2024-11-15", 0.0, 6333.85, 320.72, 6333.85], [139, "2024-11-18", 0.0, 6333.85, 338.74, 6333.85], [140, "2024-11-19", -100.0, 40408.85, 346.0, 5808.85], [141, "2024-11-20", -100.0, 40408.85, 342.03, 6205.85], [142, "2024-11-21", -100.0, 40408.85, 339.64, 6444.85], [143, "2024-11-22", -100.0, 40408.85, 352.56, 5152.85], [144, "2024-11-25", 0.0, 5152.85, 338.59, 5152.85], [145, "2024-11-26", -100.0, 41208.85, 338.23, 7385.85], [146, "2024-11-27", -100.0, 41208.85, 332.89, 7919.85], [147, "2024-11-29", 0.0, 8176.82, 345.16, 8176.82], [148, "2024-12-02", 0.0, 8176.82, 357.09, 8176.82], [149, "2024-12-03", -100.0, 43427.82, 351.42, 8285.82], [150, "2024-12-04", -100.0, 43427.82, 357.93, 7634.82], [151, "2024-12-05", -100.0, 43427.82, 369.49, 6478.82], [152, "2024-12-06", -100.0, 43427.82, 389.22, 4505.82], [153, "2024-12-09", 0.0, 4505.82, 389.79, 4505.82], [154, "2024-12-10", -100.0, 44285.82, 400.99, 4186.82], [155, "2024-12-11", -100.0, 44285.82, 424.77, 1808.82], [156, "2024-12-12", -100.0, 44285.82, 418.1, 2475.82], [157, "2024-12-13", -100.0, 44285.82, 436.23, 662.82], [158, "2024-12-16", 0.0, 662.82, 463.02, 662.82], [159, "2024-12-17", -100.0, 44773.82, 479.86, -3212.18], [160, "2024-12-18", -100.0, 44773.82, 440.13, 760.82], [161, "2024-12-19", -100.0, 44773.82, 436.17, 1156.82], [162, "2024-12-20", -100.0, 44773.82, 421.06, 2667.82], [163, "2024-12-23", 0.0, 2667.82, 430.6, 2667.82], [164, "2024-12-24", -100.0, 45767.82, 462.28, -460.18], [165, "2024-12-26", -100.0, 45767.82, 454.13, 354.82], [166, "2024-12-27", -100.0, 45767.82, 431.66, 2601.82], [167, "2024-12-30", 0.0, 2601.82, 417.41, 2601.82], [168, "2024-12-31", 100.0, -39338.18, 403.84, 1045.82], [169, "2025-01-02", 100.0, -39338.18, 379.28, -1410.18], [170, "2025-01-03", 100.0, -39338.18, 410.44, 1705.82], [171, "2025-01-06", 0.0, 1705.82, 411.05, 1705.82], [172, "2025-01-07", -100.0, 44027.82, 394.36, 4591.82], [173, "2025-01-08", -100.0, 44027.82, 394.94, 4533.82], [174, "2025-01-10", -100.0, 44027.82, 394.74, 4553.82], [175, "2025-01-13", 0.0, 5670.66, 403.31, 5670.66], [176, "2025-01-14", 100.0, -32653.34, 396.36, 6982.66], [177, "2025-01-15", 0.0, 9144.53, 428.22, 9144.53], [178, "2025-01-16", 0.0, 9144.53, 413.82, 9144.53], [179, "2025-01-17", 0.0, 9144.53, 426.5, 9144.53], [180, "2025-01-21", 0.0, 9144.53, 424.07, 9144.53], [181, "2025-01-22", -100.0, 52411.53, 415.11, 10900.53], [182, "2025-01-23", -100.0, 52411.53, 412.38, 11173.53], [183, "2025-01-24", -100.0, 52411.53, 406.58, 11753.53], [184, "2025-01-27", 0.0, 11753.53, 397.15, 11753.53], [185, "2025-01-28", 100.0, -27736.47, 398.09, 12072.53], [186, "2025-01-29", 100.0, -27736.47, 389.1, 11173.53], [187, "2025-01-30", 100.0, -27736.47, 400.28, 12291.53], [188, "2025-01-31", 100.0, -27736.47, 404.6, 12723.53], [189, "2025-02-03", 0.0, 12723.53, 383.68, 12723.53], [190, "2025-02-04", 100.0, -25944.47, 392.21, 13276.53], [191, "2025-02-05", 100.0, -25944.47, 378.17, 11872.53], [192, "2025-02-06", 100.0, -25944.47, 374.32, 11487.53], [193, "2025-02-07", 100.0, -25944.47, 361.62, 10217.53], [194, "2025-02-10", 0.0, 10217.53, 350.73, 10217.53], [195, "2025-02-11", 100.0, -25422.47, 328.5, 7427.53], [196, "2025-02-12", 100.0, -25422.47, 336.51, 8228.53], [197, "2025-02-13", 100.0, -25422.47, 355.94, 10171.53], [198, "2025-02-14", 100.0, -25422.47, 355.84, 10161.53], [199, "2025-02-18", 0.0, 10161.53, 354.11, 10161.53], [200, "2025-02-19", 100.0, -25360.47, 360.56, 10695.53], [201, "2025-02-20", 100.0, -25360.47, 354.4, 10079.53], [202, "2025-02-21", 100.0, -25360.47, 337.8, 8419.53], [203, "2025-02-24", 0.0, 8419.53, 330.53, 8419.53], [204, "2025-02-25", -100.0, 42233.53, 302.8, 11953.53], [205, "2025-02-26", 0.0, 10791.87, 290.8, 10791.87], [206, "2025-02-27", 0.0, 10791.87, 281.95, 10791.87], [207, "2025-02-28", 0.0, 10791.87, 292.98, 10791.87], [208, "2025-03-03", 0.0, 10791.87, 284.65, 10791.87], [209, "2025-03-04", -100.0, 40823.87, 272.04, 13619.87], [210, "2025-03-05", 0.0, 13382.29, 279.1, 13382.29], [211, "2025-03-06", 0.0, 13382.29, 263.45, 13382.29], [212, "2025-03-07", 0.0, 13382.29, 262.67, 13382.29], [213, "2025-03-10", 0.0, 13382.29, 222.15, 13382.29], [214, "2025-03-11", 100.0, -11867.71, 230.58, 11190.29], [215, "2025-03-12", 100.0, -11867.71, 248.09, 12941.29], [216, "2025-03-13", 100.0, -11867.71, 240.68, 12200.29], [217, "2025-03-14", 100.0, -11867.71, 249.98, 13130.29], [218, "2025-03-17", 0.0, 13130.29, 238.01, 13130.29], [219, "2025-03-18", 100.0, -11370.71, 225.31, 11160.29], [220, "2025-03-19", 100.0, -11370.71, 235.86, 12215.29], [221, "2025-03-20", 100.0, -11370.71, 236.26, 12255.29], [222, "2025-03-21", 100.0, -11370.71, 248.71, 13500.29], [223, "2025-03-24", 0.0, 13500.29, 278.39, 13500.29], [224, "2025-03-25", -100.0, 39313.29, 288.14, 10499.29], [225, "2025-03-26", -100.0, 39313.29, 272.06, 12107.29], [226, "2025-03-27", -100.0, 39313.29, 273.13, 12000.29], [227, "2025-03-28", -100.0, 39313.29, 263.55, 12958.29], [228, "2025-03-31", 0.0, 12958.29, 259.16, 12958.29], [229, "2025-04-01", 100.0, -11982.71, 268.46, 14863.29], [230, "2025-04-02", 0.0, 15550.91, 282.76, 15550.91], [231, "2025-04-03", 0.0, 15550.91, 267.28, 15550.91], [232, "2025-04-04", 0.0, 15550.91, 239.43, 15550.91], [233, "2025-04-07", 0.0, 15550.91, 233.29, 15550.91], [234, "2025-04-08", 0.0, 18358.75, 221.86, 18358.75], [235, "2025-04-09", 0.0, 18358.75, 272.2, 18358.75], [236, "2025-04-10", 0.0, 18358.75, 252.4, 18358.75], [237, "2025-04-11", 0.0, 18358.75, 252.31, 18358.75], [238, "2025-04-14", 0.0, 18358.75, 252.35, 18358.75], [239, "2025-04-15", -100.0, 44188.75, 254.11, 18777.75], [240, "2025-04-16", -100.0, 44188.75, 241.55, 20033.75], [241, "2025-04-17", -100.0, 44188.75, 241.37, 20051.75], [242, "2025-04-21", 0.0, 20051.75, 227.5, 20051.75], [243, "2025-04-22", 100.0, -2975.25, 237.97, 20821.75], [244, "2025-04-23", 100.0, -2975.25, 250.74, 22098.75], [245, "2025-04-24", 0.0, 22312.34, 259.51, 22312.34], [246, "2025-04-25", 0.0, 22312.34, 284.95, 22312.34], [247, "2025-04-28", 0.0, 22312.34, 285.88, 22312.34], [248, "2025-04-29", -100.0, 51213.34, 292.03, 22010.34], [249, "2025-04-30", -100.0, 51213.34, 282.16, 22997.34]];
 
         // Define the dt_args
         let dt_args = {"layout": {"topStart": "pageLength", "topEnd": "search", "bottomStart": "info", "bottomEnd": "paging"}, "order": [], "warn_on_selected_rows_not_rendered": true};
@@ -1289,7 +1358,7 @@ Loading ITables v2.3.0 from the internet...
 </div>
 <section id="navcharts-extra-not-necessary" class="level3">
 <h3 class="anchored" data-anchor-id="navcharts-extra-not-necessary">NAV/Charts &amp; Extra (not necessary)</h3>
-<div id="95a6db50" class="cell" data-execution_count="14">
+<div id="9998ee37" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty list to store categories</span></span>
@@ -1513,44 +1582,44 @@ Loading ITables v2.3.0 from the internet...
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          date  position          cash    mark    mkt_value
-8   2024-05-13       0.0      0.000000  140.15     0.000000
-9   2024-05-14    -100.0  14286.000000  144.93  -207.000000
-10  2024-05-15    -100.0  14286.000000  149.82  -696.000000
-11  2024-05-16    -100.0  14286.000000  146.66  -380.000000
-12  2024-05-17    -100.0  14286.000000  145.60  -274.000000
+8   2024-05-13       0.0      0.000000  171.89     0.000000
+9   2024-05-14    -100.0  17000.000000  177.55  -755.000000
+10  2024-05-15    -100.0  17000.000000  173.99  -399.000000
+11  2024-05-16    -100.0  17000.000000  174.84  -484.000000
+12  2024-05-17    -100.0  17000.000000  177.46  -746.000000
 ..         ...       ...           ...     ...          ...
-245 2025-04-24       0.0   8029.487246  152.97  8029.487246
-246 2025-04-25       0.0   8029.487246  153.88  8029.487246
-247 2025-04-28       0.0   8029.487246  153.38  8029.487246
-248 2025-04-29    -100.0  23423.487246  152.79  8144.487246
-249 2025-04-30    -100.0  23423.487246  149.48  8475.487246
+245 2025-04-24       0.0   9498.077468  259.51  9498.077468
+246 2025-04-25       0.0   9498.077468  284.95  9498.077468
+247 2025-04-28       0.0   9498.077468  285.88  9498.077468
+248 2025-04-29       0.0   9498.077468  292.03  9498.077468
+249 2025-04-30       0.0   9498.077468  282.16  9498.077468
 
 [242 rows x 5 columns]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-15-output-3.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-16-output-3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-15-output-4.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-16-output-4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-15-output-5.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-16-output-5.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
