@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="fred-data-software-developer-job-postings" class="level3">
 <h3 class="anchored" data-anchor-id="fred-data-software-developer-job-postings">6. FRED Data: Software Developer Job Postings</h3>
 <p>The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely <strong>backward selection</strong> where the model evaluates all the features and removes the least powerful/most noisy one by one.</p>
-<div id="8cb60124" class="cell" data-execution_count="1">
+<div id="c20fc81f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -299,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Display last 5 rows as table</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="144">
+<div class="cell-output cell-output-display" data-execution_count="160">
 <div>
 
 
@@ -349,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="7a1833dd" class="cell" data-execution_count="2">
+<div id="87cdac71" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the time series</span></span>
@@ -374,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="blotter-ledger-code" class="level1">
 <h1>Blotter &amp; Ledger Code</h1>
-<div id="80093d31" class="cell" data-execution_count="3">
+<div id="627f12ef" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -387,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="fetch-data" class="level3">
 <h3 class="anchored" data-anchor-id="fetch-data">Fetch data</h3>
-<div id="fce39f12" class="cell" data-execution_count="4">
+<div id="675921d7" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>asset<span class="op">=</span> sb.Contract({</span>
@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="clean-data" class="level3">
 <h3 class="anchored" data-anchor-id="clean-data">Clean Data</h3>
-<div id="8d6c1a5e" class="cell" data-execution_count="5">
+<div id="6dce0709" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="print-dfs" class="level3">
 <h3 class="anchored" data-anchor-id="print-dfs">Print DFs</h3>
-<div id="0311ccd0" class="cell" data-execution_count="6">
+<div id="fa5942bc" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print dataframes</span></span>
@@ -579,14 +579,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="149">
+<div class="cell-output cell-output-display" data-execution_count="165">
 <pre><code>'\nprint("Historical Data Daily:")\nprint(historical_data_daily)\n\nprint("\nHistorical Data Hourly:")\nprint(historical_data_hourly)\n\nprint("IV Historical Data Daily:")\nprint(iv_historical_data_daily)\n\n#print("\n IV Historical Data Hourly:")\n#print(iv_historical_data_daily)\n\nprint("Historical SMA Data Daily:")\nprint(historical_data_daily_SMA)\n\n#print("\nLiquid Hours:")\n#print(liquid_hours)\n\n'</code></pre>
 </div>
 </div>
 </section>
 <section id="vol" class="level3">
 <h3 class="anchored" data-anchor-id="vol">Vol</h3>
-<div id="fbe02772" class="cell" data-execution_count="7">
+<div id="49b514a8" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calc Obs &amp; Exp Vol</span></span>
@@ -643,7 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="blotter-ledger-initialization" class="level3">
 <h3 class="anchored" data-anchor-id="blotter-ledger-initialization">Blotter &amp; Ledger Initialization</h3>
-<div id="f31cf323" class="cell" data-execution_count="8">
+<div id="c5deccdb" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract trade periods from daily historical data</span></span>
@@ -672,7 +672,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="blotter-ledger-loop" class="level3">
 <h3 class="anchored" data-anchor-id="blotter-ledger-loop">Blotter &amp; Ledger Loop</h3>
-<div id="96024971" class="cell" data-execution_count="9">
+<div id="10e58a48" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create function for IV percentile</span></span>
@@ -774,7 +774,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="extra" class="level3">
 <h3 class="anchored" data-anchor-id="extra">Extra</h3>
-<div id="eb83a005" class="cell" data-execution_count="10">
+<div id="91e30495" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
@@ -821,14 +821,14 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="outputting-interactive-blotter-ledger-final-hw-here" class="level1">
 <h1>Outputting Interactive Blotter &amp; Ledger (FINAL HW HERE)</h1>
-<div id="b2db8efc" class="cell" data-execution_count="11">
+<div id="f1b4ee68" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your final blotter DataFrame already populated at this point</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>blotter <span class="op">=</span> blotter.<span class="bu">round</span>(<span class="dv">3</span>)  <span class="co"># Optional: round for cleaner display</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="b4b7d8d3" class="cell" data-execution_count="12">
+<div id="2435f2b8" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display blotter as interactive table</span></span>
@@ -836,7 +836,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>show(blotter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<table id="itables_1d07b298_36aa_4fb5_86c7_1748844a1d56" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_bf5529bf_0560_4e07_8d1c_367d49570470" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -918,7 +918,7 @@ Loading ITables v2.3.0 from the internet...
 <script type="module">
     import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.js';
 
-    document.querySelectorAll("#itables_1d07b298_36aa_4fb5_86c7_1748844a1d56:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_bf5529bf_0560_4e07_8d1c_367d49570470:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
@@ -935,21 +935,21 @@ Loading ITables v2.3.0 from the internet...
 </script>
 </div>
 </div>
-<div id="2e4be763" class="cell" data-execution_count="13">
+<div id="97efc926" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your final ledger DataFrame already populated at this point</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ledger <span class="op">=</span> ledger.<span class="bu">round</span>(<span class="dv">2</span>)  <span class="co"># Optional: clean output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="689e4454" class="cell" data-execution_count="14">
+<div id="06dbdcde" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display ledger as interactive table</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>show(ledger)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<table id="itables_a5198f08_3148_438c_867f_c31f3d8c89af" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_83d71f84_66c9_4896_8104_b87376dd968a" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1026,7 +1026,7 @@ Loading ITables v2.3.0 from the internet...
 <script type="module">
     import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.js';
 
-    document.querySelectorAll("#itables_a5198f08_3148_438c_867f_c31f3d8c89af:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_83d71f84_66c9_4896_8104_b87376dd968a:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
@@ -1045,7 +1045,7 @@ Loading ITables v2.3.0 from the internet...
 </div>
 <section id="navcharts-extra" class="level3">
 <h3 class="anchored" data-anchor-id="navcharts-extra">NAV/Charts &amp; Extra</h3>
-<div id="cb9665d8" class="cell" data-execution_count="15">
+<div id="0484d428" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty list to store categories</span></span>
@@ -1318,7 +1318,7 @@ Loading ITables v2.3.0 from the internet...
 <section id="performance-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="performance-statistics">7. Performance Statistics</h2>
 <p>At a high level, we compute: - <strong>Alpha &amp; Beta</strong> (vs SPX benchmark) - <strong>Annualized Volatility</strong> of strategy returns - <strong>Geometric Mean Rate of Return</strong> (annualized) - <strong>Sharpe Ratio</strong> (assuming zero risk‐free rate) - <strong>Average return per trade</strong> - <strong>Average number of trades per year</strong></p>
-<div id="d3d22db8" class="cell" data-message="false" data-execution_count="16">
+<div id="df8a7fb4" class="cell" data-message="false" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1384,7 +1384,7 @@ Loading ITables v2.3.0 from the internet...
 <span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>show(stats.to_frame(<span class="st">'Value'</span>).<span class="bu">round</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<table id="itables_3e733c9a_e2f9_44d1_8363_7c9da78f208e" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_55120334_2817_4f05_a846_474099d11836" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1457,7 +1457,7 @@ Loading ITables v2.3.0 from the internet...
 <script type="module">
     import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.2.0/dt_bundle.js';
 
-    document.querySelectorAll("#itables_3e733c9a_e2f9_44d1_8363_7c9da78f208e:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_55120334_2817_4f05_a846_474099d11836:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
