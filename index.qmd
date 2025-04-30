@@ -78,26 +78,8 @@ We may use the FRED API, yFinance, or custom scrapers to automate data gathering
 - Backtest the strategy on historical TSLA data
 - Deploy the final version to https://thesctrading.com
 
-### 6. Practice Data Table
 
-```{python}
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [["Sun","696,000",1.989e30],
-         ["Earth","6,371",5.972e24],
-         ["Moon","1,737",7.34e22],
-         ["Mars","3,390",6.39e23]]
-Markdown(tabulate(
-  table,
-  headers=["Astronomical object","R (km)", "mass (kg)"]
-))
-```
-
-### 7. Practice Image
-
-![Practice Elephant from Quarto Guide](elephant.png)
-
-### 8. FRED Data: Software Developer Job Postings
+### 6. FRED Data: Software Developer Job Postings
 
 The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely **backward selection** where the model evaluates all the features and removes the least powerful/most noisy one by one.
 
