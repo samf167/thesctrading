@@ -88,6 +88,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from fredapi import Fred
 
+# trade_period function
+def get_trade_period(dt):
+    iso_year, iso_week, _ = dt.isocalendar()
+    return float(f"{iso_year}.{iso_week:02d}")
+
 # Connect to FRED
 fred = Fred(api_key="1c00931ee7dc4304c6bb68b72fb2d68f")
 
@@ -99,7 +104,15 @@ data = fred.get_series(series_id)
 df = pd.DataFrame(data, columns=["Job Postings"])
 df.index.name = "Date"
 df = df.reset_index()
+df["Date"] = pd.to_datetime(df["Date"])
+df["trd_prd"] = df["Date"].apply(get_trade_period)
 
+# collapse to one val per week and compare to prior week
+weekly_jobs    = df.groupby("trd_prd")["Job Postings"].last().sort_index()
+job_diff       = weekly_jobs.diff()
+job_increased  = job_diff > 0
+
+print(job_increased.head(10))
 # Display last 5 rows as table
 df.tail()
 ```
@@ -144,6 +157,16 @@ benchmark = sb.Contract({
     'exchange': "CBOE",
     'currency': "USD"
 })
+
+benchmark_fetch = sb.fetch_historical_data(
+    contract=benchmark,
+    endDateTime='',          # now
+    durationStr='1 Y',       # past year
+    barSizeSetting='1 day',  # daily bars
+    whatToShow='TRADES',
+    useRTH=True,
+)
+benchmark = benchmark_fetch['hst_dta']
 
 #### Get hourly data to use for calculating vol
 historical_data_hourly_fetch = sb.fetch_historical_data(
@@ -422,9 +445,11 @@ for trd_prd in blotter.index:
     # INPUT PRE-TRADE FILTERS HERE
 
 
-    if prev_iv is None or not (40 < prev_iv < 90):
+    if (not job_increased.get(trd_prd, False)
+        or prev_iv is None
+        or not (40 < prev_iv < 90)
+    ):
         qty = 0
-        print("no trade")
     elif entry_price > prev_close:
         qty = -100
         exit_price_strategy = entry_price * (1 - exp_vol)
@@ -502,10 +527,11 @@ padded_y_pred = np.concatenate(([1.0] * fill, y_pred))
 blotter['prediction'] = pd.Series(padded_y_pred, index=blotter.index)
 
 # Results
-print("Coefficients:", model.coef_)
-print("Intercept:", model.intercept_)
-print(classification_report(y_test, y_pred))
-print("Blotter", blotter)
+# REMOVING THESE TO CLEAN UP
+#print("Coefficients:", model.coef_)
+#print("Intercept:", model.intercept_)
+#print(classification_report(y_test, y_pred))
+#print("Blotter", blotter)
 ```
 # Outputting Interactive Blotter & Ledger (FINAL HW HERE)
 ```{python}
@@ -753,5 +779,80 @@ plt.show()
 
 alpha, beta
 ```
+## 7. Performance Statistics
 
+At a high level, we compute:
+- **Alpha & Beta** (vs SPX benchmark)
+- **Annualized Volatility** of strategy returns
+- **Geometric Mean Rate of Return** (annualized)
+- **Sharpe Ratio** (assuming zero risk‐free rate)
+- **Average return per trade**
+- **Average number of trades per year**
 
+```{python}
+#| message: false
+#| warning: false
+
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+from scipy.stats import gmean
+from itables import show
+
+# 1) make sure benchmark returns are up to date
+benchmark['timestamp'] = pd.to_datetime(benchmark['timestamp'])
+benchmark['trd_prd'] = benchmark['timestamp'].apply(get_trade_period)
+period_spx = (
+    benchmark
+    .sort_values('timestamp')
+    .groupby('trd_prd')['close']
+    .agg(first='first', last='last')
+)
+period_spx['return'] = period_spx['last'] / period_spx['first'] - 1
+
+# 2) extract our strategy's per‐period returns
+strat_ret = blotter['return'].astype(float)
+
+# 3) align and drop any NaNs
+bench_ret = period_spx['return'].reindex(strat_ret.index)
+df = pd.concat([strat_ret, bench_ret], axis=1, keys=['strat','bench']).dropna()
+
+# 4) regress strat on bench to get alpha/beta
+Y = df['strat']
+X = sm.add_constant(df['bench'])
+model = sm.OLS(Y, X).fit()
+alpha, beta = model.params['const'], model.params['bench']
+
+# 5) annualized volatility (weekly data → √52)
+ann_vol = strat_ret.std() * np.sqrt(52)
+
+# 6) geometric mean return (annualized)
+#    drop zero‐return periods to avoid gmean(1.0) bias
+gm = gmean(1 + strat_ret[strat_ret != 0]) - 1
+geo_ann = (1 + gm)**52 - 1
+
+# 7) Sharpe ratio (zero RF)
+sharpe = strat_ret.mean() / strat_ret.std() * np.sqrt(52)
+
+# 8) average return per trade
+avg_ret_trade = strat_ret.mean()
+
+# 9) average number of trades per year
+n_trades = (strat_ret != 0).sum()
+years = len(strat_ret) / 52
+trades_per_year = n_trades / years
+
+# 10) assemble into a Series and show
+stats = pd.Series({
+    'Alpha': alpha,
+    'Beta': beta,
+    'Annualized Volatility': ann_vol,
+    'Geometric Mean Return': geo_ann,
+    'Sharpe Ratio': sharpe,
+    'Avg Return/Trade': avg_ret_trade,
+    'Trades/Year': trades_per_year
+})
+
+show(stats.to_frame('Value').round(4))
+
+```
