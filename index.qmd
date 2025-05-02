@@ -13,63 +13,68 @@ execute:
   message: false
 ---
 
-
-
 ## S&C Trading Strategy Overview
 
 ### 1. Strategy Outline
 
-Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum, holding positions for 10 trading days or less. We use the 10 day window to account for the fact that some of our data sources are weekly and may provide more signal over a longer trade horizon. Of course, if the system hits its limit point during the window, the position will close similar to our HW1 model.
+Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum.
+We use implied volatility from options data to inform our volatility expectation and therefore our limit sell (or buy in the case of a short).
+We also use probabilities from a logistic regression based on alternative and technical to size our trades, a key differentiation to our HW1 model.
+Our model also has more thoughtful entry parameters and trades more selectively based on underlying conditions in the stock.
+We walk through our model and an example trade below.
 
-*note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors.
-
-#### Example Trade Walkthrough
+### 2. Example Trade Walkthrough
 
 Pre-Trade Filter
 
 1. Check if job postings for software roles increased week-over-week
    (as well as other FRED/alternative data including pairs performance)
 2. Check if implied volatility (IV) percentile > 40% and < 90%
-3. If both are true → proceed to trade evaluation
+3. If both are true → proceed to trade evaluation and if price > last weeks close, short the stock and vice versa
 
----
+Position Sizing
 
-### 2. Exit Strategy
+We run a logistic regression on the success of our historical trades with IV, SMA, and WAP as features to determine how to size our new positions.
+Given our limited dataset, this is only evident in a few of our trades (as a result of our fairly strict pre-trade criteria), but allows us to manage risk
+under various momentum regimes, taking discretionary risk in favorabe market conditions and conserving capital in those which are unfavorable.
 
-We use four exit triggers to manage risk and lock in profits:
+Exit Strategy
+
+We use two exit triggers to manage risk and lock in profits:
 
 1. If position is open for more than 5 trading days (one week), exit regardless of performance
-2. If IV percentile drops below 30%, exit
-3. Exit if price reaches a profit target of 2x last week's average true range (ATR)
-4. Use a trailing stop loss of 1.5x ATR below the highest price reached since entry
+2. If position hits limit price (determined by options implied volatility expectations for the week), sell
 
----
+*note that compared to the basic HW1 empirical volatility model, we forecasted vol using the options implied volatility.
+We converted the first IV datapoint of a trade period (ie. Monday's open) to an expectation of weekly vol and used this vol to
+calculate our limit buy and sells. We thought this was more descriptive and informative of market expectations for upcoming vol.
+We also used IV in our pre-trade checklist in order to ensure we are taking risk at the right times. We considered using ML to determine
+more effective pre-trade requirements which were less binary, but did not implement these. Using the IV is much better at being **forward-looking**
+as opposed to the previous backward looking volatility analysis. This helps us build a more informed, sensible, and risk-aware model.*
 
-### 3. Position Sizing Framework
-
-Position size will adapt based on strength of indicators and perhaps on a regression of additional features not used to determine the weekly position strategy similar to the logistic regression model used in HW1. We envision a less binary model where sizing is continuous determined on a variety of features (allows us to take risk off but also keep risk on more granularly than the original model).
-
----
-
-### 4. Data Requirements
+### 3. Data Requirements
 
 Data from the following sources was used to inform our trades:
 
-- Price data and technical indicators (SMA, ATR, IV)
+- Price data and technical indicators (SMA, WAP, IV)
 - Job posting data & other relevant metrics from FRED
-- Automotive industry data from FRED (I DONT THINK WE USED THIS RIGHT?)
 - Implied volatility percentile data (via IBKR)
 
 ---
 
-### 5. Commentary & Reflection
+### 4. Commentary & Reflection
 
-- Tried to determine trades based on whether the price was above the 50-day SMA because we thought it would be a smoother metric than previous trade period close. However, after testing the strategy using SMA for several period lengths (20, 30, etc.), we found that the results were worse.
+There were a few features we had hoped to include in our model which proved unsuccessful or were too cumbersome to implement.
+One such feature was determining which direction (long or short) to trade based on whether the price was above the 50-day SMA as opposed to the prior period's close did not work as well as we had hoped from a returns perspective.
+We thought it would be a smoother metric than previous trade period close. However, after testing the strategy using SMA for several period lengths (20, 30, etc.), we found that the results were worse.
+We also found that using implied volatility was much more effective and that sizing positions continuously through the logistic regression
+was very effective relative to the standard model. We can infer that this makes our model more well informed and therefore more effective.
+With more time, we would've implemented more fundamental metrics to help inform our trading plan (historical average EV/EBITDA and other valuation metrics).
 
 
-### 6. FRED Data: Software Developer Job Postings
+### 5. FRED Data: Software Developer Job Postings
 
-The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely **backward selection** where the model evaluates all the features and removes the least powerful/most noisy one by one.
+The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings which we use as a pre-trade filter in our model.
 
 ```{python}
 import pandas as pd
@@ -102,7 +107,7 @@ job_increased  = job_diff > 0
 
 #print(job_increased.head(10))
 # Display last 5 rows as table
-df.tail()
+#df.tail()
 ```
 
 ```{python}
@@ -334,8 +339,6 @@ historical_data_daily = historical_data_daily[historical_data_daily['trd_prd'] >
 
 ```
 
-### Vol
-
 ```{python}
 # Calc Obs & Exp Vol
 # Extract trade periods from daily historical data
@@ -454,7 +457,6 @@ for trd_prd in blotter.index:
     sma = historical_data_daily_SMA.loc[historical_data_daily_SMA['trd_prd'] == trd_prd, 'SMA_30'].iloc[0]
     prev_iv = prev_iv_percentiles.get(trd_prd, None)
     # INPUT PRE-TRADE FILTERS HERE
-
 
     if (not job_increased.get(trd_prd, False)
         or prev_iv is None
@@ -667,12 +669,12 @@ for cat in new_ledger['position_category']:
 # Your final ledger DataFrame already populated at this point
 ledger = ledger.round(2)  # Optional: clean output
 ```
-## New Ledger
+### Enhanced Ledger (continuous position sizing)
 ```{python}
 # Display ledger as interactive table
 show(ledger)
 ```
-
+### NAV Results With Smart Quantity
 ```{python}
 # Plot NAV over time
 plt.figure(figsize=(12, 6))
@@ -689,7 +691,9 @@ for cat, color in color_map.items():
 
 plt.legend()
 plt.show()
+```
 
+```{python}
 blotter['return'] = (((blotter['exit_price'] - blotter['entry_price']) / blotter['entry_price']) )* np.sign(blotter['qty'])# get returns irrespective of long/short
 
 #print("\nExit Timestamps:")
@@ -803,7 +807,7 @@ plt.show()
 
 alpha, beta
 ```
-## 7. Performance Statistics
+# Performance Statistics
 
 At a high level, we compute:
 - **Alpha & Beta** (vs SPX benchmark)
@@ -814,8 +818,6 @@ At a high level, we compute:
 - **Average number of trades per year**
 
 ```{python}
-#| message: false
-#| warning: false
 
 import numpy as np
 import pandas as pd
@@ -836,16 +838,17 @@ period_spx['return'] = period_spx['last'] / period_spx['first'] - 1
 
 # 2) extract our strategy's per‐period returns
 strat_ret = blotter['return'].astype(float)
+#print(strat_ret)
 
 # 3) align and drop any NaNs
 bench_ret = period_spx['return'].reindex(strat_ret.index)
-df = pd.concat([strat_ret, bench_ret], axis=1, keys=['strat','bench']).dropna()
+df = pd.concat([strat_ret, bench_ret], axis=1, keys=['strat_ret','bench_ret']).dropna()
 
-# 4) regress strat on bench to get alpha/beta
-Y = df['strat']
-X = sm.add_constant(df['bench'])
+# 4) OLS
+Y = df['strat_ret']
+X = sm.add_constant(df['bench_ret'])
 model = sm.OLS(Y, X).fit()
-alpha, beta = model.params['const'], model.params['bench']
+alpha, beta = model.params['const'], model.params['bench_ret']
 
 # 5) annualized volatility (weekly data → √52)
 ann_vol = strat_ret.std() * np.sqrt(52)
@@ -862,9 +865,8 @@ sharpe = strat_ret.mean() / strat_ret.std() * np.sqrt(52)
 avg_ret_trade = strat_ret.mean()
 
 # 9) average number of trades per year
-n_trades = (strat_ret != 0).sum()
-years = len(strat_ret) / 52
-trades_per_year = n_trades / years
+n_trades = (blotter['qty'] != 0).sum() # number of trades per year bc backtest period is one year
+
 
 # 10) assemble into a Series and show
 stats = pd.Series({
@@ -874,7 +876,7 @@ stats = pd.Series({
     'Geometric Mean Return': geo_ann,
     'Sharpe Ratio': sharpe,
     'Avg Return/Trade': avg_ret_trade,
-    'Trades/Year': trades_per_year
+    'Trades per Year': n_trades
 })
 
 show(stats.to_frame('Value').round(4))
