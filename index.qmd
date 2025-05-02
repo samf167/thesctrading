@@ -6,6 +6,11 @@ format:
     df-print: paged
 
 jupyter: py312env
+
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
 
 
@@ -29,21 +34,11 @@ Pre-Trade Filter
 
 ---
 
-Buy Conditions
-
-1. Price is above the 50-day SMA (or EMA)
-   *note we may also include valuation metrics here to avoid extreme overvaluation given our long-only strategy*
-2. Gamma exposure is positive
-   (or some other Greek we can calculate)
-
-
----
-
 ### 2. Exit Strategy
 
 We use four exit triggers to manage risk and lock in profits:
 
-1. If position is open for more than 10 trading days, exit regardless of performance
+1. If position is open for more than 5 trading days (one week), exit regardless of performance
 2. If IV percentile drops below 30%, exit
 3. Exit if price reaches a profit target of 2x last week's average true range (ATR)
 4. Use a trailing stop loss of 1.5x ATR below the highest price reached since entry
@@ -54,34 +49,27 @@ We use four exit triggers to manage risk and lock in profits:
 
 Position size will adapt based on strength of indicators and perhaps on a regression of additional features not used to determine the weekly position strategy similar to the logistic regression model used in HW1. We envision a less binary model where sizing is continuous determined on a variety of features (allows us to take risk off but also keep risk on more granularly than the original model).
 
-Conditions for each tier will be finalized after further backtesting.
-
 ---
 
 ### 4. Data Requirements
 
-We plan to collect and process:
+Data from the following sources was used to inform our trades:
 
-- Price data and technical indicators (SMA, ATR, IV, Options contracts)
+- Price data and technical indicators (SMA, ATR, IV)
 - Job posting data & other relevant metrics from FRED
-- Automotive industry data from FRED
+- Automotive industry data from FRED (I DONT THINK WE USED THIS RIGHT?)
 - Implied volatility percentile data (via IBKR)
-
-We may use the FRED API, yFinance, or custom scrapers to automate data gathering.
 
 ---
 
-### 5. Next Steps
+### 5. Commentary & Reflection
 
-- Gather full feature list and find good alt data and implement backward elimination model to decide useful features
-- Build & backtest position sizing model
-- Backtest the strategy on historical TSLA data
-- Deploy the final version to https://thesctrading.com
+- Tried to determine trades based on whether the price was above the 50-day SMA because we thought it would be a smoother metric than previous trade period close. However, after testing the strategy using SMA for several period lengths (20, 30, etc.), we found that the results were worse.
 
 
 ### 6. FRED Data: Software Developer Job Postings
 
-The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to scour FRED to identify other features that may be useful. Other things may include potential regulatory items or things indicating sentiment on Elon as well as other automotive industry stats including production, CPI, etc. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely **backward selection** where the model evaluates all the features and removes the least powerful/most noisy one by one.
+The below is demonstrating our ability to use the FRED API to pull in features. This example is weekly software job postings. We plan to test a variety and perhaps identify the most powerful features through supervised feature selection methods. Likely **backward selection** where the model evaluates all the features and removes the least powerful/most noisy one by one.
 
 ```{python}
 import pandas as pd
@@ -119,17 +107,38 @@ df.tail()
 
 ```{python}
 # Plot the time series
-plt.figure(figsize=(10, 4))
-plt.plot(df["Date"], df["Job Postings"], linewidth=2)
-plt.title("US Software Developer Job Postings Index")
-plt.xlabel("Date")
-plt.ylabel("Index Value")
-plt.grid(True)
-plt.tight_layout()
-plt.show()
+import plotly.express as px
+fig = px.line(
+    df,
+    x="Date",
+    y="Job Postings",
+    title="US Software Developer Job Postings Index",
+    markers=True
+)
+
+fig.update_layout(
+    yaxis_title="Index Value",
+    hovermode="x unified",
+    xaxis=dict(
+        title="Date",
+        rangeselector=dict(
+            buttons=list([
+                dict(count=1, label="1m",  step="month", stepmode="backward"),
+                dict(count=3, label="3m",  step="month", stepmode="backward"),
+                dict(count=6, label="6m",  step="month", stepmode="backward"),
+                dict(count=1, label="YTD", step="year",  stepmode="todate"),
+                dict(step="all")
+            ])
+        ),
+        rangeslider=dict(visible=True),
+        type="date"
+    )
+)
+
+fig.show()
 ```
 
-# Blotter & Ledger Code
+# Blotter & Ledger
 
 
 ```{python}
@@ -142,7 +151,7 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 ```
 
-### Fetch data
+
 ```{python}
 asset= sb.Contract({
     'symbol': "TSLA",
@@ -255,7 +264,7 @@ historical_data_daily_fetch_SMA = sb.fetch_historical_data(
 historical_data_daily_SMA = historical_data_daily_fetch_SMA['hst_dta']#%% md
 ```
 
-### Clean Data
+
 ```{python}
 import pandas as pd
 
@@ -299,30 +308,30 @@ first_full_week = weekly_counts[weekly_counts >= 5].index.min()
 # Filter historical_data_daily
 historical_data_daily = historical_data_daily[historical_data_daily['trd_prd'] >= first_full_week]
 ```
-### Print DFs
+
 ```{python}
 # Print dataframes
 # Commented out these prints for now
-"""
-print("Historical Data Daily:")
-print(historical_data_daily)
 
-print("\nHistorical Data Hourly:")
-print(historical_data_hourly)
+#print("Historical Data Daily:")
+#print(historical_data_daily)
 
-print("IV Historical Data Daily:")
-print(iv_historical_data_daily)
+#print("\nHistorical Data Hourly:")
+#print(historical_data_hourly)
+
+#print("IV Historical Data Daily:")
+#print(iv_historical_data_daily)
 
 #print("\n IV Historical Data Hourly:")
 #print(iv_historical_data_daily)
 
-print("Historical SMA Data Daily:")
-print(historical_data_daily_SMA)
+#print("Historical SMA Data Daily:")
+#print(historical_data_daily_SMA)
 
 #print("\nLiquid Hours:")
 #print(liquid_hours)
 
-"""
+
 ```
 
 ### Vol
@@ -379,7 +388,6 @@ vol_calcs = smart_vol_calcs
 #vol_calcs = smart_vol_calcs # manually toggle active vol calc
 ```
 
-### Blotter & Ledger Initialization
 ```{python}
 # Extract trade periods from daily historical data
 trade_periods = historical_data_daily['trd_prd'].unique()
@@ -403,7 +411,7 @@ ledger['mkt_value'] = 0.0  # Placeholder values
 #print("\nLedger:")
 #print(ledger)
 ```
-### Blotter & Ledger Loop
+
 ```{python}
 # create function for IV percentile
 def calc_iv_percentile_series(iv_df, window=252):
@@ -453,7 +461,7 @@ for trd_prd in blotter.index:
         or not (40 < prev_iv < 90)
     ):
         qty = 0
-    elif entry_price > sma:
+    elif entry_price > prev_close:
         qty = -100
         exit_price_strategy = entry_price * (1 - exp_vol)
     else:
@@ -501,8 +509,7 @@ for trd_prd in blotter.index:
 ledger['mkt_value'] = ledger['position'] * ledger['mark'] + ledger['cash']
 ```
 
-### Extra
-```{python}
+```{python echo=false}
 import sklearn
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
@@ -536,27 +543,28 @@ blotter['prediction'] = pd.Series(padded_y_pred, index=blotter.index)
 #print(classification_report(y_test, y_pred))
 #print("Blotter", blotter)
 ```
-# Outputting Interactive Blotter & Ledger (FINAL HW HERE)
+## Blotter & Ledger Results
+
+### Blotter
 ```{python}
 # Your final blotter DataFrame already populated at this point
-blotter = blotter.round(3)  # Optional: round for cleaner display
-```
-
-```{python}
-# Display blotter as interactive table
+import pandas as pd
 from itables import show
+blotter = blotter.round(3)  # Optional: round for cleaner display
+# Display blotter as interactive table
 show(blotter)
 ```
 
+
+### Ledger
 ```{python}
 # Your final ledger DataFrame already populated at this point
 ledger = ledger.round(2)  # Optional: clean output
-```
-
-```{python}
 # Display ledger as interactive table
 show(ledger)
 ```
+
+
 
 ### NAV/Charts & Extra
 
