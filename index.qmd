@@ -21,7 +21,7 @@ execute:
 
 Our team is implementing a buy low / sell high strategy focused on short-term momentum trading in TSLA stock. We aim to take advantage of periods of elevated volatility and momentum, holding positions for 10 trading days or less. We use the 10 day window to account for the fact that some of our data sources are weekly and may provide more signal over a longer trade horizon. Of course, if the system hits its limit point during the window, the position will close similar to our HW1 model.
 
-*note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors. **We also wish to include valuation metrics using the yfinance package.***
+*note that we plan to use backward elimination ML method to determine most important features. We plan to trial a variety of alternative data features from FRED (detailed at the end of the website) as well as some competitor company technical factors.
 
 #### Example Trade Walkthrough
 
@@ -528,13 +528,15 @@ model = LogisticRegression()
 model.fit(X_train, y_train)
 
 # Predict
-# y_pred = model.predict(X_test) # 0.5 threshold
+# y_pred = model.predict(X_test) # 0.3 threshold
 probs = model.predict_proba(X_test)[:, 1]
 y_pred = (probs > 0.3).astype(int)
 
 fill = len(y_train)
 padded_y_pred = np.concatenate(([1.0] * fill, y_pred))
+padded_y_probs = np.concatenate(([1.0] * fill, probs))
 blotter['prediction'] = pd.Series(padded_y_pred, index=blotter.index)
+blotter['prediction %'] = pd.Series(padded_y_probs, index = blotter.index)
 
 # Results
 # REMOVING THESE TO CLEAN UP
@@ -556,7 +558,7 @@ show(blotter)
 ```
 
 
-### Ledger
+### Standard Ledger
 ```{python}
 # Your final ledger DataFrame already populated at this point
 ledger = ledger.round(2)  # Optional: clean output
@@ -566,7 +568,7 @@ show(ledger)
 
 
 
-### NAV/Charts & Extra
+### NAV Results With Constant Quantity
 
 ```{python}
 # Create an empty list to store categories
@@ -607,7 +609,9 @@ for cat, color in color_map.items():
 
 plt.legend()
 plt.show()
+```
 
+```{python}
 # Initialize Ledger
 filtered_historical = historical_data_daily[historical_data_daily['trd_prd'] != historical_data_daily['trd_prd'].iloc[0]]
 new_ledger = pd.DataFrame()
@@ -619,10 +623,8 @@ new_ledger['mkt_value'] = 0.0  # Placeholder values
 #new_ledger['cash'] = 50000
 
 for trd_prd in blotter.index:
-    if blotter.loc[trd_prd]['prediction'] == 0: # if the trade is predicted to fail, no trade
-        qty = 0
-    else: # if in train set or predicted success, make the trade
-        qty = blotter.loc[trd_prd, 'qty']
+
+    qty = blotter.loc[trd_prd, 'qty'] * blotter.loc[trd_prd, 'prediction %']
 
     entry_price = blotter.loc[trd_prd]['entry_price']
     entry_timestamp = blotter.loc[trd_prd]['entry_timestamp']
@@ -636,7 +638,7 @@ for trd_prd in blotter.index:
 
 # finally, calculate your strategy's end-of-day mark-to-market value
 new_ledger['mkt_value'] = new_ledger['position'] * new_ledger['mark'] + new_ledger['cash']
-print(new_ledger)
+#print(new_ledger)
 
 # Create an empty list to store categories
 position_category = []
@@ -660,7 +662,18 @@ colors = []
 # Assign colors manually
 for cat in new_ledger['position_category']:
     colors.append(color_map[cat])
+```
+```{python}
+# Your final ledger DataFrame already populated at this point
+ledger = ledger.round(2)  # Optional: clean output
+```
+## New Ledger
+```{python}
+# Display ledger as interactive table
+show(ledger)
+```
 
+```{python}
 # Plot NAV over time
 plt.figure(figsize=(12, 6))
 plt.scatter(new_ledger['date'], new_ledger['mkt_value'], c=colors, alpha=0.7)
